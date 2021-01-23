@@ -80,6 +80,19 @@
     "NAMEOFVIEW : hasclock : noschedule"
   #+END_SRC
 
+** Start Day
+  Sometimes it is nicer to have the week view start on monday or restricted to only working days.
+  This can be done using some settings:
+  #+BEGIN_SRC js
+    // By default our first day of the week is Sunday
+    // But some people prefer the first day to be monday
+    "agendaFirstDay":        1,
+    "agendaWeekViewNumDays": 5
+  #+END_SRC
+
+  This sets the first day of the week to monday (Sunday + 1) AND it restricts the number of days in the week view render to 5 (Monday - Friday)
+  [[file:limit_week_view.gif]]
+
 ** Movement
   You can change the active day in your agenda using the right and left angle brackets (usually shift comma and shift period).
 

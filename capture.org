@@ -17,6 +17,8 @@
 ** Capture By Template
   While I do have a very simplistic template mechanism, I decided after starting to
   implement that, that I would rather use a slightly beefed up version sublime snippets.
+  I have left the template mechanism in the system but I will not be maintaining it going 
+  forward. Instead, use snippets!
 
   A capture entry is specified something like so: 
 
@@ -78,7 +80,10 @@
   By default org capture will open up a panel. When you close the panel
   by pressing escape the system will save your the capture automatically.
 
-  Sometimes it is easier to work directly in the file. Adding openas: direct
+  I have found the panel does odd things with neovintageous. I am still working to fix that.
+  However:
+
+  Sometimes it is easier to work directly in the target capture file. Adding openas: direct
   to your capture config will flip open the file rather than using a capture panel.
 
   #+BEGIN_SRC js
