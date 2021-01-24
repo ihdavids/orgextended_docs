@@ -90,7 +90,9 @@
     "agendaWeekViewNumDays": 5
   #+END_SRC
 
-  This sets the first day of the week to monday (Sunday + 1) AND it restricts the number of days in the week view render to 5 (Monday - Friday)
+  This sets the first day of the week and month view to monday (Sunday + 1) AND it restricts the number of days in the week view render to 5 (Monday - Friday)
+  agendaFirstDay can be a number OR it can be a string with a day of the week.
+
   [[file:limit_week_view.gif]]
 
 ** Movement
