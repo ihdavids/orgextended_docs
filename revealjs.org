@@ -29,7 +29,7 @@
 
 ** Per Slide Properties
    Reveal supports a wide variety of per slide properties. These can be specified by properties
-   in a property drawer.
+   in a property drawer. See the reveal documentation for more information.
 
    #+BEGIN_EXAMPLE
    	:PROPERTIES:
@@ -38,3 +38,4 @@
 	:reveal_background_trans: slide
 	:END:   
    #+END_EXAMPLE 
+   

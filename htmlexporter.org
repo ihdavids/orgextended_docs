@@ -1,6 +1,7 @@
 * Builtin HTML Exporter
   Much like the reveal exporter OrgExtended has a simple
-  builtin HTML exporter.
+  builtin HTML exporter. This is a bit of a personal swiss army knife.
+
 
 ** Theming
    The exporter works off the concept of a theme.
@@ -33,5 +34,7 @@
 
    By default the exporter embeds highlightjs into the output to allow source blocks to be colorized.
    I may extend this in the future.
+
+
 
 

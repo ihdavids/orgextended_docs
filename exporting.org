@@ -5,10 +5,19 @@
   OrgExtended has a couple of mechanisms that can allow you to convert between
   your org files and other formats.
 
+  Emacs Org Mode through the ox framework can export to latex, pdf, 
+  html and many many many more formats. OrgExtended does not have quite
+  the same size of community, so currently only supports the formats 
+  I have need. That said, the pandoc integration could fairly easily be
+  extended to export to quite a wide variety of formats if so desired.
+
+  When working as a contracter I used org mode to create invoices,
+  time sheets, documentation, websites, presentations and quite a few
+  other things. 
 
 *** Current Exporters
 
   1. [[file:pandoc.org][Pandoc]]   - This is a well known tool. You will need to install it.
   2. [[file:htmlexporter.org][Html]]     - Simple built in HTML exporter. 
-  3. [[file:revealjs.org][RevealJs]] - An imitation of the emacs revealjs exporter.
+  3. [[file:revealjs.org][RevealJs]] - Presentations - An imitation of the emacs revealjs exporter.
    
