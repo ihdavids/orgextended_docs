@@ -19,13 +19,13 @@
    *OrgInsertTag* tries to help with the rapid insertion of tags.
    The tooltip / suggestions are currently somewhat broken. I hope to improve this in the future.
 
-   [[file:inserttag.gif]]
+   [[file:images/inserttag.gif]]
 
    Inserting a second tag will append the new tag. The system also has pseudo intellisense.
    We are using the input panel instead of the quick select panel because you need to be able to insert
    items not in the list.
 
-   [[file:taginsert.gif]]
+   [[file:images/taginsert.gif]]
 
 ** Todo Cycling
    Because changing the status of your task is something that you do
@@ -36,14 +36,14 @@
      a task. I don't support cycling at the moment, only picking from
      a quick list.
 
-   [[file:todoswitch.gif]]
+   [[file:images/todoswitch.gif]]
 
 ** Scheduling
    Inserting dates and times is one of many things we do often in org.
    I have started working on a date picker that can help /somewhat/ with
    scheduling efforts.
 
-   [[file:scheduling.gif]] 
+   [[file:images/scheduling.gif]] 
 
    The date picker is not perfect but I hope to improve it over time.
    The date picker CAN use the mouse to select a date.
@@ -80,19 +80,19 @@
 
    In addition, *OrgToggle* is aware of checkboxes and will toggle the checkbox
 
-   [[file:orgcheckboxes.gif]]
+   [[file:images/orgcheckboxes.gif]]
 
 ** Priority Editing
    Org has extensive priority support, we do not!
    While you can mark up your file with any priority tags you would like.
 
-   [[file:priorities.jpg]] 
+   [[file:images/priorities.jpg]] 
 
    1. Color coding of priorities is limited to the A B C priorities.
    2. The PRIORITIES comment does not impact the quick insertion.
    3. You can cycle priorities using a command but it is currently restricted to the built in priorities.
 
-   [[file:priorities_cycling.gif]]
+   [[file:images/priorities_cycling.gif]]
 
 ** Quick Heading Insertion
    TODO

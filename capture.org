@@ -12,7 +12,7 @@
   capturing to the active clocked item. Capturing to IDed or tagged items.
   Capturing to specific entries in specific files and a host of other options.   
   
-  [[file:orgcapture.gif]]
+  [[file:images/orgcapture.gif]]
 
 ** Capture By Template
   While I do have a very simplistic template mechanism, I decided after starting to
