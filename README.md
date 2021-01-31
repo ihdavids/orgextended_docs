@@ -6,6 +6,8 @@
   that has driven me back to Emacs over and over again. I finally decided that I might take a stab
   at building a usable orgmode plugin for sublime.
 
+  The package can be found at: [[https://github.com/ihdavids/orgextended][OrgExtended]]
+
   ![Start](./images/orgstart.gif)
 
   NOTE: To get setup, please jump down the Setup link below.
