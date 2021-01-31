@@ -8,7 +8,7 @@
 ** Quick Search
    - OrgJumpInFile - Quick search list of the headings in your file.
 
-   [[file:jump.gif]]
+   [[file:images/jump.gif]]
 
 ** Targetting
    TODO

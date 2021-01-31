@@ -8,7 +8,7 @@
   but it does a reasonable job building a presentation.
 
 
-  [[file:orgrevealjs.gif]] 
+  [[file:images/orgrevealjs.gif]] 
 
 ** Themes
    Reveal JS supports a set of builtin themes. These can be controlled with an orgmode comment as follows:

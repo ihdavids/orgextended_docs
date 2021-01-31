@@ -34,7 +34,7 @@
 	Checkboxes are also a sort of a mini todo item.
 	They are very handy!
 
-   [[file:orgcheckboxes.gif]]
+   [[file:images/orgcheckboxes.gif]]
 
 ** Numbered Lists
   Numbered lists are always a pain to author. The list tools can use the standard recal command
@@ -42,4 +42,4 @@
 
   In addition adding to a numbered list is supported by the OrgAppendNumberedList command.
 
-  [[file:numberedlists.gif]]
+  [[file:images/numberedlists.gif]]

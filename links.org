@@ -5,7 +5,7 @@
 
   Links in org mode are a nested set of square brackets
 
-  [[file:links.gif]]
+  [[file:images/links.gif]]
 
   #+BEGIN_EXAMPLE
   [[ Reference ][ Description ]]
@@ -56,7 +56,7 @@
   - OrgShowImage - Shows a single image link in the document
   - OrgHideImage - Hides a single image link in the document
 
-  [[file:orgimages.gif]]
+  [[file:images/orgimages.gif]]
 
   NOTE: You can ask that sublime visualize images by default in a file using a startup comment:
 
