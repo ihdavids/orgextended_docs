@@ -17,6 +17,8 @@
         #+HTML_STYLE: funky  
      #+END_EXAMPLE
 
+     [[file:images/htmlexport.gif]]
+
    Styles are defined as a grouping of files in an htmlstyles subfolder of your User directory.
    These files are:
 
