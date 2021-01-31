@@ -20,7 +20,7 @@
   For those of us working as consultants or in other industries where a time sheet can be valuable 
   the clock reports can be a huge benefit.
 
-  [[file:clocking.gif]]
+  [[file:images/clocking.gif]]
 
 ** Clocking
 

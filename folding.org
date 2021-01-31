@@ -3,7 +3,7 @@
     
     #+ATTR_HTML: :width 40
     #+ATTR_ORG: :width 50
-    [[file:orgfolding.gif]]
+    [[file:images/orgfolding.gif]]
 
 
 ** Tab Cycling
@@ -14,7 +14,7 @@
     variety of cases. If it is causing you grief you can dig into
     how it is setup in the Default.sublime-keymap in this package.
 
-    [[file:headings.gif]]
+    [[file:images/headings.gif]]
 
     This single key binding enables the "magic" of org tab cycling.
 
@@ -34,7 +34,7 @@
 
     #+ATTR_HTML: :width 40
     #+ATTR_ORG: :width 50
-    [[file:global_tab_cycling.gif]] 
+    [[file:images/global_tab_cycling.gif]] 
 
 ** Commands
    Sublime Org Mode supports quite a few commands:
