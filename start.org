@@ -15,7 +15,7 @@
   to compare org with Markdown. Org IS a markup and document interchange
   format like markdown, but it is also much more.
 
-  [[file:orgstartfolding.gif]]
+  [[file:images/orgstartfolding.gif]]
 
   Fundamentally org mode is *2* very /different/ things and fairly hard to describe:
 

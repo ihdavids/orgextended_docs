@@ -3,7 +3,7 @@
   your goals for the day. The agenda is really a collection of aggregate filtered views
   on a subset of your todo's.
 
-  [[file:agenda.gif]] 
+  [[file:images/agenda.gif]] 
 
   Like most things in orgextended the agenda is a work in progress, and currently quite a mess
   That said, there are some very useful pieces already present in the system.  
@@ -42,7 +42,7 @@
   - Phone :: This is a list of meetings marked as PHONE calls.
   - Week :: This is a week view helping with a quick open slot / week at a glance view.
 
-  [[file:agenda_day.gif]] 
+  [[file:images/agenda_day.gif]] 
 
 ** Tags
 
@@ -93,13 +93,13 @@
   This sets the first day of the week and month view to monday (Sunday + 1) AND it restricts the number of days in the week view render to 5 (Monday - Friday)
   agendaFirstDay can be a number OR it can be a string with a day of the week.
 
-  [[file:limit_week_view.gif]]
+  [[file:images/limit_week_view.gif]]
 
 ** Movement
   You can change the active day in your agenda using the right and left angle brackets (usually shift comma and shift period).
 
 
-  [[file:agenda_movement.gif]] 
+  [[file:images/agenda_movement.gif]] 
 
 ** Notifications
    OrgExtended has the start of a notification system. It is not yet super stable.
