@@ -9,12 +9,12 @@
 
    - In your sublime config file 
      #+BEGIN_EXAMPLE
-        "HtmlStyle": "blocky",
+        "HtmlStyle": "funky",
      #+END_EXAMPLE
 
    - In the files header
      #+BEGIN_EXAMPLE TYPE
-        #+HTML_STYLE: blocky  
+        #+HTML_STYLE: funky  
      #+END_EXAMPLE
 
    Styles are defined as a grouping of files in an htmlstyles subfolder of your User directory.
