@@ -43,7 +43,7 @@
 	The color scheme currently must be either:
 
     #+BEGIN_EXAMPLE
-    orgextended or orgextended-light
+    OrgExtended or OrgExtended-Light
     #+END_EXAMPLE
 
     NOTE: You can build your own color schemes and I encourage you to help
@@ -54,7 +54,7 @@
   #+BEGIN_SRC js
   {
     // The color scheme to use for the capture buffer
-    "color_scheme": "Packages/OrgExtended/orgextended-light.sublime-color-scheme",
+    "color_scheme": "Packages/OrgExtended/OrgExtended-Light.sublime-color-scheme",
 
     // Where are your org files?
     "orgDirs": [
