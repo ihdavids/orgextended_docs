@@ -51,6 +51,9 @@
           colour scheme for org files that adds support for quite a few
           org specific extensions. 
 
+          Org Extended now has a custom color scheme generator. It is still
+          in development, see below for additional information.
+
   #+BEGIN_SRC js
   {
     // The color scheme to use for the capture buffer
@@ -237,3 +240,13 @@
     // This is the template used to notify outside of sublime on org notifications 
     "ExternalNotificationCommand": ["C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe", "-ExecutionPolicy", "Unrestricted", ".\\balloontip.ps1", "\"{todo}\"" , "\"{time}\""]
    #+END_SRC
+
+* Color Scheme Generator
+
+  OrgExtended has a custom color scheme generator. It will take your current color scheme
+  and generate an OrgExtended compatible variant out of it. It tries to help with tweaking
+  your color scheme by giving you some pointers in the generated file on how best to tweak.
+
+  Here is an example of the version 1.0.7 of OrgExtended's color scheme generator will work. 
+
+  [[file:images/color_scheme_creator.gif]]
