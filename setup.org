@@ -132,17 +132,22 @@
 
 * Customizing other Features
 
-** HTML Export
-   You can customize the HTML exporter as follows:
-   TODO: Extend this!
+  There are a bunch of customizable features. At this point you have enough to get started.
+  Jump to [[file:start.org][Startup]] to continue learning about features. To get an idea of
+  some of the other options:
 
-   #+BEGIN_SRC js
-	"HtmlStyle": "funky"
-   #+END_SRC
 
 ** Capture Templates
-	Capture templates are a core element of Org Mode in general.
-	This is still in its infancy but growing.
+
+  Capturing is a staple of org mode. Being able to be in the middle of working on something, capture quickly
+  and then flip back to what you were doing is fundamental to the mind like glass getting things done philosophy of
+  many org mode "ers."
+
+  OrgExtended uses sublime snippets to create quick capture templates. You define a snippet, link it to a capture entry
+  and then as you are editing capture and exit.
+
+  Here I have defined a snippet called todo_heading, it's bound to Todo and I can use it to quickly make todo item captures.
+  For more information see: [[file:capture.org][Capturing]] 
   #+BEGIN_SRC js
     // I use this symbol for {refile} symbol expansion below.
     "refile": "D:\\Build\\notes\\refile.org",
@@ -150,7 +155,6 @@
     // Org Capture templates $0 is where the cursor ends up.
     "captureTemplates":
     [
-
         {
             // Although not fully implemented
             // This is what I am heading towards:
@@ -170,7 +174,6 @@
             "type":    "entry",
             // A sublime snippet that should be used as the template for the capture buffer
             // I am working on interesting variables for this.
-            // TODO: Document the variables!
             "snippet": "todo_heading",
             // ONLY FILE IS IMPLEMENTED AT THIS POINT!
             // targets: 
@@ -207,6 +210,9 @@
    #+END_SRC 
 
 *** Archiving
+
+  When you have a todo list and you finish the work, what do you do? A very core feature of org is archiving projects that are finished.
+
 	Archiving is a very personal choice. By default OrgExtended will archive to a myfile.org_archive file under a Archive heading. You can customize this using the following option:
 
 	#+BEGIN_SRC js
@@ -217,6 +223,8 @@
     //       properly
     "archive": "%s_archive::* Archive",
 	#+END_SRC
+
+  You can archive a subtree using the "Org Archive Subtree" command.
 
 ** Org Extensions
 	While sublime controls when to enable the mode for a particular file the background org file scanning can be controlled with the following option:
