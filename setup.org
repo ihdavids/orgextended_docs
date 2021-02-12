@@ -1,83 +1,136 @@
 * Sublime Setup
-    OrgExtended is still in review and has yet to be accepted as a sublime
-    plugin. To use this plugin you will need to manually clone this repo
-    into your plugins folder. Please be advised, while this plugin is 
-    something I plan to mature and keep extending, it is far from perfect
-    and it is certainly not my day job. There are no guarantees for this plugin. It very well may gain sentience and try to take over the world.
-    That said, constructive, professional criticism is welcomed.
 
-    On windows this means cloning like so (NOTE THE CASE!):
+    - If you would like to install from source there are a few instructions here: [[file:manual_install.org]]
 
-    #+BEGIN_SRC powershell
-    git clone https://github.com/ihdavids/orgextended.git C:\Users\<YOUR USERNAME>\AppData\Roaming\Sublime Text\Packages\OrgExtended
-    #+END_SRC    
+    Once installed you will need to configure the plugin. 
+    OrgMode is a vast array of tools. This plugin already has quite a few features
+    and tries hard to maintain the spirit, if not the full implementation of OrgMode.
 
-    On Mac you will need to clone like so (NOTE THE CASE!):
+* Syntax
+    So you installed it... Now what?
+    One of the first things you may notice is that there are a number of syntax entries. 
 
-    #+BEGIN_SRC powershell
-     git clone https://github.com/ihdavids/orgextended.git ~/Library/Application Support/Sublime Text 3/Packages/OrgExtended  
-    #+END_SRC 
+    [[file:images/syntaxs.png]]
 
-    On Linux:
+    Org files end in a .org file extension. The only real syntax you should worry about is the OrgExtended syntax.
+    The other syntaxs are in lower case to indicate they are used by the system but you should not need to set a buffer to those syntax modes.
 
-    #+BEGIN_SRC powershell
-     git clone https://github.com/ihdavids/orgextended.git ~/. config/sublime-text-3/Packages/OrgExtended 
-    #+END_SRC
+    Org files end in a .org file extension. Name a file something.org and you should be off to the races.
 
-    Once cloned you will likely need to restart sublime a couple of times.
-    OrgExtended installs some dependencies AND some additional packages.
-    (Namely Table Editor, which is how it currently provides table editing support)
+* Configuring
 
-    Once installed you will need to configure the plugin.
 	To get started the only really important item is your orgDirs entry.
-	This tells sublime where scan for org mode files for use in auto completion, the agenda and various other tools. This is an important
+    OrgExtended maintains metadata about all known org files. When you open a file it is scanned and tags are processed.
+    OrgExtended will also proactively scan your org files in the background and generate tag information about them so it can do things like
+
+    - Generate your agenda
+    - Jump to a header that has a custom id.
+    - Jump to a tag
+    - Let you select from a list of actively known tags
+
+	The orgDirs entry tells OrgExtended where to scan for org mode files for use in auto completion, the agenda and various other tools. 
+    This is an important
     setting to provide. Go to:
 
     #+BEGIN_EXAMPLE
       Preferences > Package Settings > OrgExtended > User Settings 
     #+END_EXAMPLE
 
-    OrgExtended should have copied over an example settings file for you
-    to edit.
+    OrgExtended should have copied over an example settings file into your Packages/User folder for you to edit.
 
-	The color scheme currently must be either:
-
-    #+BEGIN_EXAMPLE
-    OrgExtended or OrgExtended-Light
-    #+END_EXAMPLE
-
-    NOTE: You can build your own color schemes and I encourage you to help
-          in development by doing so. That said, OrgExtended uses a custom
-          colour scheme for org files that adds support for quite a few
-          org specific extensions. 
-
-          Org Extended now has a custom color scheme generator. It is still
-          in development, see below for additional information.
-
-  #+BEGIN_SRC js
-  {
-    // The color scheme to use for the capture buffer
-    "color_scheme": "Packages/OrgExtended/OrgExtended-Light.sublime-color-scheme",
-
-    // Where are your org files?
-    "orgDirs": [
-        "c:\\Users\\ian\\notes"
-    ],
-  }
-  #+END_SRC
-
-  [[file:images/light-color-scheme.gif]]
+    #+BEGIN_SRC js
+    {
+      // Where are your org files?
+      "orgDirs": [
+          "c:\\Users\\ian\\notes"
+      ],
+    }
+    #+END_SRC
 
 ** Excluding Files
    Often it is helpful to exclude some subdirectories in your orgDirs. This can be done as follows:
 
   #+BEGIN_SRC js
-	"orgExcludeDirs": [
-		"c:\\Users\\ian\\notes\\old",
-		"c:\\Users\\ian\\notes\\caldav",
-	],
+    "orgExcludeDirs": [
+        "c:\\Users\\ian\\notes\\old",
+        "c:\\Users\\ian\\notes\\caldav",
+    ],
 
   #+END_SRC
+
+
+
+* Color Schemes
+    Out of the box OrgExtended comes with 2 built in color schemes. One light and one dark. These are pretty crappy schemes that I hand authored.
+    They have the full set of custom scopes that I am using to give us the org mode coloring.
+
+    #+BEGIN_EXAMPLE
+    OrgExtended or OrgExtended-Light
+    #+END_EXAMPLE
+
+    #+BEGIN_SRC js
+    {
+      // The color scheme to use for the capture buffer
+      "color_scheme": "Packages/OrgExtended/OrgExtended.sublime-color-scheme",
+      //"color_scheme": "Packages/OrgExtended/OrgExtended-Light.sublime-color-scheme",
+
+      // Where are your org files?
+      "orgDirs": [
+          "c:\\Users\\ian\\notes"
+      ],
+    }
+    #+END_SRC
+  
+   [[file:images/light-color-scheme.gif]]
+
+    If you use the OrgExtended color scheme, OrgExtended should look okay no matter what. That said, part of the joy of sublime is customizing the look
+    of your editor.
+
+    Org Extended now has a custom color scheme generator. It is still in development and has some limitations, but it makes OrgExtended much more enjoyable
+    to use your own color scheme if you can generate it.
+
+** Color Scheme Generator
+
+  OrgExtended has a custom color scheme generator. It will take your current color scheme
+  and generate an OrgExtended compatible variant out of it. It tries to help with tweaking
+  your color scheme by giving you some pointers in the generated file on how best to tweak.
+
+  NOTE: This ONLY works with *.sublime-color-scheme files not the older texmate compatible *.tmTheme files
+        the generator will silently fail if your current color scheme is using a tmTheme file.
+
+  [[file:images/color_scheme_creator.gif]]
+
+  To use it you should:
+
+  - Close all org mode files.
+  - Open up some source file.
+  - Run the command *Org Create Color Scheme From Active*
+
+    When run from a normal NON org mode buffer will sample the currently
+    active color scheme, create a new color scheme file in:
+
+    #+BEGIN_QUOTE
+      Packages/User/OrgColorSchems/<originalName>_Org.sublime-color-scheme
+    #+END_QUOTE
+
+    It will then add a couple of key scopes such as:
+
+    - orgmode.preamble :: which is used to make the leading stars invisible on a subheading
+    - orgmode.state.*  :: These are used to give the core built in states some color
+
+    This also adds comment blocks in the color scheme file that tries to help new users understand
+    what their options are for extending and tweaking the new color scheme. 
+
+    - Note this is based off YOUR active color scheme, it may not look that good! I have found
+      that it tends to do better with dark color schemes than light ones.
+    - NOTE: This also changes the active color scheme for all of orgagenda, orgdatepicker etc.
+            if you wish to switch back to the default you will need to change your settings in those settings files.
+    - IF you have any orgmode files open you will likely get error popups as the command changes the active color scheme as
+      the files are being generated.
+
+      This is a bit of an experimental feature. I will continue to improve it as time permits. So far I am finding it pretty reasonable.
+
+* Customizing other Features
 
 ** HTML Export
    You can customize the HTML exporter as follows:
@@ -241,12 +294,3 @@
     "ExternalNotificationCommand": ["C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe", "-ExecutionPolicy", "Unrestricted", ".\\balloontip.ps1", "\"{todo}\"" , "\"{time}\""]
    #+END_SRC
 
-* Color Scheme Generator
-
-  OrgExtended has a custom color scheme generator. It will take your current color scheme
-  and generate an OrgExtended compatible variant out of it. It tries to help with tweaking
-  your color scheme by giving you some pointers in the generated file on how best to tweak.
-
-  Here is an example of the version 1.0.7 of OrgExtended's color scheme generator will work. 
-
-  [[file:images/color_scheme_creator.gif]]

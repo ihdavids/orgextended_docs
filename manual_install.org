@@ -1,0 +1,29 @@
+* Pulling From Source
+    To manually clone this repo into your plugins folder these steps should hopefully get you start. 
+
+    Please be advised, while this plugin is 
+    something I plan to mature and keep extending, it is far from perfect
+    and it is certainly not my day job. There are no guarantees for this plugin. It very well may gain sentience and try to take over the world.
+    That said, constructive, professional criticism is welcomed.
+
+    On windows this means cloning like so (NOTE THE CASE!):
+
+    #+BEGIN_SRC powershell
+    git clone https://github.com/ihdavids/orgextended.git C:\Users\<YOUR USERNAME>\AppData\Roaming\Sublime Text\Packages\OrgExtended
+    #+END_SRC    
+
+    On Mac you will need to clone like so (NOTE THE CASE!):
+
+    #+BEGIN_SRC powershell
+     git clone https://github.com/ihdavids/orgextended.git ~/Library/Application Support/Sublime Text 3/Packages/OrgExtended  
+    #+END_SRC 
+
+    On Linux:
+
+    #+BEGIN_SRC powershell
+     git clone https://github.com/ihdavids/orgextended.git ~/. config/sublime-text-3/Packages/OrgExtended 
+    #+END_SRC
+
+    Once cloned you will likely need to restart sublime a couple of times.
+    OrgExtended installs some dependencies AND some additional packages.
+    (Namely Table Editor, which is how it currently provides table editing support)
