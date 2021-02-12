@@ -88,18 +88,25 @@
 
    [[file:images/priorities.jpg]] 
 
-   1. Color coding of priorities is limited to the A B C priorities.
-   2. The PRIORITIES comment does not impact the quick insertion.
-   3. You can cycle priorities using a command but it is currently restricted to the built in priorities.
+   - Color coding of priorities is limited to the A B C priorities.
 
    [[file:images/priorities_cycling.gif]]
 
 ** Quick Heading Insertion
-   TODO
+   Org Mode in Emacs comes with a litany of extremely powerful editing commands, we do not.
+   That said, we do have a few commands that can help. We have a few quick heading insertion commands.
+
+   [[file:images/quick_insertion.gif]]
+
 
 ** Quick Indentation Change
-   TODO
 
+   Much like quick heading insertion we have some quick heading indentation commands.
+
+   [[file:images/quick_heading_change.gif]]
+
+   All of these commands have command equivalents and can easily be bound to your keyboard shortcuts of choice.
+   [[file:images/quick_heading_change2.gif]]
 
 
 
