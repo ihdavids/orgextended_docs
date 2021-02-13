@@ -74,8 +74,19 @@
    This is not as good as clocking in many ways, but it does help me work efficiently when I do not care about
    clocking my efforts.
 
+** Small Clocks
+   I am not a fan of sub minute clocks. OrgExtended has an option to erase clock entries that are less than 1 minute.
+
+   [[file:images/small_clocks1.gif]]
+
+   You can choose what behaviour you would appreciate
+
+   [[file:images/small_clocks2.gif]]
+
 ** Estimates
    TODO
 
 ** Column Mode
    TODO
+
+

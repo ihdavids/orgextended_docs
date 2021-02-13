@@ -108,7 +108,12 @@
    All of these commands have command equivalents and can easily be bound to your keyboard shortcuts of choice.
    [[file:images/quick_heading_change2.gif]]
 
+** Moving Headings Around
 
+   OrgExtended provides some quick header movement options.
+   You can reorder sibling subtrees within a list of headings.
+
+   [[file:images/moving_headings1.gif]]
 
 
 
