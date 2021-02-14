@@ -32,10 +32,62 @@
 
 	#+BEGIN_EXAMPLE
     * TODO Project A
-      SCHEDULED: <2021-02-15 Mon 22:41> 
+      SCHEDULED: <2021-02-15 Mon 10:41> 
     ** TODO Task 1
     *** This is a sub task  
 	#+END_EXAMPLE
 
+* Agenda
+
 	At this point you have a simple todo list, it is in the middle of my notes!
-	This is where the agenda comes in. 
+	This is where the agenda comes in. There are a ton of agenda views and I hope
+	to help you build your own in the future. Based on how you have your agenda
+	configured your agenda can find your todos in your files. It can also show
+	you different views of your todos based on how you have categorized them.
+
+	Here I am demonstrating opening the general todo listing and jumping to
+	the todo. Type enter on the line and we open the todo. Type space and we
+	open it in another window.
+
+	I am also showing this task in the agenda. I pulled in the time a little
+	and moved the schedule to the task for the demonstration. This is because
+	I have my agenda restricted to only show working hours and it wouldn't
+	make much of a demonstration if it did not appear on the agenda.
+
+	[[file:images/learning_todo_agenda.gif]] 
+
+* Priorities
+
+	Org supports priorities. These are just simple tags that identify 
+	how important this task is to you.
+
+	[[file:images/learning_todo_priorities.gif]]
+
+    #+BEGIN_EXAMPLE
+    * A heading
+    ** TODO [#B] Task 1
+    ** TODO [#A] Task 2
+    ** TODO Task 3
+    ** TODO Task 4
+    #+END_EXAMPLE
+
+
+* Tagging
+
+	As you get more todos things can get confusing without some way of organizing
+	your efforts. Welcome to tags.
+
+	You can tag any heading with a tag (or multiple tags. Once you have tagged it you can filter
+	based on that tag. Here I am going to use a generic filtered todo view to only
+	view todo items tagged with TA.
+
+	[[file:images/learning_todo_tags.gif]]
+
+	#+BEGIN_EXAMPLE
+    * A heading
+    ** TODO Task 1                                                            :TA:
+    ** TODO Task 2
+    ** TODO Task 3                                                            :TA:
+    ** TODO Task 4
+	#+END_EXAMPLE
+
