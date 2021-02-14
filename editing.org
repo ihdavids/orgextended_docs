@@ -102,34 +102,14 @@
 
    OrgExtended has a few snippets to help with entering org text more efficiently
 
-*** Links
    #+BEGIN_EXAMPLE
      <l        // This will insert a link
-     [[$1][$2]] $0
-   #+END_EXAMPLE
-
-*** Examples
-   #+BEGIN_EXAMPLE
-     <e        // This will insert an example block:
-     #+BEGIN_EXAMPLE
-        $0
-     #+END_EX...
-   #+END_EXAMPLE
-
-*** Quotes
-   #+BEGIN_EXAMPLE
+     <e        // This will insert an example block
      <q        // This will insert a quote block:
-     #+BEGIN_QUOTE
-        $0
-     #+END_QU...
+     <s        // This will insert a source block: the cursor will be in the language identifier
    #+END_EXAMPLE
 
-*** Source Code Blocks
-   #+BEGIN_EXAMPLE
-     <s        // This will insert a source block: the cursor will be in the language identifier
-     #+BEGIN_SRC $1
-     #+END_SR...
-   #+END_EXAMPLE
+   [[file:images/snippets.gif]]
 
 ** Quick Indentation Change
 
