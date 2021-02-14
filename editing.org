@@ -115,8 +115,23 @@
 
    [[file:images/moving_headings1.gif]]
 
+** Select SubTree
+   Selecting a subtree can be done quickly using alt+o m s (mark subtree)
+   Or for neovintageous users <space> m s when in normal mode
 
+   [[file:images/select_subtree.gif]]
 
+** Select Entity
+   Selecting a node in the heirarchy can be done using alt+o m e (mark entity)
+   or for neovintagoues users <space> m e when in normal mode
+
+   [[file:images/select_entity.gif]]
+
+** Copy SubTree and Entity
+   Much like selecting a subtree or entity you can quick copy the subtree or entity
+   as desired.
+
+   [[file:images/copy_subtree.gif]]
 
 
 

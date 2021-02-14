@@ -20,14 +20,14 @@
     2. More stuff 
     #+END_EXAMPLE
 
-    Numbered lists are also supported, but minimally at the moment.
+    Numbered lists are also supported, but minimally. In true org mode lettered and numbered lists work.
+    I do not have full support for switching from numbers to letters at this time.
 
     #+BEGIN_EXAMPLE
     - Item :: Definition   
     #+END_EXAMPLE
 
-    Definition lists are an orgmode thing. We highlight them but have no
-    other support for that at the moment.
+    Definition lists are an orgmode thing. We can highlight them but do not have any powerful commands for this at the moment.
 
 ** Checkboxes
 
