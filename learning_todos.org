@@ -1,0 +1,41 @@
+
+
+* Todo Basics
+	This is a simple study in managing your daily ins and outs using OrgExtended.
+	Org is a swiss army knife. It is, what you make of it. 
+
+	[[file:images/learning_todo_headings.gif]]
+
+	Basic note taking is pretty straight forward.
+
+	#+BEGIN_EXAMPLE
+  ** Headings
+     We are taking some notes, I have an idea that idea
+  *** Sub Idea 1
+	 Has some parts
+  **** Sub Sub Idea 1
+	   More info
+  *** Sub Idea 2
+	  Another part of that
+	#+END_EXAMPLE
+
+	As I am taking notes I realize I have some things I need to do.
+	Org expects that todos come up anywhere in your work. The agenda
+	and todo lists exist to find your work and who it to you.
+
+	You can convert any heading into a todo item.
+	You can define a project as a macro todo with sub tasks that have the
+	TODO keyword. You can set a schedule or deadline fairly easily.
+	This will cause this task to show up in your agenda.
+
+	[[file:images/learning_todo_todos.gif]]
+
+	#+BEGIN_EXAMPLE
+    * TODO Project A
+      SCHEDULED: <2021-02-15 Mon 22:41> 
+    ** TODO Task 1
+    *** This is a sub task  
+	#+END_EXAMPLE
+
+	At this point you have a simple todo list, it is in the middle of my notes!
+	This is where the agenda comes in. 
