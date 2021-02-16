@@ -68,6 +68,7 @@
 
 * This Plugin
 
+  - [[file:learning_todos.org][Tutorial]] - The start of a tutorial on basic todos.
   - [[file:orgextended.org][Basic Structure]] - Basic file structure
   - [[file:setup.org][Setup]] - Sublime Setup
   - [[file:editing.org][Editing]] - Editing your org file
