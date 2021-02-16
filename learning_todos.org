@@ -6,6 +6,25 @@
 
 	[[file:images/learning_todo_headings.gif]]
 
+	Keybindings for these operations can be found in the keybindings file.
+	You can find the keymap in the package settings menus.
+
+	- For regular users most of the org bindings are under Alt+o
+	- For NeoVintageous users most of the bindings are behind <space> in normal mode with the same followers as the Alt+o equivalents
+
+	Here I am using insert heading and insert child. 
+
+	#+BEGIN_EXAMPLE
+	Alt+o i h and Alt+o i c
+	#+END_EXAMPLE
+
+	Another way to do this is to use Ctrl+Enter
+	This runs the Do What I Mean (DWIM) Insert mechanism.
+
+	- If you are on a checklist it will insert a checklist.
+	- If you are on a numbered list it will insert a new entry.
+	- If you are on a heading it will insert a new heading.
+
 	Basic note taking is pretty straight forward.
 
 	#+BEGIN_EXAMPLE
@@ -37,6 +56,24 @@
     *** This is a sub task  
 	#+END_EXAMPLE
 
+	The same DWIM trick works for toggling things.
+
+	#+BEGIN_EXAMPLE
+	  <space> t
+	  Alt+o t
+	#+END_EXAMPLE
+
+	Will toggle state and checkboxes. You can also use the *"Org Change Todo"* command.
+
+* Org Everywhere
+
+	While this is useful, todos are more useful if you can access them from everywhere.
+	Org becomes more useful if you can access your org files from your mobile device.
+	I find it handy to store my todo lists in dropbox while my notes are often stored
+	in a git repository. There are several mobile orgmode viewers. I personally use Orgzly.
+
+	[[file:images/orgzly.png]]
+
 * Agenda
 
 	At this point you have a simple todo list, it is in the middle of my notes!
@@ -55,6 +92,16 @@
 	make much of a demonstration if it did not appear on the agenda.
 
 	[[file:images/learning_todo_agenda.gif]] 
+
+	In the example I use the SCHEDULED marker. These are a powerful yet
+	complicated part of org mode. We don't currently support the full gamut of
+	org functionality, but I hope to in the future. In particular some of the recurrence
+	options with timestamps is poorly supported, but will hopefully improve in the future.
+
+	- SCHEDULED :: This marks where you want to START working on something it will appear in the agenda until you close the task. So generally this is used on tasks that may take some time.
+	- DEADLINE :: Like scheduled this marks where you want to be DONE working on something. You can specify a warning marker in the time. By default you will get a warning 1 day before your deadline. If the task is still open after the deadline it will be marked as overdue.
+	- < Active Timestamp > :: without a deadline or scheduled prefix this event will happen once at the selected time. 
+
 
 * Priorities
 
