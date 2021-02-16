@@ -57,6 +57,7 @@
 
 # This Plugin
 
+  - [Tutorial](https://github.com/ihdavids/orgextended_docs/blob/master/learning_todos.org) - The start of a tutorial on basic todos.
   - [Basic Structure](https://github.com/ihdavids/orgextended_docs/blob/master/orgextended.org) - Basic file structure
   - [Setup](https://github.com/ihdavids/orgextended_docs/blob/master/setup.org) - Sublime Setup
   - [Editing](https://github.com/ihdavids/orgextended_docs/blob/master/editing.org) - Editing your org file
