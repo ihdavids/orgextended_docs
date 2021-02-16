@@ -72,6 +72,7 @@
 	I find it handy to store my todo lists in dropbox while my notes are often stored
 	in a git repository. There are several mobile orgmode viewers. I personally use Orgzly.
 
+	#+ATTR_HTML: :width 50%; :height 50%;
 	[[file:images/orgzly.png]]
 
 * Agenda
