@@ -73,6 +73,7 @@
 	in a git repository. There are several mobile orgmode viewers. I personally use Orgzly.
 
 	#+ATTR_HTML: :width .5 :height .5
+	#+ATTR_ORG: :width .5 :height .5
 	[[file:images/orgzly.png]]
 
 * Agenda
