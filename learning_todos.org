@@ -72,8 +72,6 @@
 	I find it handy to store my todo lists in dropbox while my notes are often stored
 	in a git repository. There are several mobile orgmode viewers. I personally use Orgzly.
 
-	#+ATTR_HTML: :width .5 :height .5
-	#+ATTR_ORG: :width .5 :height .5
 	[[file:images/orgzly.png]]
 
 * Agenda
@@ -112,6 +110,7 @@
 
 	[[file:images/learning_todo_priorities.gif]]
 
+
     #+BEGIN_EXAMPLE
     * A heading
     ** TODO [#B] Task 1
@@ -120,6 +119,20 @@
     ** TODO Task 4
     #+END_EXAMPLE
 
+* Checkboxes
+
+  Sometimes you just need a quick list!
+  Here I am using the DWIM style Ctrl+Enter to add new entries and the DWIM toggle command to toggle the checkbox
+  entries.
+
+  [[file:images/learning_todo_checkbox.gif]]
+
+  #+BEGIN_EXAMPLE
+  - [x] Checkbox list
+  - [x] More in the list [100%] 
+      - [x] Sub list!
+      - [x] More
+  #+END_EXAMPLE
 
 * Tagging
 
