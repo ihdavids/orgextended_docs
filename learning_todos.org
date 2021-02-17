@@ -133,6 +133,20 @@
       - [x] Sub list!
       - [x] More
   #+END_EXAMPLE
+* Tables
+
+	Org has fancy tables, they behave very much like spreadsheets. We don't quite have that yet.
+	But we are headed in that direction! Here I am using tab to skip to the next cell and reformat
+	the table. Eventually I would like to have cell formulas and babel inputs like org.
+
+	[[file:images/learning_todo_tables.gif]]
+
+	| Heading 1 | H2 |        H3       |
+	|-----------+----+-----------------|
+	| This      | is | something fancy |
+	| Well      | a  | table at least  |
+	|-----------+----+-----------------|
+
 
 * Tagging
 
