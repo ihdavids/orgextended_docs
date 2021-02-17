@@ -121,6 +121,11 @@
 
 * Checkboxes
 
+	Before we get to far down the road of managing todos. It helps to see some of the rich things you can add to your
+	todos. Org supports the usual *bold* =verbatim= _underscore_ /italic/ and a host of other markers.
+	In addition to that there are some rich items that you can add as content. Lets take a quick aside to skim
+	just a few ot those.
+
   Sometimes you just need a quick list!
   Here I am using the DWIM style Ctrl+Enter to add new entries and the DWIM toggle command to toggle the checkbox
   entries.
@@ -150,6 +155,7 @@
 
 * Tagging
 
+	Okay back to managing those todos we have been working so hard to keep track of.
 	As you get more todos things can get confusing without some way of organizing
 	your efforts. Welcome to tags.
 
