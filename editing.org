@@ -100,7 +100,8 @@
 
 ** Snippets
 
-   OrgExtended has a few snippets to help with entering org text more efficiently
+   OrgExtended has a few snippets to help with entering org text more efficiently.
+   Simply use the following key combinations, followed by the tab key.
 
    #+BEGIN_EXAMPLE
      <l        // This will insert a link
