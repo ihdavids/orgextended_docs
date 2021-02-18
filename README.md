@@ -72,7 +72,8 @@
   - [Time Tracking](https://github.com/ihdavids/orgextended_docs/blob/master/clocking.org) - Clocking and clock reports
   - [Dynamic Blocks](https://github.com/ihdavids/orgextended_docs/blob/master/dynamicblocks.org) - Run arbitrary code
   - [Agenda](https://github.com/ihdavids/orgextended_docs/blob/master/agenda.org) - Keeping track of your day.
-
+  - [Key Bindings](https://github.com/ihdavids/orgextended_docs/blob/master/keybindings.org) - A quick reference of some of the default keybindings.
+  
   The full documentation for this plugin can be found at: [Docs](https://github.com/ihdavids/orgextended_docs)
 
 # Thank You

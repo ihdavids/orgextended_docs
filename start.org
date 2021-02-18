@@ -83,6 +83,7 @@
   - [[file:clocking.org][Time Tracking]] - Clocking and clock reports
   - [[file:dynamicblocks.org][Dynamic Blocks]] - Run arbitrary code
   - [[file:agenda.org][Agenda]] - Keeping track of your day.
+  - [[file:keybindings.org][Key Bindings]] - A quick reference to the default keybindings.
 
 * References
   To help get you started on your Org journey

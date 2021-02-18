@@ -1,0 +1,140 @@
+* Org File
+	The following keybindings are all targetting standard org files.
+
+ |   Normal Keys    |     Vim Keys     |          Command           |          Operation          |
+ |------------------+------------------+----------------------------+-----------------------------|
+ | alt+o, i, d, i   | <space>, i, d, i |                            | org_insert_date_inactive    |
+ | alt+o, i, c      | <space>, i, c    | Org Insert Heading Child   | org_insert_heading_child    |
+ | alt+o, p         | <space>, p       | Org Change Priority        | org_priority_change         |
+ | alt+o, i, s      | <space>, i, s    | Org Schedule               | org_schedule                |
+ | alt+o, c, s      | <space>, c, s    | Org Add Checkbox Summary   | org_insert_checkbox_summary |
+ | alt+o, y, s      | <space>, y, s    | Org Copy Subtree           | org_copy_subtree            |
+ | alt+o, i, t      | <space>, i, t    | Org Insert Tag             | org_insert_tag              |
+ | alt+o, i, h      | <space>, i, h    | Org Insert Heading Sibling | org_insert_heading_sibling  |
+ | alt+o, R         | R                | Org Refile                 | org_refile                  |
+ | alt+o, c, i      | <space>, c, i    | Org Clock In               | org_clock_in                |
+ | alt+o, y, e      | <space>, y, e    | Org Copy Entity            | org_copy_entity             |
+ | alt+o, m, s      | <space>, m, s    | Org Select Subtree         | org_select_subtree          |
+ | alt+o, c, c      | <space>, c, c    |                            | org_recalc                  |
+ | tab              |                  | Org Tab Cycling            | org_tab_cycling             |
+ | ctrl+down        |                  | Org Down                   | org_down                    |
+ | alt+o, down      | <space>, down    | Org Move Heading Down      | org_move_heading_down       |
+ | shift+tab        |                  | Org Global Tab Cycling     | org_global_tab_cycling      |
+ | alt+o, m, e      | <space>, m, e    | Org Select Entity          | org_select_entity           |
+ | alt+o, t         | <space>, t       |                            | org_toggle                  |
+ | ctrl+up          |                  | Org Up                     | org_up                      |
+ | alt+o, i, i      | <space>, i, i    | Org Insert CustomId        | org_insert_custom_id        |
+ | alt+o, i, e      | <space>, i, e    | Org Deadline               | org_deadline                |
+ | alt+o, left      | <space>, left    | Org Change DeIndent        | org_change_de_indent        |
+ | enter            |                  | Org Open Link              | org_open_link               |
+ | ctrl+enter       |                  |                            | org_generic_insert          |
+ | ctrl+shift+enter |                  |                            | org_generic_insert_aux      |
+ | alt+o, i, d, a   | <space>, i, d, a |                            | org_insert_date_active      |
+ | alt+o, right     | <space>, right   | Org Change Indent          | org_change_indent           |
+ | alt+o, i, t      | <space>, i, t    | Org Timestamp              | org_active_timestamp        |
+ | alt+o, c, o      | <space>, c, o    | Org Clock Out              | org_clock_out               |
+ | alt+o, up        | <space>, up      | Org Move Heading Up        | org_move_heading_up         |
+
+
+* Date Picker
+	The date picker is used for scheduling and setting deadlines.
+
+ | Normal Keys | Vim Keys |      Command      |         Operation          |
+ |-------------+----------+-------------------+----------------------------|
+ | alt+.       |          |                   | org_date_picker_next_month |
+ | >           |          | Org Date Next Day | org_date_picker_next_day   |
+ | ctrl+.      |          |                   | org_date_picker_next_week  |
+ | ctrl+,      |          |                   | org_date_picker_prev_week  |
+ | alt+,       |          |                   | org_date_picker_prev_month |
+ | <           |          | Org Date Prev Day | org_date_picker_prev_day   |
+
+
+* Org Agenda
+	The org agenda is read only but supports a few key bindings.
+
+ | Normal Keys | Vim Keys |          Command           |         Operation          |
+ |-------------+----------+----------------------------+----------------------------|
+ | g           | g        | Org Agenda Day View        | org_agenda_day_view        |
+ | ,           | ,        | Org Agenda Change Priority | org_agenda_change_priority |
+ | <           | <        | Org Agenda Goto Prev Day   | org_agenda_goto_prev_day   |
+ | t           | t        | Org Agenda Change Todo     | org_agenda_change_todo     |
+ | c, o        | c, o     | Org Agenda ClockOut        | org_agenda_clock_out       |
+ | c, i        | c, i     | Org Agenda ClockIn         | org_agenda_clock_in        |
+ | >           | >        | Org Agenda Goto Next Day   | org_agenda_goto_next_day   |
+ | enter       | enter    | Org Agenda Goto            | org_agenda_go_to           |
+ |             | <space>  | Org Agenda Goto Split      | org_agenda_go_to_split     |
+
+
+* Everywhere
+	The folling keybindings are available outside of org files.
+
+ | Normal Keys |    Vim Keys   |        Command         |       Operation        |
+ |-------------+---------------+------------------------+------------------------|
+ | alt+o, z    | Z             | Org Capture            | org_capture            |
+ | alt+o, o, a | <space>, o, a | Org Agenda Custom View | org_agenda_custom_view |
+ | alt+o, y, l | <space>, y, l | Org Create Link        | org_create_link        |
+ | ctrl+alt+x  |               | Org Open Refile        | org_open_refile        |
+
+
+* Unbound
+	The following commands are not directly bound. Some of them are used in DWIM
+	and other bindings.
+
+ | Normal Keys | Vim Keys |               Command               |              Operation              |
+ |-------------+----------+-------------------------------------+-------------------------------------|
+ |             |          | Org Show Images                     | org_show_images                     |
+ |             |          | Org Fold Contents                   | org_fold_contents                   |
+ |             |          | Org Exec Srouce Block               | org_execute_source_block            |
+ |             |          | Org Export File As Reveal Js        | org_export_file_reveal_js           |
+ |             |          | Org Export Subtree As Html          | org_export_subtree_as_org_html      |
+ |             |          | Org Download Highligh Js            | org_download_highligh_js            |
+ |             |          | Org Recalc Checkbox                 | org_recalc_checkbox_summary         |
+ |             |          | Org Show Image                      | org_show_image                      |
+ |             |          | Org Link To Today                   | org_link_to_today                   |
+ |             |          | Org Append Numbered List            | org_append_numbered_list            |
+ |             |          | Org Fold All                        | org_fold_all                        |
+ |             |          | Org Select Href                     | org_select_link_href                |
+ |             |          | Org Insert Property                 | org_insert_property                 |
+ |             |          | Org Insert Drawer                   | org_insert_drawer                   |
+ |             |          | Org Insert Property Drawer          | org_insert_property_drawer          |
+ |             |          | Org Update Numbered List            | org_update_numbered_list            |
+ |             |          | Org New File                        | org_new_file                        |
+ |             |          | Org Set Today                       | org_set_today                       |
+ |             |          | Org Change Todo                     | org_todo_change                     |
+ |             |          | Org Pandoc File To Html             | org_export_file_as_html             |
+ |             |          | Org Copy                            | org_copy                            |
+ |             |          | Org Recalculate Clock               | org_recalculate_clock               |
+ |             |          | Org Agenda Choose View              | org_agenda_choose_custom_view       |
+ |             |          | Org Agenda Rebuild Notices          | org_rebuild_notifications           |
+ |             |          | Org Fold Thing                      | org_fold_thing                      |
+ |             |          | Org Export File As Html             | org_export_file_org_html            |
+ |             |          | Org Insert Today Inactive           | org_insert_today_inactive           |
+ |             |          | Org Insert Today Active             | org_insert_today_active             |
+ |             |          | Org Date Picker                     | org_date_picker                     |
+ |             |          | Org Jump To CustomId                | org_jump_to_custom_id               |
+ |             |          | Org Reload File                     | org_reload_file                     |
+ |             |          | Org Checkbox Toggle                 | org_toggle_checkbox                 |
+ |             |          | Org Pandoc Subtree To Html          | org_export_subtree_as_html          |
+ |             |          | Org Exec Dynamic Block              | org_execute_dynamic_block           |
+ |             |          | Org Create Color Scheme From Active | org_create_color_scheme_from_active |
+ |             |          | Org Recalc All Checkbox             | org_recalc_all_checkbox_summaries   |
+ |             |          | Org Hide Image                      | org_hide_image                      |
+ |             |          | Org Hide Images                     | org_hide_images                     |
+ |             |          | Org Fold All Links                  | org_fold_all_links                  |
+ |             |          | Org Internal Keymap Gen             | org_create_keymap_doc               |
+ |             |          | Org Jump To Today                   | org_jump_to_today                   |
+ |             |          | Org Jump In File                    | org_jump_in_file                    |
+ |             |          | Org Rebuild Db                      | org_rebuild_db                      |
+ |             |          | Org Closed                          | org_insert_closed                   |
+ |             |          | Org Copy Href                       | org_copy_link_href                  |
+ |             |          | Org Todo View                       | org_todo_view                       |
+ |             |          | Org Clear Clock                     | org_clear_clock                     |
+ |             |          | Org Filtered Todo View              | org_tag_filtered_todo_view          |
+ |             |          | Org Unfold All                      | org_unfold_all                      |
+ |             |          | Org Archive Subtree                 | org_archive_subtree                 |
+ |             |          | Org Remove All Folds                | org_remove_all_folds                |
+ |             |          | Org Select Color Scheme             | org_select_existing_color_scheme    |
+
+
+
+
