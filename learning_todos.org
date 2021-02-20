@@ -91,6 +91,22 @@
 	I have my agenda restricted to only show working hours and it wouldn't
 	make much of a demonstration if it did not appear on the agenda.
 
+	To bring up the agenda I use the "org agenda" binding. This brings up the Default
+	agenda view from my config file. By default it is a composite view that I find useful,
+	you can customize this. 
+
+	#+BEGIN_EXAMPLE
+	  Alt+o o a
+
+	  of for vim users
+
+	  <space> o a - in normal mode
+	#+END_EXAMPLE
+
+	There are agenda specific keybindings. If you press enter on an item you will jump to it.
+	If you press space it will open up in a different window. You can clock and change status from
+	within the agenda as well.
+
 	[[file:images/learning_todo_agenda.gif]] 
 
 	In the example I use the SCHEDULED marker. These are a powerful yet
@@ -138,6 +154,14 @@
       - [x] Sub list!
       - [x] More
   #+END_EXAMPLE
+
+* Lists
+	
+	While our support for it is still in its infancy and a little buggy, Do What I Mean or DWIM style editing is a corner stone of
+	orgmode. This sort of automatic insertion should work with headings, lists, numbered lists and checkboxes.
+
+	[[file:images/learning_todo_dwim.gif]]
+
 * Tables
 
 	Org has fancy tables, they behave very much like spreadsheets. We don't quite have that yet.
