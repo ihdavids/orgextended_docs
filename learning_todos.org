@@ -157,8 +157,10 @@
 
 * Lists
 	
-	While our support for it is still in its infancy and a little buggy, Do What I Mean or DWIM style editing is a corner stone of
-	orgmode. This sort of automatic insertion should work with headings, lists, numbered lists and checkboxes.
+	While our support for it is still in its infancy and sometimes buggy, Do What I Mean or DWIM style editing is a corner stone of
+	orgmode. This sort of automatic insertion should work with headings, lists, numbered lists and checkboxes. Adding the shift modifier should
+	cause the DWIM insertion to append to the end of the list rather than
+	adding right at point.
 
 	[[file:images/learning_todo_dwim.gif]]
 
