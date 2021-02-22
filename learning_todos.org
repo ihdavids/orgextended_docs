@@ -167,7 +167,7 @@
 * Tables
 
 	Org has fancy tables, they behave very much like spreadsheets. We don't quite have that yet.
-	But we are headed in that direction! Here I am using tab to skip to the next cell and reformat
+	But we are headed in that direction! Thanks to the excellent Table Editor plugin, here I am using tab to skip to the next cell and reformat
 	the table. Eventually I would like to have cell formulas and babel inputs like org.
 
 	[[file:images/learning_todo_tables.gif]]
@@ -177,6 +177,20 @@
 	| This      | is | something fancy |
 	| Well      | a  | table at least  |
 	|-----------+----+-----------------|
+
+	You can insert blank tables using some helper methods:
+
+	[[file:images/blank_table_insert.gif]]
+
+	You can also convert a region dynamically into a table:
+
+	[[file:images/convert_region_to_table.gif]]
+
+	Table manipulation is much easier when you can reorganize the table dynamically.
+	Here I am importing the table from a CSV and manipulating the table contents
+	dynamically using the table keybindings:
+
+	[[file:images/table_manipulation.gif]]
 
 
 * Tagging
