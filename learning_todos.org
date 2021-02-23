@@ -213,3 +213,48 @@
     ** TODO Task 4
 	#+END_EXAMPLE
 
+	Tags are not the only way to curate your data. Property drawers and properties are another way
+	that org allows you to add meta data to your notes. Property drawers are a common means of
+	tracking notes that live elsewhere, such as google calendar, or in jira.
+
+	#+BEGIN_EXAMPLE
+	  * Heading
+      :PROPERTIES:
+         :KEY: Value
+      :END:
+	#+END_EXAMPLE
+
+	Again, org extended will try to fold these automatically to avoid clutter.
+
+* Links
+	So, at this point you have been authoring your notes and todos, you can find your active todos within your notes.
+	Sometimes however, you want to leave a trail of breadcrumbs for yourself. Or perhaps you want to store an external link.
+
+	Org links are fairly powerful. You can link within a document by creating dynamic targets:
+
+	#+BEGIN_EXAMPLE
+	  <<Anchor>>
+	#+END_EXAMPLE
+
+	That said, any heading is itself a dynamic target:
+	#+BEGIN_EXAMPLE
+	  [[file:myfile.org::*MyHeading]]
+	#+END_EXAMPLE
+
+	External links work as well, org will try to collapse the url portion of the link to hide those unsightly urls.
+
+	#+BEGIN_EXAMPLE
+	  [[http://myurl.com][Some Text]]
+	#+END_EXAMPLE
+
+	Of course org tries to help you here to. You can create a link to a file using a command or use a snippet
+	to insert a new link:
+
+	#+BEGIN_EXAMPLE
+	  <l
+	#+END_EXAMPLE
+
+* Capturing
+	One of the powerful features of org is capturing. OrgExtended uses snippets for building capture templates.
+
+	TODO FINISH this 
