@@ -192,6 +192,19 @@
 
 	[[file:images/table_manipulation.gif]]
 
+	While still in its infancy/preview we have some rudimentary support for some of the org spreadsheet features
+
+	#+BEGIN_EXAMPLE
+  | Student  | Maths | Physics | Mean |
+  |----------+-------+---------+------|
+  | Bertrand |    13 |      09 | 11.0 |
+  | Henri    |    15 |      14 | 14.5 |
+  | Arnold   |    17 |      13 | 15.0 |
+  #+TBLFM: $4=vmean($2..$3)
+	#+END_EXAMPLE
+
+
+	[[file:images/table_formulas.gif]]	
 
 * Tagging
 
@@ -215,13 +228,15 @@
 
 	Tags are not the only way to curate your data. Property drawers and properties are another way
 	that org allows you to add meta data to your notes. Property drawers are a common means of
-	tracking notes that live elsewhere, such as google calendar, or in jira.
+	tracking notes that live elsewhere, such as google calendar, or in jira. Or tag an item with metadata such as
+	estimates of how long a task will take. In fact column mode in emacs (which we don't yet support) is all about
+	tabular editing of properties associated with a document.
 
 	#+BEGIN_EXAMPLE
-	  * Heading
-      :PROPERTIES:
-         :KEY: Value
-      :END:
+* Heading
+  :PROPERTIES:
+    :KEY: Value
+  :END:
 	#+END_EXAMPLE
 
 	Again, org extended will try to fold these automatically to avoid clutter.
