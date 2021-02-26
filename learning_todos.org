@@ -206,6 +206,23 @@
 
 	[[file:images/table_formulas.gif]]	
 
+
+	Org recommends you do not edit the actual TBLFM line. Instead insert your formulas directly into the cell
+	with the formula. There are 2 primary operators := which will only update this cell and plain equals which will
+	update the entire column.
+
+	#+BEGIN_EXAMPLE
+  | Student  | Maths | Physics |      Mean      |
+  |----------+-------+---------+----------------|
+  | Bertrand |    13 |      09 | =vmean($2..$3) |
+  | Henri    |    15 |      14 |                |
+  | Arnold   |    17 |      13 |                |
+	#+END_EXAMPLE
+
+	[[file:images/table_formulas_insert.gif]]
+
+
+
 * Tagging
 
 	Okay back to managing those todos we have been working so hard to keep track of.
