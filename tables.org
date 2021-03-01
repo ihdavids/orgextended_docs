@@ -1,0 +1,75 @@
+* Tables and Spreadsheets
+	Org Extended has some support for org mode tables. True org tables support would allow for arbitrary
+	emacs lisp to run as cell formulas within the table. Org Extended is not likely to build a lisp
+	interpreter within sublime. I am less likely to support the full gamut of useful lisp functions.
+
+	That said, a lot can be done with basic calc support in sublime!
+
+	[[file:images/table_formulas.gif]] 
+
+	There are a number of things that make org tables super powerful:
+
+	- Org has a ton of power for editing and dynamically modifying tables, in plain text!
+	- Org supports a full computation engine built on emacs calc. We have a simplified version of that.
+	- Org tables can reference other tables. (Much like tabs in a spreadsheet)
+	- Org tables can act as inputs to babel really opening up your options for living documents. (we do not have this yet)
+	- Org tables can be the output of babel, again, really comming full circle on things. (we do not have this yet)
+	- Org can easily import csv files and other document types into your documents. (we have some support here)
+
+	That said, using the spreadsheet like capabilities of Org Extended will take a little effort on your part
+
+** Basic Editing
+	Tab and Shift Tab are your friend. To start building a table, put a vertical bar symbol followed by some text and press tab.
+	Voila, you have a table!
+
+	[[file:images/table_basic_creation.gif]] 
+
+	There is more. You can import a table or create a blank WxH table. But we will cover those later.
+
+** Adding Rows and Columns
+
+	Next we need to extend our table. It is a pain to have to go over to the righthand side of the table to add a column.
+	Org lets you insert a column almost anywhere!
+
+	#+BEGIN_EXAMPLE
+	Shift+Alt+Right Arrow  --> Add a Col (pull it out, text grows to the right in english)
+	Shift+Alt+Left Arrow   --> Remove a Col (push it back)
+	#+END_EXAMPLE
+
+	The same works vertically!
+
+	#+BEGIN_EXAMPLE
+	  Shift+Alt+Down Arrow --> Add a row (pull it out, tables grow down right!)
+	  Shift+Alt+Up   Arrow --> Remove a row (push it back)
+	#+END_EXAMPLE
+
+	[[file:images/table_add_delete_cells.gif]] 
+
+** Moving Cells Around
+	So now you realize that you laid out your table poorly and want to move the content around.
+	#+BEGIN_EXAMPLE
+	Alt+Right Arrow  --> Move this row right
+	Alt+Left Arrow   --> Move this row left
+	#+END_EXAMPLE
+
+	The same works vertically!
+
+	#+BEGIN_EXAMPLE
+	  Alt+Down Arrow --> Move this row down
+	  Alt+Up   Arrow --> Move this row up 
+	#+END_EXAMPLE
+
+	The cool thing you will see later is that org tries to preserve formula correctness as well when you move your
+	cells around. But more on that in a sec.
+
+	[[file:images/table_moving_cells_around.gif]]  
+	
+** Adding a Formula
+
+	Okay so now you have a table with some content that you hand authored. It's time to start adding some smarts to your table!
+
+	go to a cell and add a = followed by your formula... We will get to what that looks like in a sec.
+	Then tell org about that formula and it will now be part of the table!
+
+	[[file:images/table_formulas_insert.gif]] 
+
