@@ -117,7 +117,7 @@
 	- Org Show Table Rows - Will show the layout of your table
 	- Org Hide Table Rows - Will hide the phantoms. These can be a little distracting so it helps to be able to turn them off
 
-	[[file:images/table_show_table_rows.gif]]
+	[[file:images/table_show_table_rows.gif.gif]]
 
 ** Evaluating Your Formula
 	Once you have a few formulas you might want to re-evaluate all your formulas.
