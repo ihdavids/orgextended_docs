@@ -12,7 +12,11 @@
 	- For regular users most of the org bindings are under Alt+o
 	- For NeoVintageous users most of the bindings are behind <space> in normal mode with the same followers as the Alt+o equivalents
 
-	Here I am using insert heading and insert child. 
+	Our study begins with taking structured notes. We are at a meeting,
+	during that meeting we flow in and out of topics. As I take notes
+	it helps to be able to put each topic under it's own sub heading.
+
+	As we do this, I am using insert heading and insert child. 
 
 	#+BEGIN_EXAMPLE
 	Alt+o i h and Alt+o i c
@@ -20,32 +24,98 @@
 
 	Another way to do this is to use Ctrl+Enter
 	This runs the Do What I Mean (DWIM) Insert mechanism.
+	These DWIM commands are context aware operations. Org has several
+	primary DWIM commands:
 
-	- If you are on a checklist it will insert a checklist.
-	- If you are on a numbered list it will insert a new entry.
+	- Execute
+	- Insert
+	- Fold
+
+	Using the insert DWIM operation, what happens depends on where
+	I am in my document.
+
+	- If you are on a checklist it will insert a new checklist item.
+	- If you are on a numbered list it will insert the next entry.
 	- If you are on a heading it will insert a new heading.
 
-	Basic note taking is pretty straight forward.
+	Basic note taking is pretty straight forward. Org uses stars much like markdown uses the number sign
+	to denote heading levels.
 
 	#+BEGIN_EXAMPLE
-  ** Headings
-     We are taking some notes, I have an idea that idea
-  *** Sub Idea 1
-	 Has some parts
-  **** Sub Sub Idea 1
-	   More info
-  *** Sub Idea 2
-	  Another part of that
+  ** My Meeting
+     We are taking some notes for this meeting
+  *** Sub Topic 1
+	    These notes belong to sub topic 1
+  **** Sub Sub Topic 1
+	     A sub topic of the sub topic.
+  *** Sub Topic 2
+	    More notes
 	#+END_EXAMPLE
 
-	As I am taking notes I realize I have some things I need to do.
-	Org expects that todos come up anywhere in your work. The agenda
-	and todo lists exist to find your work and who it to you.
+	As I am taking notes I realize I have some things I need to do. We might call these action items.
+	Org expects that todos come up anywhere in your work. You need to mark this thing as a todo.
+	Org expects that action items flow through a stateflow. They start in a new state and progress through a flow
+	of your designing. Sadly, I have not found a way to easily allow you to extend OrgExtendeds syntax highlighting!
+	That said, OrgExtended still accepts custom todo state flows.
 
-	You can convert any heading into a todo item.
-	You can define a project as a macro todo with sub tasks that have the
-	TODO keyword. You can set a schedule or deadline fairly easily.
-	This will cause this task to show up in your agenda.
+	The default state flow is defined globally in your config file.
+	if you would like to tweak this you can edit the list in your config file:
+
+	#+BEGIN_EXAMPLE
+    "todoStates": ["TODO","NEXT", "BLOCKED","WAITING","|", "CANCELLED", "DONE","MEETING","PHONE","NOTE"],
+	#+END_EXAMPLE
+
+	The vertical bar defines the states that are considered "open" and the states that are considered closed by org.
+	You can also create a custom flow in an org file by defining a todo comment in your org file:
+
+	#+BEGIN_EXAMPLE
+	  #+TODO: REPORT BUG KNOWNCAUSE | FIXED
+	#+END_EXAMPLE
+
+  A todo is simply a heading with a TODO keyword as the first item on the line.
+
+  #+BEGIN_EXAMPLE
+    * TODO This is a todo
+  #+END_EXAMPLE
+
+  This is now recognized by org as a TODO that needs doing. You realize that your todos are right in the middle of your
+  meeting notes. You are going to need to take those out of your notes and add them to your todo list? Actually you don't need to.
+
+  Org expects that your todos appear all over your notes. Org has the concept of the agenda and filtered todo lists to make
+  managing your todos a reality. When OrgExtended starts up, it parses all valid files in your orgDir to build your agenda.
+
+  OrgExtended will parse these files in the background as org starts up. The more files you have in your active list, the longer initialization
+  will take. That said, OrgExtended tends to make fast work of quite a few files.
+
+  #+BEGIN_EXAMPLE
+    // Where are your org files?
+    "orgDirs": [
+        "c:\\Users\\ian\\notes"
+    ],
+
+    // Specific files to add vs whole directories
+        "orgFiles": [
+    ],
+
+    // Directories to exclude from parsing org files
+    "orgExcludeDirs": [],
+
+    // Files to be excluded from org parsing
+    "orgExcludeFiles": [],
+  #+END_EXAMPLE
+
+  NOTE: As you open files that are NOT in your orgDirs they will get added to the active set that are not actively excluded. This can surprise people
+        as these files may have todos that appear on lists when you visit one of those files.
+
+  So at this point, org will find your todos. Sometimes it helps to add meta data to your work to give context to that work.
+  - When are you planning to start it?
+  - When does it need to be done?
+  - Is this an appointment verses a project?
+  - Are there subtasks? If so, what is the next thing you need to work on?
+  - Do you have a time estimate associated with this thing?
+  - Is it associated with an external bug tracking system, if so what is the ID?
+
+  Etc Etc Etc.
 
 	[[file:images/learning_todo_todos.gif]]
 
