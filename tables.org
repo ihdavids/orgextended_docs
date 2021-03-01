@@ -176,7 +176,7 @@
  	| a     | b     | c   | d     | e     |
  	| 1     | 1     |     | 1     | 1     |
  	| 0.476 | 0.476 | 0.0 | 0.476 | 0.476 |
-  #+TBLFM:@3=@2/2.1;N%.3f
+ 	#+TBLFM:@3=@2/2.1;N%.3f
 	#+END_EXAMPLE
 
 ** Remote References
