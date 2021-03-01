@@ -159,6 +159,25 @@
       $# - Current column index of the document
       @# - Current row index of the document
     #+END_SRC
+** Formatting Output
+
+	In Emacs org mode formulas run inside calc. Calc has quite a few modes and control systems.
+	For this reason you can append a semi colon to your formula and add control flags that control how
+	calc operates when evaluating your expression. We do not have this situation. Our parser is OrgExtended specific
+	and as such most of the control flags for calc are meaningless. That said, there are a couple of flags that are pretty useful:
+
+	- N - Adding this flag to a formula will treat all empty cells as a 0 value.
+	- %.#f - This lets you control the precision of floating point output. It is often visually disturbing to have many decimal places
+	         in your output. With this you can limit the output to a smaller set of decimal places.
+
+  Here we are limiting our output to 3 decimal places:
+
+	#+BEGIN_EXAMPLE
+ 	| a     | b     | c   | d     | e     |
+ 	| 1     | 1     |     | 1     | 1     |
+ 	| 0.476 | 0.476 | 0.0 | 0.476 | 0.476 |
+  #+TBLFM:@3=@2/2.1;N%.3f
+	#+END_EXAMPLE
 
 ** Remote References
 	Tables become even more useful when you can reference between tables!
