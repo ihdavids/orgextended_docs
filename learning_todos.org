@@ -78,13 +78,17 @@
     * TODO This is a todo
   #+END_EXAMPLE
 
-  This is now recognized by org as a TODO that needs doing. You realize that your todos are right in the middle of your
-  meeting notes. You are going to need to take those out of your notes and add them to your todo list? Actually you don't need to.
+  This is now recognized by org as a TODO that needs doing. So as you author your meeting notes, you realize that your todos are right in the middle of your
+  meeting notes. You are going to need to take those out of your meetings notes and add them to your own todo lists right? 
+  
+  - *Actually you don't need to*.
 
-  Org expects that your todos appear all over your notes. Org has the concept of the agenda and filtered todo lists to make
-  managing your todos a reality. When OrgExtended starts up, it parses all valid files in your orgDir to build your agenda.
+  Org expects that as things come up, you jot them down in context relevant locations. 
+  One of the many things that org mode tries to do for you is provide the concept of the agenda and filtered todo lists to make
+  managing your todos less labor intense. When OrgExtended starts up, it parses all valid files in your orgDir to build your agenda and any todo views
+  you have defined. These views are customizable in their own right, but we will gloss over that for the moment.
 
-  OrgExtended will parse these files in the background as org starts up. The more files you have in your active list, the longer initialization
+  OrgExtended will parse these files in the background as it starts up. The more files you have in your active list, the longer this background initialization
   will take. That said, OrgExtended tends to make fast work of quite a few files.
 
   #+BEGIN_EXAMPLE
@@ -104,10 +108,16 @@
     "orgExcludeFiles": [],
   #+END_EXAMPLE
 
-  NOTE: As you open files that are NOT in your orgDirs they will get added to the active set that are not actively excluded. This can surprise people
-        as these files may have todos that appear on lists when you visit one of those files.
+  So now what? Org knows about the todos. How does that help me?
+  We will talk about tagging later, but for the moment a little demonstration can be beneficial.
 
-  So at this point, org will find your todos. Sometimes it helps to add meta data to your work to give context to that work.
+  I am going to add a random todo to a file, I then I will call up a generic todo view and it has my todo in it.
+  I can then jump to the todo quite easily.
+
+  [[file:images/learning_todo_tododemo.gif]]
+
+  Okay, so that's already pretty useful. I can add action items anywhere and find them and jump around after the fact.
+  Org Mode goes further. It helps to add meta data to your work to give context:
   - When are you planning to start it?
   - When does it need to be done?
   - Is this an appointment verses a project?
