@@ -28,6 +28,7 @@
 	primary DWIM commands:
 
 	- Execute
+	- Toggle
 	- Insert
 	- Fold
 
@@ -127,6 +128,18 @@
 
   Etc Etc Etc.
 
+  Lets continue with the examples. 
+  Here we are going to work with the Do What I Mean insert and toggling functions.
+	The toggling function will not only change the todo state of a heading it will 
+	change the state of a checkbox etc.
+
+	#+BEGIN_EXAMPLE
+	  <space> t
+	  Alt+o t
+	#+END_EXAMPLE
+
+  I am going to insert some headings, set them to todos and add a scheduled entry. 
+
 	[[file:images/learning_todo_todos.gif]]
 
 	#+BEGIN_EXAMPLE
@@ -136,16 +149,11 @@
     *** This is a sub task  
 	#+END_EXAMPLE
 
-	The same DWIM trick works for toggling things.
-
-	#+BEGIN_EXAMPLE
-	  <space> t
-	  Alt+o t
-	#+END_EXAMPLE
-
-	Will toggle state and checkboxes. You can also use the *"Org Change Todo"* command.
 
 * Org Everywhere
+
+	Before we continue and discuss the next logical step, the agenda, we should make time
+	for a little aside.
 
 	While this is useful, todos are more useful if you can access them from everywhere.
 	Org becomes more useful if you can access your org files from your mobile device.
@@ -154,26 +162,34 @@
 
 	[[file:images/orgzly.png]]
 
+  Orgzly can sync with dropbox automatically for you and show you your todos on your mobile device.
+  It can also read your schedule information and notify you about up and comming events.
+
+  In the past I have synced some of my todos with google calendar or jira. I have yet to write a plugin to do so with
+  my org files on sublime, although this is entirely possible.
+
 * Agenda
 
 	At this point you have a simple todo list, it is in the middle of my notes!
-	This is where the agenda comes in. There are a ton of agenda views and I hope
-	to help you build your own in the future. Based on how you have your agenda
-	configured your agenda can find your todos in your files. It can also show
-	you different views of your todos based on how you have categorized them.
+	We have added a SCHEDULED tag, but our todo list doesn't really convey that information!
 
-	Here I am demonstrating opening the general todo listing and jumping to
-	the todo. Type enter on the line and we open the todo. Type space and we
-	open it in another window.
+	This is where the agenda comes in. There are a number of agenda views and I hope
+	to help you build your own in the future. You will need to read the more in depth sections
+	of the docs on how to customize your agenda views. For now we will stick with the default view.
 
-	I am also showing this task in the agenda. I pulled in the time a little
-	and moved the schedule to the task for the demonstration. This is because
-	I have my agenda restricted to only show working hours and it wouldn't
+	Based on how you have your agenda configured your agenda can find your todos in your files. 
+	It is really just a set of fancy todo views that let you visualize your todo content in 
+	more schedule oriented ways.
+
+	The todo list and the agenda both support enter to open a file in the primary sheet
+	while space will open it in another tab. 
+
+	I modified the time in the scheduled note by pulling in the time a little. 
+	This is because I have my agenda restricted to only show working hours and it wouldn't
 	make much of a demonstration if it did not appear on the agenda.
 
 	To bring up the agenda I use the "org agenda" binding. This brings up the Default
-	agenda view from my config file. By default it is a composite view that I find useful,
-	you can customize this. 
+	agenda view from my config file. By default it is a composite view that I find useful.
 
 	#+BEGIN_EXAMPLE
 	  Alt+o o a
@@ -183,8 +199,8 @@
 	  <space> o a - in normal mode
 	#+END_EXAMPLE
 
-	There are agenda specific keybindings. If you press enter on an item you will jump to it.
-	If you press space it will open up in a different window. You can clock and change status from
+	As I mentioned before, there are agenda specific keybindings. If you press enter on an item you will jump to it.
+	If you press space it will open up in a different layout window. You can clock and change status from
 	within the agenda as well.
 
 	[[file:images/learning_todo_agenda.gif]] 
