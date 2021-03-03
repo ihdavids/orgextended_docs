@@ -1,0 +1,87 @@
+* Checkboxes
+
+	Before we get to far down the road of managing todos. It helps to see some of the rich things you can add to your
+	todos. Org supports the usual *bold* =verbatim= _underscore_ /italic/ and a host of other markers.
+	In addition to that there are some rich items that you can add as content. Lets take a quick aside to skim
+	just a few ot those.
+
+  Sometimes you just need a quick list!
+  Here I am using the DWIM style Ctrl+Enter to add new entries and the DWIM toggle command to toggle the checkbox
+  entries.
+
+  [[file:images/learning_todo_checkbox.gif]]
+
+  #+BEGIN_EXAMPLE
+  - [x] Checkbox list
+  - [x] More in the list [100%] 
+      - [x] Sub list!
+      - [x] More
+  #+END_EXAMPLE
+
+* Lists
+	
+	While our support for it is still in its infancy and sometimes buggy, Do What I Mean or DWIM style editing is a corner stone of
+	orgmode. This sort of automatic insertion should work with headings, lists, numbered lists and checkboxes. Adding the shift modifier should
+	cause the DWIM insertion to append to the end of the list rather than
+	adding right at point.
+
+	[[file:images/learning_todo_dwim.gif]]
+
+* Tables
+
+	Org has fancy tables, they behave very much like spreadsheets. We don't quite have that yet.
+	But we are headed in that direction! Thanks to the excellent Table Editor plugin, here I am using tab to skip to the next cell and reformat
+	the table. Eventually I would like to have cell formulas and babel inputs like org.
+
+	[[file:images/learning_todo_tables.gif]]
+
+	| Heading 1 | H2 |        H3       |
+	|-----------+----+-----------------|
+	| This      | is | something fancy |
+	| Well      | a  | table at least  |
+	|-----------+----+-----------------|
+
+	You can insert blank tables using some helper methods:
+
+	[[file:images/blank_table_insert.gif]]
+
+	You can also convert a region dynamically into a table:
+
+	[[file:images/convert_region_to_table.gif]]
+
+	Table manipulation is much easier when you can reorganize the table dynamically.
+	Here I am importing the table from a CSV and manipulating the table contents
+	dynamically using the table keybindings:
+
+	[[file:images/table_manipulation.gif]]
+
+	While still in its infancy/preview we have some rudimentary support for some of the org spreadsheet features
+
+	#+BEGIN_EXAMPLE
+  | Student  | Maths | Physics | Mean |
+  |----------+-------+---------+------|
+  | Bertrand |    13 |      09 | 11.0 |
+  | Henri    |    15 |      14 | 14.5 |
+  | Arnold   |    17 |      13 | 15.0 |
+  #+TBLFM: $4=vmean($2..$3)
+	#+END_EXAMPLE
+
+
+	[[file:images/table_formulas.gif]]	
+
+
+	Org recommends you do not edit the actual TBLFM line. Instead insert your formulas directly into the cell
+	with the formula. There are 2 primary operators := which will only update this cell and plain equals which will
+	update the entire column.
+
+	#+BEGIN_EXAMPLE
+  | Student  | Maths | Physics |      Mean      |
+  |----------+-------+---------+----------------|
+  | Bertrand |    13 |      09 | =vmean($2..$3) |
+  | Henri    |    15 |      14 |                |
+  | Arnold   |    17 |      13 |                |
+	#+END_EXAMPLE
+
+	[[file:images/table_formulas_insert.gif]]
+
+

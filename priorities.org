@@ -1,0 +1,30 @@
+* Priorities
+
+	Org supports priorities. These are just simple tags that let you identify 
+	how important this task is to you.
+
+	[[file:images/learning_todo_priorities.gif]]
+
+
+    #+BEGIN_EXAMPLE
+    * A heading
+    ** TODO [#B] Task 1
+    ** TODO [#A] Task 2
+    ** TODO Task 3
+    ** TODO Task 4
+    #+END_EXAMPLE
+
+
+    Priorities hold very little meaning to org itself.
+    Priorities can be defined with the priorities comment.
+
+   #+BEGIN_EXAMPLE
+     #+PRIORITIES: 1 2 3 4 5
+   #+END_EXAMPLE
+
+   or globally with the priorities settings in your OrgExtended settings file:
+
+   #+BEGIN_SRC js
+     "priorites": ["A","B","C","D","E"],
+   #+END_SRC
+

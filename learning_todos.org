@@ -214,118 +214,43 @@
 	- DEADLINE :: Like scheduled this marks where you want to be DONE working on something. You can specify a warning marker in the time. By default you will get a warning 1 day before your deadline. If the task is still open after the deadline it will be marked as overdue.
 	- < Active Timestamp > :: without a deadline or scheduled prefix this event will happen once at the selected time. 
 
+* Contents
+	At this point it is tempting to dive into a deep dive all the ways org can help you author content for your notes.
+	There really is a lot that org can help you out with. Things like:
 
-* Priorities
+	- [[./priorities.org][Priorities]] 
+	- [[./lists.org][Unordered, Numbered and Checkbox Lists]] 
+	- [[./tables.org][Tables]]
 
-	Org supports priorities. These are just simple tags that identify 
-	how important this task is to you.
+  And much more
 
-	[[file:images/learning_todo_priorities.gif]]
-
-
-    #+BEGIN_EXAMPLE
-    * A heading
-    ** TODO [#B] Task 1
-    ** TODO [#A] Task 2
-    ** TODO Task 3
-    ** TODO Task 4
-    #+END_EXAMPLE
-
-* Checkboxes
-
-	Before we get to far down the road of managing todos. It helps to see some of the rich things you can add to your
-	todos. Org supports the usual *bold* =verbatim= _underscore_ /italic/ and a host of other markers.
-	In addition to that there are some rich items that you can add as content. Lets take a quick aside to skim
-	just a few ot those.
-
-  Sometimes you just need a quick list!
-  Here I am using the DWIM style Ctrl+Enter to add new entries and the DWIM toggle command to toggle the checkbox
-  entries.
-
-  [[file:images/learning_todo_checkbox.gif]]
-
-  #+BEGIN_EXAMPLE
-  - [x] Checkbox list
-  - [x] More in the list [100%] 
-      - [x] Sub list!
-      - [x] More
-  #+END_EXAMPLE
-
-* Lists
-	
-	While our support for it is still in its infancy and sometimes buggy, Do What I Mean or DWIM style editing is a corner stone of
-	orgmode. This sort of automatic insertion should work with headings, lists, numbered lists and checkboxes. Adding the shift modifier should
-	cause the DWIM insertion to append to the end of the list rather than
-	adding right at point.
-
-	[[file:images/learning_todo_dwim.gif]]
-
-* Tables
-
-	Org has fancy tables, they behave very much like spreadsheets. We don't quite have that yet.
-	But we are headed in that direction! Thanks to the excellent Table Editor plugin, here I am using tab to skip to the next cell and reformat
-	the table. Eventually I would like to have cell formulas and babel inputs like org.
-
-	[[file:images/learning_todo_tables.gif]]
-
-	| Heading 1 | H2 |        H3       |
-	|-----------+----+-----------------|
-	| This      | is | something fancy |
-	| Well      | a  | table at least  |
-	|-----------+----+-----------------|
-
-	You can insert blank tables using some helper methods:
-
-	[[file:images/blank_table_insert.gif]]
-
-	You can also convert a region dynamically into a table:
-
-	[[file:images/convert_region_to_table.gif]]
-
-	Table manipulation is much easier when you can reorganize the table dynamically.
-	Here I am importing the table from a CSV and manipulating the table contents
-	dynamically using the table keybindings:
-
-	[[file:images/table_manipulation.gif]]
-
-	While still in its infancy/preview we have some rudimentary support for some of the org spreadsheet features
-
-	#+BEGIN_EXAMPLE
-  | Student  | Maths | Physics | Mean |
-  |----------+-------+---------+------|
-  | Bertrand |    13 |      09 | 11.0 |
-  | Henri    |    15 |      14 | 14.5 |
-  | Arnold   |    17 |      13 | 15.0 |
-  #+TBLFM: $4=vmean($2..$3)
-	#+END_EXAMPLE
-
-
-	[[file:images/table_formulas.gif]]	
-
-
-	Org recommends you do not edit the actual TBLFM line. Instead insert your formulas directly into the cell
-	with the formula. There are 2 primary operators := which will only update this cell and plain equals which will
-	update the entire column.
-
-	#+BEGIN_EXAMPLE
-  | Student  | Maths | Physics |      Mean      |
-  |----------+-------+---------+----------------|
-  | Bertrand |    13 |      09 | =vmean($2..$3) |
-  | Henri    |    15 |      14 |                |
-  | Arnold   |    17 |      13 |                |
-	#+END_EXAMPLE
-
-	[[file:images/table_formulas_insert.gif]]
-
-
+  That said, this tutorial is not the right time for this, we are focused on todos and todo tracking.
 
 * Tagging
 
 	Okay back to managing those todos we have been working so hard to keep track of.
 	As you get more todos things can get confusing without some way of organizing
-	your efforts. Welcome to tags.
+	your efforts. Org offers tags and properties as a means of adding meta data to your items.
 
-	You can tag any heading with a tag (or multiple tags. Once you have tagged it you can filter
+	You can tag any heading with a tag (or multiple tags). A tag looks like this:
+
+	#+BEGIN_EXAMPLE
+	  :TAG:
+	#+END_EXAMPLE
+
+  Multiple tags look as follows:
+
+  #+BEGIN_EXAMPLE
+    :TAG1:TAG2:
+  #+END_EXAMPLE
+
+  Tags go at the end of a heading:
+
+  #+BEGIN_EXAMPLE
+    * My heading              :TAG:
+  #+END_EXAMPLE
+
+	Once you have tagged it you can start to filter
 	based on that tag. Here I am going to use a generic filtered todo view to only
 	view todo items tagged with TA.
 
@@ -346,8 +271,8 @@
 	tabular editing of properties associated with a document.
 
 	#+BEGIN_EXAMPLE
-* Heading
-  :PROPERTIES:
+  * Heading
+    :PROPERTIES:
     :KEY: Value
   :END:
 	#+END_EXAMPLE
