@@ -303,9 +303,9 @@
 	It's pretty easy to create a custom todo view with a tag filter.
 	[[file:images/learning_todo_todotagfilter.gif]] 
 
-	Tags are recursive. They apply to the subtree. You can apply tags to all items
-	in a file using the filetags comment. I find it useful to add a REFILE tag to all the items
-	in my refile file.
+	Tags are recursive. They apply to the entire subtree. Every org file is a rooted tree of nodes.
+	You can apply tags to all headings in a file using the filetags comment. 
+	I find it useful to add a REFILE tag to all the items in my refile file.
 
 	#+BEGIN_EXAMPLE
 	  #+FILETAGS: TAG
@@ -366,7 +366,7 @@
    This can also be controlled locally with the archive comment:
 
    #+BEGIN_EXAMPLE
-     #+ARCHIVE: 
+     #+ARCHIVE: %s_archive::* Archive
    #+END_EXAMPLE
 
 ** Refiling
