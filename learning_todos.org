@@ -2,7 +2,7 @@
 
 * Todo Basics
 	This is a simple study in managing your daily ins and outs using OrgExtended.
-	Org is a swiss army knife. It is, what you make of it. 
+	Org is a swiss army knife. It is, what you make of it.
 
 	[[file:images/learning_todo_headings.gif]]
 
@@ -16,7 +16,7 @@
 	during that meeting we flow in and out of topics. As I take notes
 	it helps to be able to put each topic under it's own sub heading.
 
-	As we do this, I am using insert heading and insert child. 
+	As we do this, I am using insert heading and insert child.
 
 	#+BEGIN_EXAMPLE
 	Alt+o i h and Alt+o i c
@@ -80,11 +80,11 @@
   #+END_EXAMPLE
 
   This is now recognized by org as a TODO that needs doing. So as you author your meeting notes, you realize that your todos are right in the middle of your
-  meeting notes. You are going to need to take those out of your meetings notes and add them to your own todo lists right? 
-  
+  meeting notes. You are going to need to take those out of your meetings notes and add them to your own todo lists right?
+
   - *Actually you don't need to*.
 
-  Org expects that as things come up, you jot them down in context relevant locations. 
+  Org expects that as things come up, you jot them down in context relevant locations.
   One of the many things that org mode tries to do for you is provide the concept of the agenda and filtered todo lists to make
   managing your todos less labor intense. When OrgExtended starts up, it parses all valid files in your orgDir to build your agenda and any todo views
   you have defined. These views are customizable in their own right, but we will gloss over that for the moment.
@@ -128,9 +128,9 @@
 
   Etc Etc Etc.
 
-  Lets continue with the examples. 
+  Lets continue with the examples.
   Here we are going to work with the Do What I Mean insert and toggling functions.
-	The toggling function will not only change the todo state of a heading it will 
+	The toggling function will not only change the todo state of a heading it will
 	change the state of a checkbox etc.
 
 	#+BEGIN_EXAMPLE
@@ -138,15 +138,15 @@
 	  Alt+o t
 	#+END_EXAMPLE
 
-  I am going to insert some headings, set them to todos and add a scheduled entry. 
+  I am going to insert some headings, set them to todos and add a scheduled entry.
 
 	[[file:images/learning_todo_todos.gif]]
 
 	#+BEGIN_EXAMPLE
     * TODO Project A
-      SCHEDULED: <2021-02-15 Mon 10:41> 
+      SCHEDULED: <2021-02-15 Mon 10:41>
     ** TODO Task 1
-    *** This is a sub task  
+    *** This is a sub task
 	#+END_EXAMPLE
 
 
@@ -177,14 +177,14 @@
 	to help you build your own in the future. You will need to read the more in depth sections
 	of the docs on how to customize your agenda views. For now we will stick with the default view.
 
-	Based on how you have your agenda configured your agenda can find your todos in your files. 
-	It is really just a set of fancy todo views that let you visualize your todo content in 
+	Based on how you have your agenda configured your agenda can find your todos in your files.
+	It is really just a set of fancy todo views that let you visualize your todo content in
 	more schedule oriented ways.
 
 	The todo list and the agenda both support enter to open a file in the primary sheet
-	while space will open it in another tab. 
+	while space will open it in another tab.
 
-	I modified the time in the scheduled note by pulling in the time a little. 
+	I modified the time in the scheduled note by pulling in the time a little.
 	This is because I have my agenda restricted to only show working hours and it wouldn't
 	make much of a demonstration if it did not appear on the agenda.
 
@@ -203,7 +203,7 @@
 	If you press space it will open up in a different layout window. You can clock and change status from
 	within the agenda as well.
 
-	[[file:images/learning_todo_agenda.gif]] 
+	[[file:images/learning_todo_agenda.gif]]
 
 	In the example I use the SCHEDULED marker. These are a powerful yet
 	complicated part of org mode. We don't currently support the full gamut of
@@ -212,25 +212,60 @@
 
 	- SCHEDULED :: This marks where you want to START working on something it will appear in the agenda until you close the task. So generally this is used on tasks that may take some time.
 	- DEADLINE :: Like scheduled this marks where you want to be DONE working on something. You can specify a warning marker in the time. By default you will get a warning 1 day before your deadline. If the task is still open after the deadline it will be marked as overdue.
-	- < Active Timestamp > :: without a deadline or scheduled prefix this event will happen once at the selected time. 
+	- < Active Timestamp > :: without a deadline or scheduled prefix this event will happen once at the selected time.
 
 * Contents
 	At this point it is tempting to dive into a deep dive all the ways org can help you author content for your notes.
 	There really is a lot that org can help you out with. Things like:
 
-	- [[./priorities.org][Priorities]] 
-	- [[./lists.org][Unordered, Numbered and Checkbox Lists]] 
+	- [[./priorities.org][Priorities]]
+	- [[./lists.org][Unordered, Numbered and Checkbox Lists]]
 	- [[./tables.org][Tables]]
 
   And much more
 
   That said, this tutorial is not the right time for this, we are focused on todos and todo tracking.
 
+* Links
+
+	So, at this point you have been authoring your notes and todos, you can find your active todos within your notes.
+	Sometimes however, you want to leave a trail of breadcrumbs for yourself. Or perhaps you want to store an external link
+	and easily jump to it later.
+
+	Org links are fairly powerful. You can link within a document by creating dynamic targets:
+
+	#+BEGIN_EXAMPLE
+	  <<Anchor>>
+	#+END_EXAMPLE
+
+	That said, any heading is itself a dynamic target:
+	#+BEGIN_EXAMPLE
+	  [[file:myfile.org::*MyHeading]]
+	#+END_EXAMPLE
+
+	External links work as well, org will try to collapse the url portion of the link to hide those unsightly urls.
+
+	#+BEGIN_EXAMPLE
+	  [[http://myurl.com][Some Text]]
+	#+END_EXAMPLE
+
+	Of course org tries to help you here to. You can create a link to a file using a command or use a snippet
+	to insert a new link:
+
+	#+BEGIN_EXAMPLE
+	  <l
+	#+END_EXAMPLE
+
+	These links are all active. Pressing enter on a link will follow the link. This makes your org directories
+	a bit of a personal wiki. This is yet another way to manage your todos.
+
+	[[file:images/learning_todo_createlink.gif]]
+
 * Tagging
 
-	Okay back to managing those todos we have been working so hard to keep track of.
-	As you get more todos things can get confusing without some way of organizing
-	your efforts. Org offers tags and properties as a means of adding meta data to your items.
+	Links are great, but, as you get more todos things can get confusing.
+	Org offers tags and properties as a means of adding meta data to your items and going beyond
+	simple todo lists and links.
 
 	You can tag any heading with a tag (or multiple tags). A tag looks like this:
 
@@ -264,6 +299,10 @@
     ** TODO Task 4
 	#+END_EXAMPLE
 
+
+	It's pretty easy to create a custom todo view with a tag filter.
+	[[file:images/learning_todo_todotagfilter.gif]]
+
 	Tags are not the only way to curate your data. Property drawers and properties are another way
 	that org allows you to add meta data to your notes. Property drawers are a common means of
 	tracking notes that live elsewhere, such as google calendar, or in jira. Or tag an item with metadata such as
@@ -273,41 +312,81 @@
 	#+BEGIN_EXAMPLE
   * Heading
     :PROPERTIES:
-    :KEY: Value
-  :END:
+      :KEY: Value
+    :END:
 	#+END_EXAMPLE
 
-	Again, org extended will try to fold these automatically to avoid clutter.
+	Org Extended will try to fold property drawers automatically to avoid clutter.
+	Property drawers are the most common example of one of org modes generic meta data features.
+	Drawers can be named anything are look a little like tags after a heading. OrgExtended will try to fold
+	these up to hide the clutter, since these are often meta data that we don't want to examing that often.
 
-* Links
-	So, at this point you have been authoring your notes and todos, you can find your active todos within your notes.
-	Sometimes however, you want to leave a trail of breadcrumbs for yourself. Or perhaps you want to store an external link.
-
-	Org links are fairly powerful. You can link within a document by creating dynamic targets:
-
-	#+BEGIN_EXAMPLE
-	  <<Anchor>>
-	#+END_EXAMPLE
-
-	That said, any heading is itself a dynamic target:
-	#+BEGIN_EXAMPLE
-	  [[file:myfile.org::*MyHeading]]
-	#+END_EXAMPLE
-
-	External links work as well, org will try to collapse the url portion of the link to hide those unsightly urls.
-
-	#+BEGIN_EXAMPLE
-	  [[http://myurl.com][Some Text]]
-	#+END_EXAMPLE
-
-	Of course org tries to help you here to. You can create a link to a file using a command or use a snippet
-	to insert a new link:
-
-	#+BEGIN_EXAMPLE
-	  <l
-	#+END_EXAMPLE
+	[[file:images/learning_todo_propertydrawer.gif]]
 
 * Capturing
-	One of the powerful features of org is capturing. OrgExtended uses snippets for building capture templates.
+	So at this point you have a pretty decent introductory view of some of the pieces in managing your todos with
+	org mode. There is a lot that we have not covered. That said, any coverage on note taking and todos would be
+	incomplete without talking about:
 
-	TODO FINISH this 
+	- Capturing - A quick means of grabbing information and forgetting about it.
+	- Refiling - A means of moving your data around after after you have written it.
+	- Archiving - Hiding the work after you are done with it.
+
+** Indexing and Goto Anything
+   Before we get to the OrgExtended features, I think it helps to mention that OrgExtended has some support
+   for sublime indexing. Headings use standard tags that allow sublime to index your files. If your notes
+   are an official sublime project goto symbol should work out of the box:
+
+   [[file:images/learning_todo_indexing.gif]]
+
+** Archiving
+	 Lets start with the end. Archiving is a means of taking a project, todo, or general heading
+	 and storing it in an archive file after you are done with it.
+
+   [[file:images/learning_todo_archiving.gif]] 
+
+   Org will place the heading in an archive file that you have specified. This is controlled
+   globally with the arhive entry.
+
+   #+BEGIN_EXAMPLE
+    "archive": "%s_archive::* Archive",
+   #+END_EXAMPLE
+
+   Here we archived an entry in learning_todos.org and it was archived to a file
+   called learning_todos.org_archive under a heading called Archive.
+
+   This can also be controlled locally with the archive comment:
+
+   #+BEGIN_EXAMPLE
+     #+ARCHIVE: 
+   #+END_EXAMPLE
+
+** Refiling
+
+	In my mind refiling is all about Getting Stuff Done. Yeah, I don't want to use the official name and get in trouble.
+	The concept of having an inbox or quick capture box that you then triage on a regular basis can help keep your mind
+	focused.
+
+	I have a refile.org file and I regularly triage it using the refile command. We are working our way BACK to capturing
+	it will help motivate why capturing is a nifty feature. Refling is NOT perfect, but it is getting better as I use
+	it and improve it. The quick search box has headings across all your known org files.
+
+	Here I am refiling a heading to test1.org 
+
+	[[file:images/learning_todo_refile.gif]] 
+
+** Capturing
+
+	 When I am working on something and have an idea. I want to capture it quicky and move on.
+	 Org capture lets me do just that. Either I can choose to pop into my refile file directly or open
+	 up a panel. The template is a snippet that you specify in your settings file.
+
+	 Capturing lets you quickly open a panel, shove the results somewhere useful and move on.
+
+	 [[file:images/learning_todo_capture.gif]] 
+
+* Done
+	Now you know the basics! I hope you find this useful.
+
+
+	
