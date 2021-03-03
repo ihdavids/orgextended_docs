@@ -301,7 +301,15 @@
 
 
 	It's pretty easy to create a custom todo view with a tag filter.
-	[[file:images/learning_todo_todotagfilter.gif]]
+	[[file:images/learning_todo_todotagfilter.gif]] 
+
+	Tags are recursive. They apply to the subtree. You can apply tags to all items
+	in a file using the filetags comment. I find it useful to add a REFILE tag to all the items
+	in my refile file.
+
+	#+BEGIN_EXAMPLE
+	  #+FILETAGS: TAG
+	#+END_EXAMPLE
 
 	Tags are not the only way to curate your data. Property drawers and properties are another way
 	that org allows you to add meta data to your notes. Property drawers are a common means of
