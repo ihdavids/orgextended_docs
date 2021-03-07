@@ -16,7 +16,7 @@
   or for built in functionality like clocktable that dynamically generate report
   based on your org files.
 
-  To facilitate this, if you create a Packages/User/dynamic folder
+  To facilitate this, if you create a Packages/User/orgdynamic folder
   and place a named python file in there my-function.py for example
   you can call a method named:
 

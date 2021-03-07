@@ -199,3 +199,32 @@
 	#+END_EXAMPLE
 
 
+** GNU Plot
+	No spreadsheet application would be complete without the ability to graph data.
+	Emacs, and now we make that possible with GNU Plot.
+
+	To use it:	
+
+	- install gnuplot
+	- Set your gnuplot path:
+
+		#+BEGIN_EXAMPLE
+		  "gnuplot": "<fullpathtognuplot.exe>",
+		#+END_EXAMPLE
+
+	- Run "Org Plot Table" with cursor on the table
+
+	#+BEGIN_EXAMPLE
+    #+PLOT: title:"Citas" ind:1 deps:(3 4) with:lines set:grid file:plot.png
+    |    Sede   |  Max   | H-index |  top  |
+    |-----------+--------+---------+-------|
+    | Sao Paolo |  71.00 |   11.50 |  13.5 |
+    | Stockholm | 134.19 |   14.33 | 16.33 |
+    | Leeds     | 165.77 |   19.68 | 21.68 |
+    | Morelia   | 257.56 |   17.67 | 19.67 |
+    | Chile     | 257.72 |   21.39 | 23.39 |
+    #+TBLFM:$4=$3+2.0
+	#+END_EXAMPLE
+
+	[[file:images/tables_gnuplot.gif]]
+
