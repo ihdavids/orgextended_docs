@@ -50,7 +50,8 @@
 
   #+RESULTS:
   [[file:images\plantuml1.png]]
-  
+ 
+
   
   - Save your file!
   - Execute the block!
@@ -63,7 +64,11 @@
   #+END_EXAMPLE
 
   [[file:images/diagrams_plantuml.gif]] 
-  
+ 
+
+
+   [[file:images/plantuml1.png]]
+
 ** Graphviz
   Graphviz is a great tool for visualizing networks of data. It comes with quite a few visualization engines. The default is dot.exe.
 
@@ -87,6 +92,8 @@
 
    #+RESULTS:
    [[file:images\graphviz.png]]
+
+   [[file:images/graphviz.png]]
  
    There are 2 additional parameters that can be specified:
 
@@ -121,6 +128,7 @@
     Save your view, Execute the block and you should now have a diagram!
 
  
+   [[file:images/ditaa.png]]
  
   
   
