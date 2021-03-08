@@ -27,7 +27,12 @@
   Lets look at plantuml diagrams first. I am not going to go into depth on what you can do with plantuml.
   It is a powerful tool, I recommend you read their website:
 
-  - [[https://plantuml.com/sequence-diagram][PlantUml Website]]
+  - [[https://plantuml.com/sequence-diagram][PlantUml Website]] 
+
+  I believe on mac it can be installed using homebrew
+  #+BEGIN_EXAMPLE
+    brew install plantuml
+  #+END_EXAMPLE
 
   1. You first need to have plantuml.jar somewhere useful
   2. You also need a copy of the java runtime environment and it HAS to be in your path
@@ -55,7 +60,7 @@
   
   - Save your file!
   - Execute the block!
-  
+
    [[file:images/plantuml1.png]]
 
   Here I am telling plantuml to generate the image for this into my current directory images folder and to generate a png for me.
@@ -74,6 +79,13 @@
   Graphviz is a great tool for visualizing networks of data. It comes with quite a few visualization engines. The default is dot.exe.
 
   - [[https://graphviz.org/download/][Graphviz Download Page]]
+
+  I believe on mac it can be installed using homebrew. That said, when I tried it I found that graphviz seemed to
+  depend on everything, even the kitchen sink on mac.
+  
+  #+BEGIN_EXAMPLE
+    brew install graphviz
+  #+END_EXAMPLE
 
   Again, you need to specify your graphviz path. Please specify the full path to dot.exe. That is considered the default engine.
 
