@@ -55,6 +55,8 @@
   
   - Save your file!
   - Execute the block!
+  
+   [[file:images/plantuml1.png]]
 
   Here I am telling plantuml to generate the image for this into my current directory images folder and to generate a png for me.
   To run this, put your cursor no plantuml and run:
@@ -67,7 +69,6 @@
  
 
 
-   [[file:images/plantuml1.png]]
 
 ** Graphviz
   Graphviz is a great tool for visualizing networks of data. It comes with quite a few visualization engines. The default is dot.exe.
