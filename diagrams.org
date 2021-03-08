@@ -19,12 +19,15 @@
   For instance, they can be used to make diagrams!
 
   Org Mode has support for some different ways of making diagrams.
-  That said, we currently only support one, plantuml. 
-  I only ever really used 2 ditaa and plantuml and I find ditaa is
+  That said, we currently only support ditaa, graphviz, and plantuml. 
+  I only ever really used graphviz, ditaa and plantuml and I find ditaa is
   MUCH less useful if you don't have the emacs picture mode or artist mode
   to help you draw text diagrams in the first place.
 
-  So, back to plantuml.
+  Lets look at plantuml diagrams first. I am not going to go into depth on what you can do with plantuml.
+  It is a powerful tool, I recommend you read their website:
+
+  - [[https://plantuml.com/sequence-diagram][PlantUml Website]]
 
   1. You first need to have plantuml.jar somewhere useful
   2. You also need a copy of the java runtime environment and it HAS to be in your path
@@ -49,7 +52,8 @@
   [[file:images\plantuml1.png]]
   
   
-
+  - Save your file!
+  - Execute the block!
 
   Here I am telling plantuml to generate the image for this into my current directory images folder and to generate a png for me.
   To run this, put your cursor no plantuml and run:
@@ -60,7 +64,67 @@
 
   [[file:images/diagrams_plantuml.gif]] 
   
+** Graphviz
+  Graphviz is a great tool for visualizing networks of data. It comes with quite a few visualization engines. The default is dot.exe.
+
+  - [[https://graphviz.org/download/][Graphviz Download Page]]
+
+  Again, you need to specify your graphviz path. Please specify the full path to dot.exe. That is considered the default engine.
+
+  #+BEGIN_EXAMPLE
+    "graphviz": "<pathtodot>/dot.exe",
+  #+END_EXAMPLE
+
+  Much like plantuml you create a graphviz block, specify your output image, save your view, put your cursor over graphviz and execute the block.
+
+    #+BEGIN_SRC graphviz :file images/graphviz.png
+     digraph G {
+       a -> b;
+       a -> c;
+       c -> d
+     } 
+    #+END_SRC
+
+   #+RESULTS:
+   [[file:images\graphviz.png]]
+ 
+   There are 2 additional parameters that can be specified:
+
+    - engine :: neato, dot etc. These are the actual tools that ship with graphviz (the layout engine)
+    - fmt :: jpg, ps, png - these are the -T option on the tool, read the graphviz docs for more information
+
+** Ditaa
+   Ditaa is a tool for converting ascii art diagrams into images. Emacs makes ditaa particularly useful with its artist and picture modes.
+   We do not have those yet in sublime, but, some day perhaps.
+
+   Add the path to ditaa.jar from sourceforge in your settings file:
+
+   - [[http://ditaa.sourceforge.net/][Ditta Homepage]]
+
+    #+BEGIN_EXAMPLE
+      "ditaa": "<pathto>/ditaa.jar",   
+    #+END_EXAMPLE
+
+    Much like plantuml you must have java.exe (the jre) in your path.
+
+    Create a source block with your diagram.
+
+    #+BEGIN_SRC ditaa :file images/ditaa.png
+    +--------+       +----------+
+    | Hello  | ----> | Hello2   |
+    +--------+       +----------+
+    #+END_SRC 
+
+   #+RESULTS:
+   [[file:images\ditaa.png]]
+
+    Save your view, Execute the block and you should now have a diagram!
+
+ 
+ 
   
+  
+ 
   
   
   
