@@ -1,0 +1,73 @@
+* Diagrams
+
+** Showing Images
+
+  Links to local files, when exported will show up as images in your document. 
+  You can also see those images right in sublime.
+
+  #+BEGIN_EXAMPLE
+    Org Show Images
+  #+END_EXAMPLE
+
+  Will show all the images in your document in inline popup phantoms right in your document.
+
+  [[file:images/diagrams_image_links.gif]]
+
+** Creating Diagrams
+
+  Src blocks can be used for things other than pure code.
+  For instance, they can be used to make diagrams!
+
+  Org Mode has support for some different ways of making diagrams.
+  That said, we currently only support one, plantuml. 
+  I only ever really used 2 ditaa and plantuml and I find ditaa is
+  MUCH less useful if you don't have the emacs picture mode or artist mode
+  to help you draw text diagrams in the first place.
+
+  So, back to plantuml.
+
+  1. You first need to have plantuml.jar somewhere useful
+  2. You also need a copy of the java runtime environment and it HAS to be in your path
+  3. In addition once you install those you should restart sublime, so sublime has your lastest path.
+  4. Now tell OrgExtended where you have put plantuml.jar
+
+  #+BEGIN_EXAMPLE
+    "plantuml": "C:\\path\\plantuml.jar",
+  #+END_EXAMPLE
+
+  Now make a plantuml block like so:
+
+  #+BEGIN_SRC plantuml :file images/plantuml1.png
+  title Authentication Sequence2
+
+  Alice->Bob: Hello Request
+  note right of Bob: Bob thinks about it
+  Bob->Alice: Authentication Response
+  #+END_SRC 
+
+  #+RESULTS:
+  [[file:images\plantuml1.png]]
+  
+  
+
+
+  Here I am telling plantuml to generate the image for this into my current directory images folder and to generate a png for me.
+  To run this, put your cursor no plantuml and run:
+
+  #+BEGIN_EXAMPLE
+    Org Exec Source Block
+  #+END_EXAMPLE
+
+  [[file:images/diagrams_plantuml.gif]] 
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+

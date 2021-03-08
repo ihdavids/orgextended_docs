@@ -220,6 +220,7 @@
 
   - [[./priorities.org][Priorities]]
   - [[./lists.org][Unordered, Numbered and Checkbox Lists]]
+  - [[./diagrams.org][Diagrams]]
   - [[./tables.org][Tables]]
 
   And much more

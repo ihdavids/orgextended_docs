@@ -72,6 +72,7 @@
   - [Time Tracking](https://github.com/ihdavids/orgextended_docs/blob/master/clocking.org) - Clocking and clock reports
   - [Dynamic Blocks](https://github.com/ihdavids/orgextended_docs/blob/master/dynamicblocks.org) - Run arbitrary code
   - [Tables](https://github.com/ihdavids/orgextended_docs/blob/master/tables.org) - Spreadsheets in your documents.
+  - [Diagrams](https://github.com/ihdavids/orgextended_docs/blob/master/diagrams.org) - Adding diagrams to your documents.
   - [Agenda](https://github.com/ihdavids/orgextended_docs/blob/master/agenda.org) - Keeping track of your day.
   - [Key Bindings](https://github.com/ihdavids/orgextended_docs/blob/master/keybindings.org) - A quick reference of some of the default keybindings.
   

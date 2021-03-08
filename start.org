@@ -83,6 +83,7 @@
   - [[file:clocking.org][Time Tracking]] - Clocking and clock reports
   - [[file:dynamicblocks.org][Dynamic Blocks]] - Run arbitrary code
   - [[file:tables.org][Tables]] - Spreadsheets in your documents.
+  - [[file:diagrams.org][Diagrams]] - Adding diagrams to your documents.
   - [[file:agenda.org][Agenda]] - Keeping track of your day.
   - [[file:keybindings.org][Key Bindings]] - A quick reference to the default keybindings.
 
