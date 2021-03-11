@@ -1,0 +1,14 @@
+* 1.2.0 - Full Table Alpha
+  My goal here is to remove the Preview moniker from tables. That said some of the work will be
+  outside of pure table support but rather be about building the start of our babel feature.
+
+  The "big reveal" of 1.2.0 is going to be this:
+
+  [[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts In Org]] 
+
+** Planned Releases
+*** TODO 1.1.27 - Extending Date Formula Support
+*** TODO 1.1.28 - Core Performance and Quality of Life
+*** TODO 1.1.29 - GNU Plot Script Blocks
+*** TODO 1.1.30 - Table Babel
+*** TODO 1.2.0  - RELEASE

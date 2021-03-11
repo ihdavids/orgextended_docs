@@ -1,0 +1,16 @@
+* 1.1.28 
+   Core Idea: Table Performance and Quality of Life
+** Goals
+	- [ ] Improve function table creation times. Can we cache this?
+	- [ ] Test table cache across multiple files?
+	- [ ] Create symbol parsing cache?
+	- [ ] Turn off highlight durng execution view updates
+	- [ ] Create table from node vs view (improve remote function)
+	- [ ] Cleanup table? Move plot out of table file?
+	- [ ] Cleanup table? Hoist any utility functions?
+	- [ ] Cleanup table? Improve paramketer parser around quotes?
+	- [ ] Support extensible symbols as well as functions.
+
+** Documentation Goals
+  - [ ] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
+  - [ ] Document all available symbols
