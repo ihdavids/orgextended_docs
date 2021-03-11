@@ -6,9 +6,82 @@
 
   [[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts In Org]] 
 
-** Planned Releases
-*** TODO 1.1.27 - Extending Date Formula Support
-*** TODO 1.1.28 - Core Performance and Quality of Life
-*** TODO 1.1.29 - GNU Plot Script Blocks
-*** TODO 1.1.30 - Table Babel
-*** TODO 1.2.0  - RELEASE
+*** Planned Releases
+**** TODO 1.1.27 - Extending Date Formula Support
+**** TODO 1.1.28 - Core Performance and Quality of Life
+**** TODO 1.1.29 - GNU Plot Script Blocks
+**** TODO 1.1.30 - Table Babel
+**** TODO 1.2.0  - RELEASE
+ 
+** 1.1.27 
+    Core Idea: Extending datetime formula support
+               you should be able to make the table the guy shows in the video
+               with some "OrgExtended" flair to make it easier.
+*** Ian Goals
+   I am working towards this as my ultimate goal
+   [[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts In Org]] 
+ 
+   For 1.1.26 I am hoping to have the full creation of the table
+   functional, but with some added bells and whistles that allow
+   you to create that table dynamically directly in the columnview
+   rather than having to build the table every time you want a gantt chart.
+ 
+   - [ ] Support adding formulas to the generated table in the columnview description somehow
+   - [ ] Support adding non existent columns in the columnview description (probably just property markers)
+   - [ ] Support date() parsing cells
+   - [ ] Support OrgDate converting back to a string properly
+   - [ ] Support OrgDate + OrgDuration additions so you do not have to remove the d from the effort estimate.
+   - [ ] Support percentage strings
+   - [ ] Support if statement in tables 
+ 
+*** 1.1.27 Documentation Goals
+   - [ ] Document advanced tables
+   - [ ] Audit other major features that I might have forgotten?
+ 
+** 1.1.28 
+    Core Idea: Table Performance and Quality of Life
+               I should feel like the table feature is not needlessly expensive
+               and I can use it for babel.
+*** Ian Goals
+ 	- [ ] Improve function table creation times. Can we cache this?
+ 	- [ ] Test table cache across multiple files?
+ 	- [ ] Create symbol parsing cache?
+ 	- [ ] Turn off highlight durng execution view updates
+ 	- [ ] Create table from node vs view (improve remote function) - *Important for babel*
+ 	- [ ] Cleanup table? Move plot out of table file?
+ 	- [ ] Cleanup table? Hoist any utility functions?
+ 	- [ ] Cleanup table? Improve parameter parser around quotes?
+ 	- [ ] Support extensible symbols as well as functions.
+ 
+*** Documentation Goals
+   - [ ] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
+   - [ ] Document all available symbols
+ 
+** 1.1.29
+   Core Idea: Add GNU Plot Script Blocks
+
+   - [ ] Add a syntax for gnu plot script blocks if one does not already exist
+   - [ ] Add a src handler to execute these script blocks.
+   - [ ] Any prep/improvements I feel is necessary to support setting up for table source data and babel work
+
+*** Documentation Goals
+	- [ ] Write a tool to dump out the list of supported script blocks to our docs.
+	- [ ] Add that to our script block page.
+
+** 1.1.30
+	Core Idea: Table Babel
+
+*** Ian Goals
+	- [ ] Support tables as data sources for babel
+
+	--> More research required here as to the full list of tasks.
+
+*** Documentation Goals
+	- [ ] Table Babel Demo
+
+** 1.2.0
+*** Ian Goals
+	- [ ] Add match feature to columnview?
+	
+*** Documentation Goals
+	- [ ] Gantt chart demo page.
