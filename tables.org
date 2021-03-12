@@ -111,6 +111,9 @@
 	- ‘@2$1..@4$3’ :: nine fields between these two fields
 	- ‘@-1$-2..@-1’ :: 3 fields in the row above, starting from 2 columns on the left	
 
+	[[https://orgmode.org/manual/References.html#References][OrgMode Table References]] 
+	[[https://orgmode.org/manual/Field-and-range-formulas.html#Field-and-range-formulas][Table Range References]]
+
 	To help with figuring out the indexes of your rows and columns Org Extended has a set of phantoms it can pop up to
 	show you the layout of your table:
 
@@ -198,6 +201,35 @@
 	  |   |   | >=remote('TableName',@2$3)*10 |   |
 	#+END_EXAMPLE
 
+** Advanced Table Features
+		Orgmode supports an advanced table mechanism. When using these features
+		you need to put symbols in the first column of the table. These symbols are as follows.
+
+		[[https://orgmode.org/manual/Advanced-features.html][OrgMode Advanced Table Features]]
+
+		- # :: Auto compute this row. When you use the table commands to move between cells these cells will be auto computed.
+		- * :: Non auto compute cell. Cells in this row will be included when recomputing the table (blank symbol will exclude a row from computation)
+		- $ :: defines local table symbols in this row (max=5) that can be used in formulas.
+		- _ :: name the cells below this row in this column. Cells can be referenced by name.
+		- ^ :: name the cells above this row in this column. Cells can be referenced by name.
+		- ! :: name all cells in this column. Cells can be referenced by this name.
+
+    |   |   a   |   b   |    c     |
+    |---+-------+-------+----------|
+    | # | 0.38  | 0.1   | 0.46     |
+    | # | 0.38  | 0.1   | 0.86     |
+    | # | 0.03  | 0.6   | 0.01     |
+    | * | 0.02  | 0.0   | 0.06     |
+    | ^ | hello | world | namedRow |
+    | * |       | 0.3   |          |
+    |   |       |       |          |
+    | _ | below |       |          |
+    | # | 3.5   | 0.7   |          |
+    | # | 4.5   | 0.9   |          |
+    | # | 4.0   | 0.8   |          |
+    | # | 2.0   | 0.4   |          |
+    | $ | max=5 |       |          |
+    #+TBLFM:$hello=rand()*$world;%.2f::$namedRow=rand();%.2f::$3=rand();%.1f::$below=$3*$max
 
 ** GNU Plot
 	No spreadsheet application would be complete without the ability to graph data.

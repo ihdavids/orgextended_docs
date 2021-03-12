@@ -26,13 +26,13 @@
    you to create that table dynamically directly in the columnview
    rather than having to build the table every time you want a gantt chart.
  
-   - [ ] Support adding formulas to the generated table in the columnview description somehow
-   - [ ] Support adding non existent columns in the columnview description (probably just property markers)
-   - [ ] Support date() parsing cells
-   - [ ] Support OrgDate converting back to a string properly
-   - [ ] Support OrgDate + OrgDuration additions so you do not have to remove the d from the effort estimate.
-   - [ ] Support percentage strings
-   - [ ] Support if statement in tables 
+   - [x] Support adding formulas to the generated table in the columnview description somehow
+   - [x] Support adding non existent columns in the columnview description (probably just property markers)
+   - [x] Support date() parsing cells
+   - [x] Support OrgDate converting back to a string properly
+   - [x] Support OrgDate + OrgDuration additions so you do not have to remove the d from the effort estimate.
+   - [x] Support percentage strings
+   - [-] Support if statement in tables 
  
 *** 1.1.27 Documentation Goals
    - [ ] Document advanced tables
