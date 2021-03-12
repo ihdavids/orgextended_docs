@@ -35,8 +35,8 @@
    - [-] Support if statement in tables 
  
 *** 1.1.27 Documentation Goals
-   - [ ] Document advanced tables
-   - [ ] Audit other major features that I might have forgotten?
+   - [x] Document advanced tables
+   - [x] Audit other major features that I might have forgotten?
  
 ** 1.1.28 
     Core Idea: Table Performance and Quality of Life
