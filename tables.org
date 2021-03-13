@@ -1,146 +1,146 @@
 * Tables and Spreadsheets
-	Org Extended has some support for org mode tables. True org tables support would allow for arbitrary
-	emacs lisp to run as cell formulas within the table. Org Extended is not likely to build a lisp
-	interpreter within sublime. I am less likely to support the full gamut of useful lisp functions.
+  Org Extended has some support for org mode tables. True org tables support would allow for arbitrary
+  emacs lisp to run as cell formulas within the table. Org Extended is not likely to build a lisp
+  interpreter within sublime. I am less likely to support the full gamut of useful lisp functions.
 
-	That said, a lot can be done with basic calc support in sublime!
+  That said, a lot can be done with basic calc support in sublime!
 
-	[[file:images/table_formulas.gif]] 
+  [[file:images/table_formulas.gif]] 
 
-	There are a number of things that make org tables super powerful:
+  There are a number of things that make org tables super powerful:
 
-	- Org has a ton of power for editing and dynamically modifying tables, in plain text!
-	- Org supports a full computation engine built on emacs calc. We have a simplified version of that.
-	- Org tables can reference other tables. (Much like tabs in a spreadsheet)
-	- Org tables can act as inputs to babel really opening up your options for living documents. (we do not have this yet)
-	- Org tables can be the output of babel, again, really comming full circle on things. (we do not have this yet)
-	- Org can easily import csv files and other document types into your documents. (we have some support here)
+  - Org has a ton of power for editing and dynamically modifying tables, in plain text!
+  - Org supports a full computation engine built on emacs calc. We have a simplified version of that.
+  - Org tables can reference other tables. (Much like tabs in a spreadsheet)
+  - Org tables can act as inputs to babel really opening up your options for living documents. (we do not have this yet)
+  - Org tables can be the output of babel, again, really comming full circle on things. (we do not have this yet)
+  - Org can easily import csv files and other document types into your documents. (we have some support here)
 
-	That said, using the spreadsheet like capabilities of Org Extended will take a little effort on your part
+  That said, using the spreadsheet like capabilities of Org Extended will take a little effort on your part
 
 ** Basic Editing
-	Tab and Shift Tab are your friend. To start building a table, put a vertical bar symbol followed by some text and press tab.
-	Voila, you have a table!
+  Tab and Shift Tab are your friend. To start building a table, put a vertical bar symbol followed by some text and press tab.
+  Voila, you have a table!
 
-	[[file:images/table_basic_creation.gif]] 
+  [[file:images/table_basic_creation.gif]] 
 
-	There is more. You can import a table or create a blank WxH table. But we will cover those later.
+  There is more. You can import a table or create a blank WxH table. But we will cover those later.
 
 ** Adding Rows and Columns
 
-	Next we need to extend our table. It is a pain to have to go over to the righthand side of the table to add a column.
-	Org lets you insert a column almost anywhere!
+  Next we need to extend our table. It is a pain to have to go over to the righthand side of the table to add a column.
+  Org lets you insert a column almost anywhere!
 
-	#+BEGIN_EXAMPLE
-	Shift+Alt+Right Arrow  --> Add a Col (pull it out, text grows to the right in english)
-	Shift+Alt+Left Arrow   --> Remove a Col (push it back)
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+  Shift+Alt+Right Arrow  --> Add a Col (pull it out, text grows to the right in english)
+  Shift+Alt+Left Arrow   --> Remove a Col (push it back)
+  #+END_EXAMPLE
 
-	The same works vertically!
+  The same works vertically!
 
-	#+BEGIN_EXAMPLE
-	  Shift+Alt+Down Arrow --> Add a row (pull it out, tables grow down right!)
-	  Shift+Alt+Up   Arrow --> Remove a row (push it back)
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+    Shift+Alt+Down Arrow --> Add a row (pull it out, tables grow down right!)
+    Shift+Alt+Up   Arrow --> Remove a row (push it back)
+  #+END_EXAMPLE
 
-	[[file:images/table_add_delete_cells.gif]] 
+  [[file:images/table_add_delete_cells.gif]] 
 
 ** Moving Cells Around
-	So now you realize that you laid out your table poorly and want to move the content around.
-	#+BEGIN_EXAMPLE
-	Alt+Right Arrow  --> Move this row right
-	Alt+Left Arrow   --> Move this row left
-	#+END_EXAMPLE
+  So now you realize that you laid out your table poorly and want to move the content around.
+  #+BEGIN_EXAMPLE
+  Alt+Right Arrow  --> Move this row right
+  Alt+Left Arrow   --> Move this row left
+  #+END_EXAMPLE
 
-	The same works vertically!
+  The same works vertically!
 
-	#+BEGIN_EXAMPLE
-	  Alt+Down Arrow --> Move this row down
-	  Alt+Up   Arrow --> Move this row up 
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+    Alt+Down Arrow --> Move this row down
+    Alt+Up   Arrow --> Move this row up 
+  #+END_EXAMPLE
 
-	The cool thing you will see later is that org tries to preserve formula correctness as well when you move your
-	cells around. But more on that in a sec.
+  The cool thing you will see later is that org tries to preserve formula correctness as well when you move your
+  cells around. But more on that in a sec.
 
-	[[file:images/table_moving_cells_around.gif]]  
+  [[file:images/table_moving_cells_around.gif]]  
 
 ** Adding a Formula
 
-	Okay so now you have a table with some content that you hand authored. It's time to start adding some smarts to your table!
+  Okay so now you have a table with some content that you hand authored. It's time to start adding some smarts to your table!
 
-	First a quick demonstration. Org, like a spreadsheet can take a formula in a cell.
-	Here is an example: 
+  First a quick demonstration. Org, like a spreadsheet can take a formula in a cell.
+  Here is an example: 
 
-	#+BEGIN_SRC python
-	 =vmean($2..$3) 
-	#+END_SRC
+  #+BEGIN_SRC python
+   =vmean($2..$3) 
+  #+END_SRC
 
-	[[file:images/table_formulas_insert.gif]] 
+  [[file:images/table_formulas_insert.gif]] 
 
-	To regisster the formula you have to tell org about it, otherwise the formula is just text. Org stores the formula in
-	a TBLFM comment at the bottom of the table. No exceptions that comment needs to be at the bottom of the table.
+  To regisster the formula you have to tell org about it, otherwise the formula is just text. Org stores the formula in
+  a TBLFM comment at the bottom of the table. No exceptions that comment needs to be at the bottom of the table.
 
-	In this case we added a column formula. You can add a targetted formula by using:
+  In this case we added a column formula. You can add a targetted formula by using:
 
-	#+BEGIN_EXAMPLE
-	  := - single cell formula
-	  =  - column formula
-	  >= - row formula
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+    := - single cell formula
+    =  - column formula
+    >= - row formula
+  #+END_EXAMPLE
 
-	You will notice org added some funny symbols to reference the target cell. We also used what looks like a range of cells.
-	Org has a whole gamut of these, we support a subset.
+  You will notice org added some funny symbols to reference the target cell. We also used what looks like a range of cells.
+  Org has a whole gamut of these, we support a subset.
 
-	Org use a row and column notation that has the following structure:
-	#+BEGIN_EXAMPLE
-	  @ <ROW> $ <COL>
-	#+END_EXAMPLE
+  Org use a row and column notation that has the following structure:
+  #+BEGIN_EXAMPLE
+    @ <ROW> $ <COL>
+  #+END_EXAMPLE
 
-	Some examples might include:
+  Some examples might include:
 
-	- ‘@2$3’ :: 2nd row, 3rd column
+  - ‘@2$3’ :: 2nd row, 3rd column
     - ‘$5’ :: column 5 in the current row
-	- ‘@2’ :: current column, row 2
-	- ‘@-1$-3’ :: field one row up, three columns to the left
-	- ‘@>$5’ :: field in the last row, in column 5
+  - ‘@2’ :: current column, row 2
+  - ‘@-1$-3’ :: field one row up, three columns to the left
+  - ‘@>$5’ :: field in the last row, in column 5
 
-	Range syntax is also supported:
+  Range syntax is also supported:
 
-	- ‘$1..$3’ :: first three fields in the current row
-	- ‘$<<<..$>>’ :: start in third column, continue to the last but one
-	- ‘@2$1..@4$3’ :: nine fields between these two fields
-	- ‘@-1$-2..@-1’ :: 3 fields in the row above, starting from 2 columns on the left	
+  - ‘$1..$3’ :: first three fields in the current row
+  - ‘$<<<..$>>’ :: start in third column, continue to the last but one
+  - ‘@2$1..@4$3’ :: nine fields between these two fields
+  - ‘@-1$-2..@-1’ :: 3 fields in the row above, starting from 2 columns on the left 
 
-	[[https://orgmode.org/manual/References.html#References][OrgMode Table References]] 
-	[[https://orgmode.org/manual/Field-and-range-formulas.html#Field-and-range-formulas][Table Range References]]
+  [[https://orgmode.org/manual/References.html#References][OrgMode Table References]] 
+  [[https://orgmode.org/manual/Field-and-range-formulas.html#Field-and-range-formulas][Table Range References]]
 
-	To help with figuring out the indexes of your rows and columns Org Extended has a set of phantoms it can pop up to
-	show you the layout of your table:
+  To help with figuring out the indexes of your rows and columns Org Extended has a set of phantoms it can pop up to
+  show you the layout of your table:
 
-	- Org Show Table Rows - Will show the layout of your table
-	- Org Hide Table Rows - Will hide the phantoms. These can be a little distracting so it helps to be able to turn them off
+  - Org Show Table Rows - Will show the layout of your table
+  - Org Hide Table Rows - Will hide the phantoms. These can be a little distracting so it helps to be able to turn them off
 
-	[[file:images/table_show_table_rows.gif.gif]]
+  [[file:images/table_show_table_rows.gif.gif]]
 
 ** Evaluating Your Formula
-	Once you have a few formulas you might want to re-evaluate all your formulas.
-	You do this with the org Do What I Mean execute method: 
+  Once you have a few formulas you might want to re-evaluate all your formulas.
+  You do this with the org Do What I Mean execute method: 
 
-	#+BEGIN_EXAMPLE
-	Alt + o + c + c 
-	OR
-	<space> c c  
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+  Alt + o + c + c 
+  OR
+  <space> c c  
+  #+END_EXAMPLE
 
-	This will re-evaluate all references in the table.
+  This will re-evaluate all references in the table.
 
 ** Symbols and Constants
-	Sometimes when doing a calculation it is a bit of a pain to work with a gamut of numbers and it helps to be able to assign a meaningful name.
-	The CONSTANTS comment allows you to created named symbols that can be referenced from your tables:
+  Sometimes when doing a calculation it is a bit of a pain to work with a gamut of numbers and it helps to be able to assign a meaningful name.
+  The CONSTANTS comment allows you to created named symbols that can be referenced from your tables:
 
-	#+BEGIN_EXAMPLE
-	  #+CONSTANTS: pi=3.1415926 c=299792458
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+    #+CONSTANTS: pi=3.1415926 c=299792458
+  #+END_EXAMPLE
 
     Note the lack of spaces and equal signs. These can now be referenced as symbols in your expressions:
 
@@ -164,42 +164,42 @@
     #+END_SRC
 ** Formatting Output
 
-	In Emacs org mode formulas run inside calc. Calc has quite a few modes and control systems.
-	For this reason you can append a semi colon to your formula and add control flags that control how
-	calc operates when evaluating your expression. We do not have this situation. Our parser is OrgExtended specific
-	and as such most of the control flags for calc are meaningless. That said, there are a couple of flags that are pretty useful:
+  In Emacs org mode formulas run inside calc. Calc has quite a few modes and control systems.
+  For this reason you can append a semi colon to your formula and add control flags that control how
+  calc operates when evaluating your expression. We do not have this situation. Our parser is OrgExtended specific
+  and as such most of the control flags for calc are meaningless. That said, there are a couple of flags that are pretty useful:
 
-	- N - Adding this flag to a formula will treat all empty cells as a 0 value.
-	- %.#f - This lets you control the precision of floating point output. It is often visually disturbing to have many decimal places
-	         in your output. With this you can limit the output to a smaller set of decimal places.
+  - N - Adding this flag to a formula will treat all empty cells as a 0 value.
+  - %.#f - This lets you control the precision of floating point output. It is often visually disturbing to have many decimal places
+           in your output. With this you can limit the output to a smaller set of decimal places.
 
   Here we are limiting our output to 3 decimal places:
 
-	#+BEGIN_EXAMPLE
- 	| a     | b     | c   | d     | e     |
- 	| 1     | 1     |     | 1     | 1     |
- 	| 0.476 | 0.476 | 0.0 | 0.476 | 0.476 |
- 	#+TBLFM:@3=@2/2.1;N%.3f
-	#+END_EXAMPLE
+  #+BEGIN_EXAMPLE
+  | a     | b     | c   | d     | e     |
+  | 1     | 1     |     | 1     | 1     |
+  | 0.476 | 0.476 | 0.0 | 0.476 | 0.476 |
+  #+TBLFM:@3=@2/2.1;N%.3f
+  #+END_EXAMPLE
 
 ** Remote References
-	Tables become even more useful when you can reference between tables!
-	The remote function lets you do just that.
+  Tables become even more useful when you can reference between tables!
+  The remote function lets you do just that.
 
-	#+BEGIN_SRC python
-	  =remote('TableName',@2$3)
-	#+END_SRC
+  #+BEGIN_SRC python
+    =remote('TableName',@2$3)
+  #+END_SRC
 
 
-	#+BEGIN_EXAMPLE
-	  #+NAME: TableName
-	  | a | b | c | d |
-	  | 1 | 2 | 3 | 4 |
+  #+BEGIN_EXAMPLE
+    #+NAME: TableName
+    | a | b | c | d |
+    | 1 | 2 | 3 | 4 |
 
-	  Another table somewhere:
-	  | a | b | c                             | d |
-	  |   |   | >=remote('TableName',@2$3)*10 |   |
-	#+END_EXAMPLE
+    Another table somewhere:
+    | a | b | c                             | d |
+    |   |   | >=remote('TableName',@2$3)*10 |   |
+  #+END_EXAMPLE
 
 ** Functions
 
@@ -264,7 +264,7 @@
 
 ** Built in Symbols
 
-	The following symbols are available for use in your tables (at the moment)
+  The following symbols are available for use in your tables (at the moment)
 
   - nil :: None 
   - pi :: 3.1415926 
@@ -276,61 +276,61 @@
   - None :: None 
 
 ** Extending Org Tables With Your Own Functions
-		While we will extend the list of functions and symbols available over time, it is really handy to be able to add your own methods to
-		tables. In Emacs you can use any lisp function you define dynamically OR src blocks in your org file itself as functions in your tables.
-		We are working on the babel support, but that is not yet available AND arbitrary lisp will never be an option for us. 
+    While we will extend the list of functions and symbols available over time, it is really handy to be able to add your own methods to
+    tables. In Emacs you can use any lisp function you define dynamically OR src blocks in your org file itself as functions in your tables.
+    We are working on the babel support, but that is not yet available AND arbitrary lisp will never be an option for us. 
 
-		That said, we have a means for you to extend the list of functions and symbols yourself. We can dynamically load python code put in a
-		specific location. To use this you MUST turn on table extension support in your settings file:
+    That said, we have a means for you to extend the list of functions and symbols yourself. We can dynamically load python code put in a
+    specific location. To use this you MUST turn on table extension support in your settings file:
 
-		#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     "enableTableExtensions": true,
-		#+END_EXAMPLE
+    #+END_EXAMPLE
 
-		Once enabled OrgExtended will search your:
+    Once enabled OrgExtended will search your:
 
-		#+BEGIN_EXAMPLE
-		  Packages/User/orgtable/
-		#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      Packages/User/orgtable/
+    #+END_EXAMPLE
 
-		folder for pythong file.
-		Any file placed in this folder will be a candidate for table extension.
+    folder for pythong file.
+    Any file placed in this folder will be a candidate for table extension.
 
 *** Symbols
-		You can add symbols from any python file in your orgtable folder, even a python file that adds a function. (See below)
-		Add an AddSymbols(symbolTable) function to your file and define your symbols as values in that dictionary.
-		Here I am defining the symbol c for use in my tables.
+    You can add symbols from any python file in your orgtable folder, even a python file that adds a function. (See below)
+    Add an AddSymbols(symbolTable) function to your file and define your symbols as values in that dictionary.
+    Here I am defining the symbol c for use in my tables.
 
-		#+BEGIN_SRC python
+    #+BEGIN_SRC python
     def AddSymbols(s):
-	    s['c'] = 299792458
-		#+END_SRC
+      s['c'] = 299792458
+    #+END_SRC
 
 *** Functions
-		For functions the name of your file becomes the name of your function in the table.
-		You place a single function: Execute in your python file. This function will be called with the parameters
-		of your function when called through a TBLFM.
+    For functions the name of your file becomes the name of your function in the table.
+    You place a single function: Execute in your python file. This function will be called with the parameters
+    of your function when called through a TBLFM.
 
-		#+BEGIN_SRC python
+    #+BEGIN_SRC python
     def Execute():
-	    import sublime
-	    import datetime
-	    return str(datetime.datetime.now())
-		#+END_SRC
+      import sublime
+      import datetime
+      return str(datetime.datetime.now())
+    #+END_SRC
 
 
 ** Advanced Table Features
-		Orgmode supports an advanced table mechanism. When using these features
-		you need to put symbols in the first column of the table. These symbols are as follows.
+    Orgmode supports an advanced table mechanism. When using these features
+    you need to put symbols in the first column of the table. These symbols are as follows.
 
-		[[https://orgmode.org/manual/Advanced-features.html][OrgMode Advanced Table Features]]
+    [[https://orgmode.org/manual/Advanced-features.html][OrgMode Advanced Table Features]]
 
-		- # :: Auto compute this row. When you use the table commands to move between cells these cells will be auto computed.
-		- * :: Non auto compute cell. Cells in this row will be included when recomputing the table (blank symbol will exclude a row from computation)
-		- $ :: defines local table symbols in this row (max=5) that can be used in formulas.
-		- _ :: name the cells below this row in this column. Cells can be referenced by name.
-		- ^ :: name the cells above this row in this column. Cells can be referenced by name.
-		- ! :: name all cells in this column. Cells can be referenced by this name.
+    - # :: Auto compute this row. When you use the table commands to move between cells these cells will be auto computed.
+    - * :: Non auto compute cell. Cells in this row will be included when recomputing the table (blank symbol will exclude a row from computation)
+    - $ :: defines local table symbols in this row (max=5) that can be used in formulas.
+    - _ :: name the cells below this row in this column. Cells can be referenced by name.
+    - ^ :: name the cells above this row in this column. Cells can be referenced by name.
+    - ! :: name all cells in this column. Cells can be referenced by this name.
 
     |   |   a   |   b   |    c     |
     |---+-------+-------+----------|
@@ -350,21 +350,21 @@
     #+TBLFM:$hello=rand()*$world;%.2f::$namedRow=rand();%.2f::$3=rand();%.1f::$below=$3*$max
 
 ** GNU Plot
-	No spreadsheet application would be complete without the ability to graph data.
-	Emacs, and now we make that possible with GNU Plot.
+  No spreadsheet application would be complete without the ability to graph data.
+  Emacs, and now we make that possible with GNU Plot.
 
-	To use it:	
+  To use it:  
 
-	- install gnuplot
-	- Set your gnuplot path:
+  - install gnuplot
+  - Set your gnuplot path:
 
-		#+BEGIN_EXAMPLE
-		  "gnuplot": "<fullpathtognuplot.exe>",
-		#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      "gnuplot": "<fullpathtognuplot.exe>",
+    #+END_EXAMPLE
 
-	- Run "Org Plot Table" with cursor on the table
+  - Run "Org Plot Table" with cursor on the table
 
-	#+BEGIN_EXAMPLE
+  #+BEGIN_EXAMPLE
     #+PLOT: title:"Citas" ind:1 deps:(3 4) with:lines set:grid file:plot.png
     |    Sede   |  Max   | H-index |  top  |
     |-----------+--------+---------+-------|
@@ -374,7 +374,7 @@
     | Morelia   | 257.56 |   17.67 | 19.67 |
     | Chile     | 257.72 |   21.39 | 23.39 |
     #+TBLFM:$4=$3+2.0
-	#+END_EXAMPLE
+  #+END_EXAMPLE
 
-	[[file:images/tables_gnuplot.gif]]
+  [[file:images/tables_gnuplot.gif]]
 
