@@ -47,7 +47,7 @@
  	- [x] Test table cache across multiple files?
  	- [x] Create symbol parsing cache?
  	- [x] Turn off highlight durng execution view updates
- 	- [ ] Create table from node vs view (improve remote function) - *Important for babel*
+ 	- [x] Create table from node vs view (improve remote function) - *Important for babel*
  	- [x] Cleanup table? Move plot out of table file?
  	- [x] Cleanup table? Hoist any utility functions?
  	- [x] Cleanup table? Improve parameter parser around quotes?
