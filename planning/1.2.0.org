@@ -7,13 +7,13 @@
   [[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts In Org]] 
 
 *** Planned Releases
-**** TODO 1.1.27 - Extending Date Formula Support
+**** DONE 1.1.27 - Extending Date Formula Support
 **** TODO 1.1.28 - Core Performance and Quality of Life
 **** TODO 1.1.29 - GNU Plot Script Blocks
 **** TODO 1.1.30 - Table Babel
 **** TODO 1.2.0  - RELEASE
  
-** 1.1.27 
+** DONE 1.1.27 
     Core Idea: Extending datetime formula support
                you should be able to make the table the guy shows in the video
                with some "OrgExtended" flair to make it easier.
@@ -43,15 +43,16 @@
                I should feel like the table feature is not needlessly expensive
                and I can use it for babel.
 *** Ian Goals
- 	- [ ] Improve function table creation times. Can we cache this?
- 	- [ ] Test table cache across multiple files?
- 	- [ ] Create symbol parsing cache?
- 	- [ ] Turn off highlight durng execution view updates
+ 	- [x] Improve function table creation times. Can we cache this?
+ 	- [x] Test table cache across multiple files?
+ 	- [x] Create symbol parsing cache?
+ 	- [x] Turn off highlight durng execution view updates
  	- [ ] Create table from node vs view (improve remote function) - *Important for babel*
- 	- [ ] Cleanup table? Move plot out of table file?
- 	- [ ] Cleanup table? Hoist any utility functions?
- 	- [ ] Cleanup table? Improve parameter parser around quotes?
- 	- [ ] Support extensible symbols as well as functions.
+ 	- [x] Cleanup table? Move plot out of table file?
+ 	- [x] Cleanup table? Hoist any utility functions?
+ 	- [x] Cleanup table? Improve parameter parser around quotes?
+ 	- [x] Support extensible symbols as well as functions.
+   - [x] Add GnuPlot syntax
  
 *** Documentation Goals
    - [ ] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
@@ -60,7 +61,7 @@
 ** 1.1.29
    Core Idea: Add GNU Plot Script Blocks
 
-   - [ ] Add a syntax for gnu plot script blocks if one does not already exist
+   - [x] Add a syntax for gnu plot script blocks if one does not already exist
    - [ ] Add a src handler to execute these script blocks.
    - [ ] Any prep/improvements I feel is necessary to support setting up for table source data and babel work
 
