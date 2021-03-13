@@ -261,8 +261,19 @@
   - date :: Not Yet Documented 
   - weekday :: Not Yet Documented 
   - rand :: random() -> x in the interval [0, 1).
-  - nowstr :: Not Yet Documented 
 
+** Built in Symbols
+
+	The following symbols are available for use in your tables (at the moment)
+
+  - nil :: None 
+  - pi :: 3.1415926 
+  - False :: False 
+  - True :: True 
+  - t :: True 
+  - true :: True 
+  - false :: False 
+  - None :: None 
 
 ** Advanced Table Features
 		Orgmode supports an advanced table mechanism. When using these features
