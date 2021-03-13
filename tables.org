@@ -275,6 +275,50 @@
   - false :: False 
   - None :: None 
 
+** Extending Org Tables With Your Own Functions
+		While we will extend the list of functions and symbols available over time, it is really handy to be able to add your own methods to
+		tables. In Emacs you can use any lisp function you define dynamically OR src blocks in your org file itself as functions in your tables.
+		We are working on the babel support, but that is not yet available AND arbitrary lisp will never be an option for us. 
+
+		That said, we have a means for you to extend the list of functions and symbols yourself. We can dynamically load python code put in a
+		specific location. To use this you MUST turn on table extension support in your settings file:
+
+		#+BEGIN_EXAMPLE
+    "enableTableExtensions": true,
+		#+END_EXAMPLE
+
+		Once enabled OrgExtended will search your:
+
+		#+BEGIN_EXAMPLE
+		  Packages/User/orgtable/
+		#+END_EXAMPLE
+
+		folder for pythong file.
+		Any file placed in this folder will be a candidate for table extension.
+
+*** Symbols
+		You can add symbols from any python file in your orgtable folder, even a python file that adds a function. (See below)
+		Add an AddSymbols(symbolTable) function to your file and define your symbols as values in that dictionary.
+		Here I am defining the symbol c for use in my tables.
+
+		#+BEGIN_SRC python
+    def AddSymbols(s):
+	    s['c'] = 299792458
+		#+END_SRC
+
+*** Functions
+		For functions the name of your file becomes the name of your function in the table.
+		You place a single function: Execute in your python file. This function will be called with the parameters
+		of your function when called through a TBLFM.
+
+		#+BEGIN_SRC python
+    def Execute():
+	    import sublime
+	    import datetime
+	    return str(datetime.datetime.now())
+		#+END_SRC
+
+
 ** Advanced Table Features
 		Orgmode supports an advanced table mechanism. When using these features
 		you need to put symbols in the first column of the table. These symbols are as follows.
