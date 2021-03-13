@@ -1,0 +1,40 @@
+* Column View
+  We do not yet have support for the full org mode column view. I hope to eventually come up with a way of supporting it
+  in Sublime Text. That said, we do support the columnview dynamic block that can be found in orgmode.
+
+
+   - ALLTAGS    All tags, including inherited ones.
+   - CLOSED     When was this entry closed?
+   - DEADLINE   The deadline timestamp.
+   - FILE       The filename the entry is located in.
+   - ITEM       The headline of the entry.
+   - PRIORITY   The priority of the entry, a string with a single letter.
+   - SCHEDULED  The scheduling timestamp.
+   - TAGS       The tags defined directly in the headline.
+   - TIMESTAMP  The first keyword-less timestamp in the entry.
+   - TIMESTAMP_IA   The first inactive timestamp in the entry.
+   - TODO           The TODO keyword of the entry.
+
+   *Parameters that work:*
+
+   - hlines
+   - maxdepth
+   - id (local, global, ID value, file:)
+   - indent
+   - skip-empty-rows
+   - exclude-tags
+
+   *Parameters that do not yet work:*
+
+   - match
+
+  #+BEGIN: columnview  :hlines nil :id global :indent t :maxdepth 2 :skip-empty-rows t :exclude-tags (ExcludeMe)
+   | Task                       | Effort | Todo | Deadline             | Tags  | Time                 | Inactive             | Priority |
+   | 1.1.26                     |        |      |                      | a     |                      |                      |          |
+   | ..Source Blocks            | 2d     | DONE |                      | a     |                      |                      |          |
+   | ..Folding                  |        |      |                      | a     |                      |                      |          |
+   | ..Properties               | 2d     |      | 2021-03-09 Tue 20:55 | a     |                      |                      |          |
+   | ..Spreadsheets Preview V11 | 4h     |      |                      | a tag | 2021-03-09 Tue 14:53 |                      |          |
+   | ..ColumnView Dynamic Block | 1d     |      |                      | a     |                      | 2021-03-09 Tue 11:00 | B        |
+  #+END:
+
