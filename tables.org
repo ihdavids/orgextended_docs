@@ -203,26 +203,25 @@
 
 ** Functions
 
-
   - second :: Not Yet Documented 
   - tan :: Not Yet Documented 
   - int :: int(x=0) -> integer
-    int(x, base=10) -> integer
-    
-    Convert a number or string to an integer, or return 0 if no arguments
-    are given.  If x is a number, return x.__int__().  For floating point
-    numbers, this truncates towards zero.
-    
-    If x is not a number or if base is given, then x must be a string,
-    bytes, or bytearray instance representing an integer literal in the
-    given base.  The literal can be preceded by '+' or '-' and be surrounded
-    by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
-    Base 0 means to interpret the base from the string as an integer literal.
-    >>> int('0b100', base=0)
-    4
+      int(x, base=10) -> integer
+      
+      Convert a number or string to an integer, or return 0 if no arguments
+      are given.  If x is a number, return x.__int__().  For floating point
+      numbers, this truncates towards zero.
+      
+      If x is not a number or if base is given, then x must be a string,
+      bytes, or bytearray instance representing an integer literal in the
+      given base.  The literal can be preceded by '+' or '-' and be surrounded
+      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
+      Base 0 means to interpret the base from the string as an integer literal.
+      >>> int('0b100', base=0)
+      4
   - randomf :: Not Yet Documented 
   - vmax :: Not Yet Documented 
-  - time :: Not Yet Documented 
+  - time :: Return the current time from a datetime object time(datetime)
   - ceil :: Not Yet Documented 
   - sin :: Not Yet Documented 
   - vmin :: Not Yet Documented 
@@ -234,28 +233,28 @@
   - remote :: Not Yet Documented 
   - randint ::  return a random int below <top> 
   - hour :: Not Yet Documented 
-  - now :: Not Yet Documented 
+  - now :: Returns the current date time
   - day :: Not Yet Documented 
-  - round :: Not Yet Documented 
+  - round :: Round to the nearest integer
   - minute :: Not Yet Documented 
   - duration :: Not Yet Documented 
   - random :: Not Yet Documented 
   - vmean :: Not Yet Documented 
   - year :: Not Yet Documented 
-  - trunc :: Not Yet Documented 
+  - trunc :: Round down to the nearest int
   - float :: float(x) -> floating point number
-    
-    Convert a string or number to a floating point number, if possible.
+      
+      Convert a string or number to a floating point number, if possible.
   - str :: str(object='') -> str
-    str(bytes_or_buffer[, encoding[, errors]]) -> str
-    
-    Create a new string object from the given object. If encoding or
-    errors is specified, then the object must expose a data buffer
-    that will be decoded using the given encoding and error handler.
-    Otherwise, returns the result of object.__str__() (if defined)
-    or repr(object).
-    encoding defaults to sys.getdefaultencoding().
-    errors defaults to 'strict'.
+      str(bytes_or_buffer[, encoding[, errors]]) -> str
+      
+      Create a new string object from the given object. If encoding or
+      errors is specified, then the object must expose a data buffer
+      that will be decoded using the given encoding and error handler.
+      Otherwise, returns the result of object.__str__() (if defined)
+      or repr(object).
+      encoding defaults to sys.getdefaultencoding().
+      errors defaults to 'strict'.
   - cos :: Not Yet Documented 
   - vmedian :: Not Yet Documented 
   - vsum :: Not Yet Documented 
@@ -263,6 +262,7 @@
   - weekday :: Not Yet Documented 
   - rand :: random() -> x in the interval [0, 1).
   - nowstr :: Not Yet Documented 
+
 
 ** Advanced Table Features
 		Orgmode supports an advanced table mechanism. When using these features
