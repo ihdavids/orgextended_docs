@@ -55,8 +55,9 @@
    - [x] Add GnuPlot syntax
  
 *** Documentation Goals
-   - [ ] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
-   - [ ] Document all available symbols
+   - [x] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
+   - [x] Document all available symbols
+   - [ ] Add docstrings to all functions.
  
 ** 1.1.29
    Core Idea: Add GNU Plot Script Blocks
