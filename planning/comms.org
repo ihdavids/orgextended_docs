@@ -1,0 +1,8 @@
+#+title: Direct communication scratchpad
+
+* Messages
+** Debugging
+    I've been trying to setup vscode to use as a debugger (simply because I know it), 
+    but with no luck as Python 3.3 that comes with Sublime doesn't work with ptvsd.
+    Also the Python native pdb does not seem to work either. 
+    Do you just debug with print statements?
