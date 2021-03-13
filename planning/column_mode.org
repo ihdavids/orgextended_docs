@@ -1,0 +1,13 @@
+* Column Mode
+
+	Emacs has a lovely means of editing properties on all headings in a file.
+	This is called column mode. It is implemented as an overlay on a buffer... which means... we can't do it in sublime.
+
+	Right now my thought is that we might implement it with phantoms and the input panel. We might do as follows:
+
+	- Flip to a column fold of the document
+	- Insert phantoms at every heading that have the table elements
+	- Support cursor navigation of the phantoms with the input panel representing the active cell.
+	- Dynamically update the folded properties as we go.
+
+	It's lame, but it's the best idea I have right now.

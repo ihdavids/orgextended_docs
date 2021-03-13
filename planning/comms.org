@@ -6,3 +6,58 @@
     but with no luck as Python 3.3 that comes with Sublime doesn't work with ptvsd.
     Also the Python native pdb does not seem to work either. 
     Do you just debug with print statements?
+
+*** Ian:
+    Yeah, at the moment most of my debugging is done with print statments.
+    
+    I recently discovered this plugin:
+
+    [[https://packagecontrol.io/packages/Debugger][Debugger]] 
+
+    I spammed about it on the package developers discord channel asking if the sublime team would
+    consider adding built in support for debugging sublime packages with it. I have not (YET) tried to invest
+    the time to get it to work against my plugin though. That said, if you get it working... Tell me how
+    it would be really handy.
+
+    (Are you on the ST discord? That's where you get drops of ST4 and can chat about some of this stuff with other package devs)
+
+    There were a few comments on how it could be done with Debugger up there, but it would be amazing if
+    the ST guys standardized on that plugin and made it the official debugger for plugins.
+
+    I embed the python logging system in all my files. IF you are using the latest version of the plugin you can turn on:
+
+    #+BEGIN_EXAMPLE
+    "enableDebugLogging": true, 
+    #+END_EXAMPLE 
+
+    If you do that then everywhere I have put a log.debug() in the source you will get some spam. You can do it with an environment variable
+    as well so you don't have to have the extra cruft in your settings file.
+
+    #+BEGIN_SRC python
+    _DEBUG = bool(os.getenv('SUBLIME_ORGEXTENDED_DEBUG'))
+    #+END_SRC
+
+    As you have probably noticed I tend to leave a LOT of print's behind me though even with that. Mostly because I get lazy and use prints for
+    temporary inspection of things and forget to clean them up. :( I would LOVE to get rid of that and move to using a real debugger.
+
+** Backlog
+    I have started putting some of my backlog ideas into the planning folder. Table support sort of "mostly" ends with being able to produce that gantt chart
+    With that tables can act as sources for my non existent babel system and I figure that is a reasonable place to call tables "alpha" quality.
+
+    Tables aren't done as there are still more functions to implement and then the big one, babel integration. That's where a table can call and put the result
+    of a src block into a table cell as part of a formula. It kind of completes the loop. Tables can act as source for babel and babel src blocks can act as
+    functions in tables. But doing that requires the full babel system... so it's a V2 feature. 
+
+    Right now I am thinking:
+
+    - 1.2.0 - Table support Alpha
+    - 1.3.0 - Bable support Alpha
+    - 1.4.0 - Column Mode
+    - 1.4.5 - Read The Org
+    - 1.5.0 - Org Wiki
+
+    But that is all interchangeable. Let me know if there is something you want to work on and I will try to stay away from your efforts.
+
+
+
+

@@ -1,0 +1,13 @@
+* Property and Tag Filter Syntax
+
+	In a couple of places (columnview match method for instance) org has a mini language for filtering
+	tags and properties:
+
+	#+BEGIN_EXAMPLE
+	  +prop1-tag1|+prop2
+	#+END_EXAMPLE
+
+	that literally reads prop1 but not tag1 OR prop2 has to be present.
+	I would like to build a little interpreter object for this and make it available to all org systems.
+
+	(starting with columnview match method of course)
