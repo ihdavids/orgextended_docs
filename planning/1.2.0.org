@@ -57,6 +57,7 @@
 *** Documentation Goals
    - [x] Document all available functions (using a TextCommand) (can we create docstrings for this and pull from that?)
    - [x] Document all available symbols
+   - [x] Start column view docs
    - [ ] Add docstrings to all functions.
  
 ** 1.1.29
