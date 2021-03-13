@@ -28,6 +28,8 @@
 
    - match
 
+   
+  #+BEGIN_EXAMPLE
   #+BEGIN: columnview  :hlines nil :id global :indent t :maxdepth 2 :skip-empty-rows t :exclude-tags (ExcludeMe)
    | Task                       | Effort | Todo | Deadline             | Tags  | Time                 | Inactive             | Priority |
    | 1.1.26                     |        |      |                      | a     |                      |                      |          |
@@ -37,4 +39,4 @@
    | ..Spreadsheets Preview V11 | 4h     |      |                      | a tag | 2021-03-09 Tue 14:53 |                      |          |
    | ..ColumnView Dynamic Block | 1d     |      |                      | a     |                      | 2021-03-09 Tue 11:00 | B        |
   #+END:
-
+  #+END_EXAMPLE
