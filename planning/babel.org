@@ -1,0 +1,93 @@
+* Babel
+  Babel has at its root 2 ideas:
+
+  - Literate Programming - The concept that programming is more about communication to programmers than communication to a machine
+  - Reproducible Research - The idea that all tools, data, process and output should be part of a research document.
+
+** Script vs Function
+	Bable supports the notion of script vs function execution.
+	In script mode babel will capture stdout and stderr and treat that as the output
+	In function mode babel will treat the code as a function and capture the output of the last statement
+	and format it back to text.
+
+	Functional:
+
+	#+BEGIN_EXAMPLE
+	  :results value
+	#+END_EXAMPLE
+
+	Script:
+
+	#+BEGIN_EXAMPLE
+	  :results output
+	#+END_EXAMPLE
+
+** Simple Variables
+	Source blocks can and should support :var key=data-source-or-value entries
+	These specify the available parameters to a source block.
+
+** Sources
+	I was thinking we could treat sources as plain old data types OR generators.
+	Generators represent the abstract concept of a list and can pull from almost anywhere.
+
+** Tables as Source
+
+	Table data should be an optional source for any source block.
+
+** Lists as Source
+
+	List blocks in code should be an optional source for any source block.
+
+** Output Formats
+
+	The system needs to be smart enough to detect tabular data and output it as:
+
+	- a link
+	- a table
+	- simple output
+	- a list
+	- silent
+
+	#+BEGIN_EXAMPLE
+	  :results silent
+	  :results replace
+	#+END_EXAMPLE
+
+** Call Comment Block
+
+	These are a way of invoking a script block several times with different parameters.
+
+	#+BEGIN_EXAMPLE
+	  #+call: srcblockname(x=6)
+	#+END_EXAMPLE
+
+** Table Functions
+	Script blocks need to be called from a TBLFM: block on a table. This is done through
+	a function that takes the name and parameters. (sbe function)
+
+** Tangle
+	The ability to strip code from a document and produce a fully functional
+	piece of source code. The tangle engine is dependent on the language snippets to help
+	format the code.
+
+	- OrgTangleDocument - Should produce source files following the tangle parameters in src blocks.
+
+	Note NoWeb macros should be respected and evaluated as part of the tangle process.
+
+ 	#+BEGIN_EXAMPLE
+	:export none
+	:tangle
+ 	#+END_EXAMPLE
+
+** NoWeb
+	- A macro like language inside of source blocks:
+
+	#+BEGIN_EXAMPLE
+	  <<pasted-source-named-x-here>>
+
+	  # <<call-source-named-y(a=5)>>
+	#+END_EXAMPLE
+
+** Sessions
+	Babel supports the notion of working with sessions. This becomes huge when you want to use babel for execution
+	on remote machines through ssh et al. IMHO this is a last feature to support.

@@ -1,0 +1,15 @@
+* Org For Writers
+  The idea of this is to use org mode to emulate some of the more common writing tools such as scrivener
+
+  This has been something that emacs has had for years and some writers do indeed use it.
+
+  - We split the layout into 2 views.
+  - We show the same document in both views
+  - The view on the left we have a ViewEventListener for that:
+  	- Forces the document to stay folded in contents view mode. You can unfold for a quick look but it will refold again like links and properties do.
+  	- It listens for you to press enter and if you do it jumps to that heading in the right pane.
+  	- The right pane has a view event listener that is tracking selection. When that moves it highlights a region
+  	  in the left pane on the heading you are currently in!
+  - In this way you have a table of contents view with sections and can easily jump around.
+  - We create helper methods to create property drawers for notes and other writers aids. These are hidden away.
+  - We support export to PDF and other common ebook formats that writers tend to publish in.

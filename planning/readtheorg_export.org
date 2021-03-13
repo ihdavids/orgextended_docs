@@ -1,0 +1,3 @@
+* Read The Org Export
+  - I would like to create a default style that behaves a looks a lot like Read The Org, which is a very popular style for emacs.
+  
