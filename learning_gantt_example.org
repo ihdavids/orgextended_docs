@@ -74,7 +74,7 @@
 
 	[[file:images/learning_gantt_chart.gif]]
 
-   #+BEGIN_SRC gnuplot :var DATA=gantt-table :file images/gantt-table.png
+   #+BEGIN_SRC gnuplot :var DATA=gantt-table :file gantt-table.png
     OneMonth = strptime("%m","2")
     timeformat = "%Y-%m-%d"
     T(N) = timecolumn(N,timeformat)
@@ -95,8 +95,10 @@
     set border 3
     set style arrow 1 nohead filled size screen 0.02, 15 fixed lt 3 lw 8
 
-    plot "$DATA" using (T(3)) : ($0) : (T(4)-T(3)) : (0.0) : yticlabel(1) with vector as 1 
+    plot "$DATA" using (T(3)) : ($0) : (T(4)-T(3)) : (0.0) : yticlabel(1) with vector as 1, \
+         "$DATA" using (T(3)) : ($0) : 5 with labels right offset -2 
    #+END_SRC
+
 
   [[file:images/gantt-table.png]]
 
