@@ -64,8 +64,8 @@
    Core Idea: Add GNU Plot Script Blocks
 
    - [x] Add a syntax for gnu plot script blocks if one does not already exist
-   - [ ] Add a src handler to execute these script blocks.
-   - [ ] Any prep/improvements I feel is necessary to support setting up for table source data and babel work
+   - [x] Add a src handler to execute these script blocks.
+   - [x] Any prep/improvements I feel is necessary to support setting up for table source data and babel work
 
 *** Documentation Goals
 	- [ ] Write a tool to dump out the list of supported script blocks to our docs.
@@ -76,6 +76,8 @@
 
 *** Ian Goals
 	- [ ] Support tables as data sources for babel
+   - [ ] Provide tool for detecting datetimes in cells
+   - [ ] GNU Plot converts dates automatically
 
 	--> More research required here as to the full list of tasks.
 
@@ -84,7 +86,9 @@
 
 ** 1.2.0
 *** Ian Goals
-	- [ ] Add match feature to columnview?
+   - [ ] Python supports table sources
+   - [ ] Powershell supports table sources
+   - [ ] Bash module and supports table sources?
 	
 *** Documentation Goals
 	- [ ] Gantt chart demo page.
