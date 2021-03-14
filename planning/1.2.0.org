@@ -8,8 +8,8 @@
 
 *** Planned Releases
 **** DONE 1.1.27 - Extending Date Formula Support
-**** TODO 1.1.28 - Core Performance and Quality of Life
-**** TODO 1.1.29 - GNU Plot Script Blocks
+**** DONE 1.1.28 - Core Performance and Quality of Life
+**** DONE 1.1.29 - GNU Plot Script Blocks
 **** TODO 1.1.30 - Table Babel
 **** TODO 1.2.0  - RELEASE
  
@@ -38,7 +38,7 @@
    - [x] Document advanced tables
    - [x] Audit other major features that I might have forgotten?
  
-** 1.1.28 
+** DONE 1.1.28 
     Core Idea: Table Performance and Quality of Life
                I should feel like the table feature is not needlessly expensive
                and I can use it for babel.
@@ -60,7 +60,7 @@
    - [x] Start column view docs
    - [ ] Add docstrings to all functions.
  
-** 1.1.29
+** DONE 1.1.29
    Core Idea: Add GNU Plot Script Blocks
 
    - [x] Add a syntax for gnu plot script blocks if one does not already exist

@@ -1,4 +1,12 @@
 * Gantt Chart Demo
+  This is an example of how you can use GNU plot to visualize some of your tracking effort in interesting ways
+  using OrgExtended.
+
+  This is shamelessly stolen from here:
+  [[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts In Org]] 
+
+  A wonderful example of using Emacs Org Mode to build this exact demo. We add our own twists.
+
 	To begin with we will setup a column view description:
     #+BEGIN_EXAMPLE
     #+COLUMNS: %ITEM(Task) %Effort(Effort) %START(Start) %END(End) %RESPONSIBLE(Responsible) %SPENT(Spent) %PROGRESS(Progress) %PROJECTED(Projected) %OVERUNDER(Over_Under)
@@ -36,6 +44,9 @@
    I am setting up the End value using a formula + estimated effort. I am tracking the number of days spent in the Spent column and,
    from the engineer in question I am tracking their best guess as to how far done they are. With the two of those we can compute their
    projected estimate and how much over / under we are. 
+
+   Notice I have put the TBLFM outside of the columnview block. OrgExtended allows for this as long as the TBLFM
+   if right up against the END fence. 
 
 #+BEGIN_EXAMPLE
   #+NAME: gantt-table
