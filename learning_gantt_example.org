@@ -87,6 +87,5 @@
     plot "$DATA" using (T(3)) : ($0) : (T(4)-T(3)) : (0.0) : yticlabel(1) with vector as 1 
    #+END_SRC
 
-  #+RESULTS:
   [[file:images/gantt-table.png]]
 
