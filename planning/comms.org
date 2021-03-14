@@ -40,6 +40,8 @@
     As you have probably noticed I tend to leave a LOT of print's behind me though even with that. Mostly because I get lazy and use prints for
     temporary inspection of things and forget to clean them up. :( I would LOVE to get rid of that and move to using a real debugger.
 
+    One of the reasons I have not used the debugger a lot is that I am using ST4 at the moment and the Debugger is not yet compatible...
+
 ** Backlog
     I have started putting some of my backlog ideas into the planning folder. Table support sort of "mostly" ends with being able to produce that gantt chart
     With that tables can act as sources for my non existent babel system and I figure that is a reasonable place to call tables "alpha" quality.

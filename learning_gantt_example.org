@@ -1,0 +1,92 @@
+* Gantt Chart Demo
+	To begin with we will setup a column view description:
+    #+BEGIN_EXAMPLE
+    #+COLUMNS: %ITEM(Task) %Effort(Effort) %START(Start) %END(End) %RESPONSIBLE(Responsible) %SPENT(Spent) %PROGRESS(Progress) %PROJECTED(Projected) %OVERUNDER(Over_Under)
+    #+END_EXAMPLE
+
+    We have a number of extra columns here that we are not saving any data for. These extra columns we will use in a bit!
+    Now, lets estimate how long we are going to take:
+
+    #+BEGIN_EXAMPLE
+    * Task 1
+      :PROPERTIES:
+        :Effort: 1d
+      :END:
+    * Task 2
+       :PROPERTIES:
+         :Effort: 3d
+       :END:
+    * Task 3
+       :PROPERTIES:
+         :Effort: 4d
+       :END:
+    #+END_EXAMPLE
+
+    [[file:images/learning_gantt_effort.gif]]
+
+    Normally we we use column view for this in emacs. Sadly, we do not have that mode... YET! Eventually we will try to build that in sublime.
+    We can keep the source of the data as properties going forward, it's up to you as to what makes the most sense for your process. For now
+    we are going to generate the table and edit it manually:
+
+    [[file:images/learning_gantt_columnview.gif]] 
+
+* Gantt Chart Demo                                                              :Skip:
+   
+   Okay, now we have a table, we could have pulled our data from the properties, here I am just going to fill in the table myself.
+   I am setting up the End value using a formula + estimated effort. I am tracking the number of days spent in the Spent column and,
+   from the engineer in question I am tracking their best guess as to how far done they are. With the two of those we can compute their
+   projected estimate and how much over / under we are. 
+
+#+BEGIN_EXAMPLE
+  #+NAME: gantt-table
+  #+BEGIN: columnview :exclude-tags (Skip)
+  |  Task  | Effort |      Start       |       End        | Responsible | Spent | Progress | Projected | Over_Under |
+  |--------+--------+------------------+------------------+-------------+-------+----------+-----------+------------|
+  | Task 1 | 1d     | <2021-03-13 Sat> | <2021-03-14 Sun> | Ian         |     1 | 40%      |      2.50 | 1d 12h     |
+  | Task 2 | 3d     | <2021-03-15 Mon> | <2021-03-18 Thu> | Joe         |     2 | 10%      |     20.00 | 17d        |
+  | Task 3 | 4d     | <2021-03-18 Thu> | <2021-03-22 Mon> | Sam         |     1 | 50%      |      2.00 | 2d         |
+  | Task 4 | 7d     | <2021-03-18 Thu> | <2021-03-25 Thu> | Sam         |     1 | 50%      |      2.00 | 5d         |
+  | Task 5 | 1d     | <2021-03-18 Thu> | <2021-03-19 Fri> | Sam         |     1 | 50%      |      2.00 | 1d         |
+  | Task 6 | 2d     | <2021-03-18 Thu> | <2021-03-20 Sat> | Sam         |     1 | 35%      |      2.86 | 20h 38mins |
+  #+END:
+  #+TBLFM:$4=date($-1)+duration($-2) if "$-1"!="" else ""::$8=$-2/$-1 if $-1 > 0 else "";%.2f::$9=duration($2) - $-1 if $-1>0 else ""
+#+END_EXAMPLE
+
+
+	[[file:images/learning_gantt_columndata.gif]]
+
+	Finally we can connect some gnu plot script to our table data. I use a var pointing at the table and then insert that variable in my code
+	and the table is available in my GNU Plot! Here I set my time format, the title of my chart, switch to a set of boxes and finally build my
+	chart from our data. This is traditional org babel stuff. When you execute this source block it generates a png.
+
+
+
+	[[file:images/learning_gantt_chart.gif]]
+
+   #+BEGIN_SRC gnuplot :var DATA=gantt-table :file images/gantt-table.png
+    OneMonth = strptime("%m","2")
+    timeformat = "%Y-%m-%d"
+    T(N) = timecolumn(N,timeformat)
+
+    set xdata time
+    set format x "%b\n'%y"
+    set xtics OneMonth nomirror
+    set xtics scale 2, 0.5
+    set mxtics 4
+
+    skiptorow=3
+    set yrange [(skiptorow-2):] reverse
+    set ytics nomirror
+
+    unset key
+    set title "{/=15 GANTT Chart Example}"
+    set grid x y
+    set border 3
+    set style arrow 1 nohead filled size screen 0.02, 15 fixed lt 3 lw 8
+
+    plot "$DATA" using (T(3)) : ($0) : (T(4)-T(3)) : (0.0) : yticlabel(1) with vector as 1 
+   #+END_SRC
+
+  #+RESULTS:
+  [[file:images/gantt-table.png]]
+
