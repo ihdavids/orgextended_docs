@@ -310,6 +310,8 @@
       s['c'] = 299792458
     #+END_SRC
 
+    [[file:mathconstants.org]]
+
 *** Functions
     For functions the name of your file becomes the name of your function in the table.
     You place a single function: Execute in your python file. This function will be called with the parameters
