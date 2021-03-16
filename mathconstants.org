@@ -4,28 +4,28 @@
 
   #+BEGIN_SRC python
     def AddSymbols(s):
-    	# Natural constants
-    	# Note: electrical charge given here is e.s.u., not e.m.u.
-    	s['e']    = 1.602176462e-19  # [C] Elementary charge
-    	s["c"]    = 2.99792458e8     # Speed of light [m/s]
-    	s["h"]    = 6.62606876e-34   # Planck's constant [J s]
-    	s["hbar"] = 1.054571596e-34  # Planck's constant [J s]
-    	s["GG"]   = 6.673e-11        # Gravitational constant [N m^2/g^2]
-    	s["NA"]   = 6.02214199e23    # Avogadro's constant [1/mol]
-    	s["me"]   = 9.10938188e-31   # Electron rest mass [kg]
-    	s["mp"]   = 1.67262158e-27   # Proton rest mass [kg]
-    	s["mn"]   = 1.67492716e-27   # Neutron rest mass [kg]
-    	s["mu"]   = 1.88353109e-28   # Muon rest mass [kg]
-    	s["amu"]  = 1.66053873e-27   # Atomic mass unit [kg]
-    	s["Ryd"]  = 1.09737315685e7  # Rydberg's constant [1/m]
-    	s["fsc"]  = 7.297352533e-3   # Fine structure const []
-    	s["k"]    = 1.3806503e-23    # Boltzmann's constant [J/K]
-    	s["R0"]   = 8.314472e0       # Molar gas constant [J/K mol]
-    	s["V0"]   = 2.2710981e-2     # Ideal gas volume [m^3/mol]
-    	s["sth"]  = 6.6524e-29       # Thompson crosssection [m^2]
-    	s["sig"]  = 5.6703e-8        # Stefan-Boltzman const [W/m^2 K^4]
-    	s["a"]    = 7.5657e-15       # Radiation constant [J/m^3 K^4]
-    	# Math constants
+      # Natural constants
+      # Note: electrical charge given here is e.s.u., not e.m.u.
+      s['e']    = 1.602176462e-19  # [C] Elementary charge
+      s["c"]    = 2.99792458e8     # Speed of light [m/s]
+      s["h"]    = 6.62606876e-34   # Planck's constant [J s]
+      s["hbar"] = 1.054571596e-34  # Planck's constant [J s]
+      s["GG"]   = 6.673e-11        # Gravitational constant [N m^2/g^2]
+      s["NA"]   = 6.02214199e23    # Avogadro's constant [1/mol]
+      s["me"]   = 9.10938188e-31   # Electron rest mass [kg]
+      s["mp"]   = 1.67262158e-27   # Proton rest mass [kg]
+      s["mn"]   = 1.67492716e-27   # Neutron rest mass [kg]
+      s["mu"]   = 1.88353109e-28   # Muon rest mass [kg]
+      s["amu"]  = 1.66053873e-27   # Atomic mass unit [kg]
+      s["Ryd"]  = 1.09737315685e7  # Rydberg's constant [1/m]
+      s["fsc"]  = 7.297352533e-3   # Fine structure const []
+      s["k"]    = 1.3806503e-23    # Boltzmann's constant [J/K]
+      s["R0"]   = 8.314472e0       # Molar gas constant [J/K mol]
+      s["V0"]   = 2.2710981e-2     # Ideal gas volume [m^3/mol]
+      s["sth"]  = 6.6524e-29       # Thompson crosssection [m^2]
+      s["sig"]  = 5.6703e-8        # Stefan-Boltzman const [W/m^2 K^4]
+      s["a"]    = 7.5657e-15       # Radiation constant [J/m^3 K^4]
+      # Math constants
       s["exp1"] = 2.7182818284590452354  # e (base of ln)
       # Length units
       s["m"]   = 1.0e0          # Meter [m]
