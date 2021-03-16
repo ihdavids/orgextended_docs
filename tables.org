@@ -203,27 +203,32 @@
 
 ** Functions
 
-
-  - rand :: random() -> x in the interval [0, 1).
-  - duration :: Not Yet Documented 
-  - ceil :: Not Yet Documented 
-  - abs :: Not Yet Documented 
-  - vmean :: Computes the average value of a column or row. Takes a range of cells
-  - trunc :: Round down to the nearest int
-  - randomf :: Returns a random value from 0..1
-  - sin :: Not Yet Documented 
-  - second :: Get the seconds value from a datetime datetime.time().second
-  - year :: Not Yet Documented 
-  - hour :: Not Yet Documented 
-  - now :: Returns the current date time
-  - vmax :: Computes the max value of a range of cells
-  - minute :: Not Yet Documented 
-  - random :: Returns a random value in a range specified start..end
-  - date :: Not Yet Documented 
-  - weekday :: Not Yet Documented 
-  - cos :: Not Yet Documented 
   - vmin :: Computes the minimum value of a range of cells
-  - month :: Not Yet Documented 
+  - acos :: Return the arc cosine of x radians.
+  - sqrt :: Return the square root of x.
+  - rand :: random() -> x in the interval [0, 1).
+  - yearday :: Get the numerical day of the year where jan 1 is 1
+  - vmedian :: Computes the median (middle) value of a sorted range of cells
+  - pow :: Return x raised to the power y
+  - randint ::  return a random int below <top> 
+  - duration :: Convert to a timespan value
+  - tan :: Return the tangent of x radians.
+  - vmean :: Computes the average value of a column or row. Takes a range of cells
+  - second :: Get the seconds value from a datetime - datetime.time().second
+  - abs :: Not Yet Documented 
+  - log :: Return the natural logarithm of x (to base e).
+  - vsum :: Computes the sum of a range of cells
+  - sin :: Return the sine of x radians.
+  - vmax :: Computes the max value of a range of cells
+  - month :: Get the month value from a datetime - datetime.time().month
+  - passed :: Not Yet Documented 
+  - hour :: Get the hours value from a datetime - datetime.time().hour
+  - bool :: Not Yet Documented 
+  - asin :: Return the arc sine of x radians.
+  - int :: Force a value to an integer
+  - now :: Returns the current date time
+  - exp :: Return e raised to the power x, where e = 2.718281
+  - date :: Convert string to a date value
   - str :: str(object='') -> str
       str(bytes_or_buffer[, encoding[, errors]]) -> str
       
@@ -234,37 +239,30 @@
       or repr(object).
       encoding defaults to sys.getdefaultencoding().
       errors defaults to 'strict'.
-  - round :: Round to the nearest integer
-  - randint ::  return a random int below <top> 
-  - vmedian :: Computes the median (middle) value of a sorted range of cells
+  - random :: Returns a random value in a range specified start..end
+  - year :: Get the year value from a datetime  - datetime.time().year
   - time :: Return the current time from a datetime object time(datetime)
-  - exp :: Not Yet Documented 
+  - cos :: Return the cosine of x radians.
+  - log10 :: Return the base-10 logarithm of x.
+  - highlight :: highlight(cell,color,text) highlights a cell to one of: green,red,orange,white,black,purple,yellow,cyan and returns the text specified
+  - trunc :: Round down to the nearest int
+  - nowstr :: Not Yet Documented 
+  - log2 :: Return the base-2 logarithm of x.
+  - ceil :: Force a value to the next integer
+  - float :: Force a value to a float
+  - minute :: Get the minutes value from a datetime - datetime.time().minute
+  - degrees :: Convert from radians to degress
+  - randomf :: Returns a random value from 0..1
+  - floor :: Force a value to the previous integer
+  - atan :: Return the arc tangent of x radians.
+  - weekday :: Get an index for the day of the week where monday is 0
+  - radians :: Convert from degrees to radians
+  - day :: Get the day value from a datetime  - datetime.time().day
   - remote :: remote('table-name OR custom-id-value',cellRef) returns a cell from a remote table.
              table-name only works local to a file while custom-id or id will look up the first table
              in a heading marked with that id.
           
-  - yearday :: Not Yet Documented 
-  - float :: float(x) -> floating point number
-      
-      Convert a string or number to a floating point number, if possible.
-  - day :: Not Yet Documented 
-  - floor :: Not Yet Documented 
-  - tan :: Not Yet Documented 
-  - vsum :: Computes the sum of a range of cells
-  - int :: int(x=0) -> integer
-      int(x, base=10) -> integer
-      
-      Convert a number or string to an integer, or return 0 if no arguments
-      are given.  If x is a number, return x.__int__().  For floating point
-      numbers, this truncates towards zero.
-      
-      If x is not a number or if base is given, then x must be a string,
-      bytes, or bytearray instance representing an integer literal in the
-      given base.  The literal can be preceded by '+' or '-' and be surrounded
-      by whitespace.  The base defaults to 10.  Valid bases are 0 and 2-36.
-      Base 0 means to interpret the base from the string as an integer literal.
-      >>> int('0b100', base=0)
-
+  - round :: Round to the nearest integer
 
 ** Built in Symbols
 
