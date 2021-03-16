@@ -310,6 +310,10 @@
       s['c'] = 299792458
     #+END_SRC
 
+
+    We have a very limited set of symbols by default. That said, it is easy to add your own and we have an example from the emacs
+    constants.el that you can easily drop in that will give you a great place to start.
+
     [[file:mathconstants.org]]
 
 *** Functions
@@ -384,3 +388,7 @@
 
   [[file:images/tables_gnuplot.gif]]
 
+** Testing
+  We are trying to stay on top of the need to test the gamut of potential issues in this thing. If you find a bug, please report it.
+
+  [[file:images/tables_unit_tests.gif]]
