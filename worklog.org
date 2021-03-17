@@ -1,0 +1,1440 @@
+* 1.2.0
+	Core Idea: I am considering the spreadsheet feature out of preview now.
+               most of the core org features with spreadsheets are now supported.
+               While there are a ton of functions yet to support to have calc equivalence
+               I believe what we have is a pretty good line in the sand to say we have something
+               some usable.
+
+** Spreadsheets Beta
+  More core functions
+
+  - tanh
+  - cosh
+  - sinh
+  - atanh
+  - acosh
+  - asinh
+  - atan
+  - acos
+  - asin
+  - degrees
+  - radians
+  - sqrt
+  - pow
+  - log
+  - log10
+  - log2
+
+  Added unit tests for these functions.
+
+** Editing
+  - New Command: "Org Insert Archive Tag" will add the :ARCHIVE: Tag to a node. Not currently bound to a key.
+  - ARCHIVE tag gets filtered out by default in agenda. This means archived TODO's do not accidentally show up if you have a FILETAG on your archive file.
+  - Fixed a bug with moving headings up and down when the heading is at the end of the file.
+ 
+** Tags
+  - FILETAGS comment is now respected properly as an inheritied tag on a heading. 
+
+** Notifications
+  - Notifications system now respects the ARCHIVE tag.
+* 1.1.30
+	Core Idea: Testing pass on tables to ensure what is there is relatively usable.
+
+** Spreadsheet Preview V14
+	- added:
+		- bool(cell)
+		- int(cell)
+		- float(cell) 
+		to convert string cells to boolean, ints and floats explicitly if desired
+
+	- added highlight(cell,color,text) which highlights a cell a specific color for you
+	- added passed(test) that will highlight a target cell
+	  green or red and write PASSED or FAILED into the cell. We are using this for unit testing at the moment.
+
+	- added unit tests org file for tables.
+	- Execute table now restores the cursor after the evaluation of the table improving usability.
+	- Fixed assert when cursor was on a formula during table formula execution due to call 
+	  to table_editor_align requiring the cursor be in the table
+	- Fixed a bug with <= not evaluating properly next to a cell name ($1<=$2 would fail)
+	- Added Org Execute All Tables - scans the whole file for tables and executes all of them.
+	- Improved all date functions handling of datestrings
+	- Fixed double digit row index parsing, @10$2 was failing to parse properly sometimes.
+	- Fixed a bug with vmedian where it would sometimes not compute the median!
+
+	- More docs including a little view of the new highlight in action in a unit test capture: (at the bottom of the tables doc)
+	[[https://github.com/ihdavids/orgextended_docs/blob/master/tables.org][Tables]]	
+
+	- New documentation on adding the emacs constants.el to your table experience in docs
+	[[https://github.com/ihdavids/orgextended_docs/blob/master/mathconstants.org][Math Constants]] 
+
+** GNU Plot
+	- Calling "Org Plot Table" on the #+PLOT: header rather than the table would cause problems.* 1.1.29
+   Core Idea: Add GNU Plot Script Blocks
+
+   - [x] Add a syntax for gnu plot script blocks if one does not already exist
+   - [x] Add a src handler to execute these script blocks.
+** Spreadsheets Preview V13
+
+    - Fixed a bug with TBLFM appearing after a END marker on dynamic blocks
+    - Fixed a bug with if statements and equals signs in TBLFM blocks
+    - Fixed a bug with tables where it would look up the properties on the root node of the file.
+      this would cause an assert.
+
+** GNU Plot Script Block
+
+   We now have a GNU Plot script block and source handler.
+   We have a very limited set of source hanlders.
+
+   Here is some gnu plot code that draws a sine wave if executed and
+   gnuplot can be found in your settings file. The requirements are the
+   same as those for table plotting.
+   #+BEGIN_SRC gnuplot :file gantt-table.png
+    # We don't need a key (or legend) for this simple graph.
+    set key off
+ 
+    # Set the title for the graph.
+    set title "Sine against Phase"
+  
+    # We want the graph to cover a full sine wave.
+    set xrange [0:6.28]
+  
+    # Set the label for the X axis.
+    set xlabel "Phase (radians)"
+  
+    # Draw a horizontal centreline.
+    set xzeroaxis
+  
+    # Pure sine wave amplitude ranges from +1 to -1.
+    set yrange [-1:1]
+  
+    # No tick-marks are needed for the Y-axis .
+    unset ytics
+  
+    # Plot the curve.
+    plot sin(x) 
+   #+END_SRC
+
+  #+RESULTS:
+  [[file:gantt-table.png]]
+
+  - Params for src blocks have been converted to use the new PList system added in 1.1.28
+  - Source Blocks now have a PreProcessSourceFile() method that allows for injection of file and other paramters into the source block.
+
+  - GNU Plot is the first module to start implementing the data source mechanism:
+    The following example generates a graphed line line by feeding the data in my-table into gnu plot using babel like
+    mechanics. NOTE: Babel is in its infancy in our system. We have source handlers for python, powershell, gnuplot, ditaa, plantuml, graphviz and that is it.
+    ONLY GNU Plot can read from tables at this time. This will change.
+
+  #+NAME: my-table
+  | 1 | 2 |
+  | 2 | 3 |
+  | 3 | 4 |
+
+   #+BEGIN_SRC gnuplot :var DATA=my-table :file my-table.png
+    plot "$DATA" using 1:2 with lines title "hello"
+   #+END_SRC
+
+  #+RESULTS:
+  [[file:my-table.png]] 
+
+
+** Powershell Block Execute Bug
+	- this was using the OrgExtended package dir as it's cwd
+	  which was causing problems when running as a package. FIXED.
+
+* 1.1.28
+** Dynamicblocks
+	- Params structure is now a PList class and has:
+		- Get(name,default) :: Returns the parameter as a string value
+		- GetInt(name,default) :: Returns the parameter as an int value
+		- GetFloat(name,default) :: Returns the parameter as a float value
+		- GetList(name,default) :: Returns the parameter as a list of strings
+		- GetIntList(name,default) :: Returns the parameter as a list of ints
+
+		Plists now support double quotes "" and () brackets delimiting parameter values.
+
+** Image Links
+	- Fixed an assert that could happen when backing image was removed.
+	- Sublime will now show the non image icon as expected.
+
+	- ORG_ATTR comments on image links with plists specifying image dimensions
+	  are now respected in inline sublime visualization of an image.	
+
+	#+BEGIN_EXAMPLE
+    #+ORG_ATTR: :width 700
+	#+END_EXAMPLE
+
+** Spreadsheets Preview V12
+	Mostly quality of life improvements in this release.
+	
+	- Table cache works across files properly now.
+	- Turned off highlight updates during formula execution
+	  it was costing us during the update needlessly.
+	- Improved function table, symbol table and constants table construction.
+	  They are now lazy loaded and reused as much as possible for all tables
+	  reducing the costs associated with highlighting cells and navigation.
+	- In the interest of supporting only pay for what you use.
+	  Dynamic table extensions (user added functions) are reloaded ONCE when
+	  the tables are first constructed, if you are developing a function for
+	  table handling you can now turn on:
+	  #+BEGIN_EXAMPLE
+	    "forceLoadExternalExtensions": True
+	  #+END_EXAMPLE 
+
+	  In your settings to dynamically reload your extension all the time.
+	  This reduces the cost of building the function table.
+
+	- Added abs function
+
+	  |  a   | d |    |
+	  |------+---+----|
+	  | 0.50 | 2 | 51 |
+	  | 0.46 | 3 | 56 |
+	  | 0.19 | 4 |  2 |
+	  | 0.02 | 5 |  3 |
+	  | 0.49 | 6 |  4 |
+	  | 0.64 | 7 |  5 |
+    #+TBLFM:$1=rand();%.2f::$2=abs(-@#)::$3=remote("my-table-test",$2)
+
+    - Improved remote() function, it no longer requires you to open a view / tab although
+      the file has to have been parsed so should be in your orgDirs / orgFile list.
+    - Added the ability to add dynamic symbols as well as functions.
+
+      To use add a python file in your User folder like so:
+      #+BEGIN_EXAMPLE
+    	.../Packages/User/orgtable/mysymbols.py
+      #+END_EXAMPLE
+
+      And add the symbols you would like exposed for use in your tables.
+      #+BEGIN_SRC python
+        def AddSymbols(symbolTable):
+        	symbolTable['pi'] = 3.14159268
+        	symbolTable['c']  = 299792458
+      #+END_SRC
+
+** Source Blocks
+	- gnuplot language added to syntax, to use install the GNU Plot package.
+
+** Folding
+	- "Org Fold Others" - New command that folds all other headings but the immediate part of the tree you are on.
+
+* 1.1.27
+** Archiving
+	- Fixed a bug where ARCHIVE_TIME was missing a colon at the front when inserted.
+	- Switched archiving to save as utf-8 by default to avoid some of the unicode problems I have been running into.
+
+** Editing
+	- Org Insert Now Active     - Inserts right now as an active datetime 
+	- Org Insert Now Inactive   - Inserts right now as an inactive datetime
+	- Org Insert Date Active    - Pops up the date picker to insert an active datetime
+	- Org Insert Date Inactive  - Pops up the date picker to insert an inactive datetime
+
+	- Dynamic Block Snippet:
+	#+BEGIN_EXAMPLE
+	  <b
+	#+END_EXAMPLE
+
+	- Example blocks are now orgmode syntax inside the block.
+
+** Spreadsheet Preview V11
+
+	- date() function improved to auto convert strings and cells to OrgDate objects.
+	- duration() added to handle columnview duration syntax. This is compatible with adding to dates.
+	- if statements work although they do not follow the calc style, here we are diverging a little at the moment
+	  due to the fact that our backend is really python ast. "If" is a keyword, I can't easily use it like a function without playing
+	  some games I am not sure I am ready to do.
+	- percentages can be treated like numbers much like they can in orgmode
+
+	|           a            |           b            | c  |           d            | e  | f  |  g  |  h   |
+	|------------------------+------------------------+----+------------------------+----+----+-----+------|
+	| <2021-03-10 Wed 22:25> | <2021-03-09 Tue 22:25> | 5d | <2021-03-15 Mon 22:25> | 5d | 50 | 20% | 10.0 |
+    #+TBLFM:@2$2=date($-1)-1::@2$4=date(@2$1)+duration($-1)::@2$5=$3 if True else 5::@2$9=$-2*$-1
+
+** Columnview
+	- Empty properties still make a row in the column view (allowing you to setup additional rows for calculations)
+	- Table format blocks can live after the end marker on a dynamic block. This is not org standard but it lets us
+	  build formulas for generated tables which can be really handy on clock tables and columnviews (building timesheets and project plans)
+	- Org syntax is turned on inside a dynamic block now allowing tables to be highlighted inside the block.
+
+    #+COLUMNS: %ITEM(Task) %Effort(Effort) %TESTING(Testing)
+	#+BEGIN: columnview
+   | Task                    | Effort | Testing |
+   | 1.1.27                  |        |         |
+   | Archiving               |        |         |
+   | Editing                 |        |         |
+   | Spreadsheet Preview V11 |        |         |
+   | Columnview              |        |         |
+	#+END:	
+   #+TBLFM:@2$9=5
+	#+COLUMNS: %ITEM(Task) %Effort(Effort) %TODO(Todo) %DEADLINE(Deadline) %ALLTAGS(Tags) %TIMESTAMP(Time) %TIMESTAMP_IA(Inactive) %PRIORITY(Priority)
+
+* 1.1.26                                                                  :a:
+** Configuration
+	- improvements to orgdir globbing / error handling / parsing thanks to Anti-Distinctlyminty 
+** DONE Source Blocks
+   :PROPERTIES:
+     :EFFORT: 2d
+   :END:
+	New languages colored in source blocks:
+		- clojure
+		- bat|cmd
+		- org
+		- pascal
+		- actionscript
+		- applescript
+		- dtd
+		- haskell
+		- markdown|md
+		- groovy
+		- regexp
+		- ruby
+		- restructuredtext
+		- xsl
+		- scala
+		- hex
+		- erlang
+		- diff
+		- d
+		- css
+		- cmake
+		- asp
+		- json
+		- r 
+
+** Folding
+	- Block folding inside a block was driving me nuts
+	  I have changed it so you can only fold a dynamic block or a source block from its header
+	  If this bothers you, we can make this configurable, just let me know.
+
+** Properties
+   DEADLINE: <2021-03-09 Tue 20:55> 
+   :PROPERTIES:
+     :EFFORT: 2d
+   :END:
+
+	- New Command: "Org Create Heading Id"
+	  This will add a UUID ID to the current heading.
+	- Db handling of ids reworked a little to support jumping to an ID or a CUSTOM_ID
+	- New Command: "Org Insert Effort"
+	  Must be org duration format. Will insert an effort property
+	  defaultEffortEstimateUnit - setting (defaults to d) can be used to set the default effort unit 
+
+** Spreadsheets Preview V11                                               :tag:
+   :PROPERTIES:
+     :EFFORT: 4h
+   :END:
+    <2021-03-09 Tue 14:53> 
+
+	- remote function can now take a custom id or id as per:
+	  [[https://lists.gnu.org/archive/html/emacs-orgmode/2010-01/msg00420.html][Remote Table References]] 
+	- Nodes now have a table property that lists the position of the first table in the node.
+    - It doesn't really work well because the existing table system requires a view, which means that we have to load the file
+      which cannot easily be done during the execution of a formula. This means you can get odd tab swaps if you have a remote reference
+      and the file is not opened. I will have to think about another way of handling this in the future.
+
+** [#B] ColumnView Dynamic Block
+   :PROPERTIES:
+     :EFFORT: 1d
+   :END:
+   [2021-03-09 Tue 11:00]
+
+   Part of the reason for the tags, priorities and effort markers in these release notes is to show the new column view
+   dynamic block. It is still in its infancy. It has none of the summary functionality of the real
+   column view. It also only has a limited set of handlers. It can access properties and has the following
+   built in handlers:
+
+
+   - ALLTAGS	  All tags, including inherited ones.
+   - CLOSED	    When was this entry closed?
+   - DEADLINE  	The deadline timestamp.
+   - FILE      	The filename the entry is located in.
+   - ITEM      	The headline of the entry.
+   - PRIORITY 	The priority of the entry, a string with a single letter.
+   - SCHEDULED 	The scheduling timestamp.
+   - TAGS     	The tags defined directly in the headline.
+   - TIMESTAMP 	The first keyword-less timestamp in the entry.
+   - TIMESTAMP_IA 	The first inactive timestamp in the entry.
+   - TODO         	The TODO keyword of the entry.
+
+   Parameters that work:
+
+   - hlines
+   - maxdepth
+   - id (local, global, ID value, file:)
+   - indent
+   - skip-empty-rows
+   - exclude-tags
+
+   Parameters that do not yet work:
+
+   - match
+
+	#+BEGIN: columnview  :hlines nil :id global :indent t :maxdepth 2 :skip-empty-rows t :exclude-tags (ExcludeMe)
+   | Task                       | Effort | Todo | Deadline             | Tags  | Time                 | Inactive             | Priority |
+   | 1.1.26                     |        |      |                      | a     |                      |                      |          |
+   | ..Source Blocks            | 2d     | DONE |                      | a     |                      |                      |          |
+   | ..Folding                  |        |      |                      | a     |                      |                      |          |
+   | ..Properties               | 2d     |      | 2021-03-09 Tue 20:55 | a     |                      |                      |          |
+   | ..Spreadsheets Preview V11 | 4h     |      |                      | a tag | 2021-03-09 Tue 14:53 |                      |          |
+   | ..ColumnView Dynamic Block | 1d     |      |                      | a     |                      | 2021-03-09 Tue 11:00 | B        |
+	#+END:
+
+	I am slowly driving towards being able to do this:
+	[[https://www.youtube.com/watch?v=5ViUBaarsbw][Gantt Charts in Org Mode]] 
+
+	I don't have column mode yet, but we will get something like it eventually.	
+
+*** ColumnView Beyond Max Depth
+** Excluded Because Of Tag                                                :ExcludeMe:
+* Empty* 1.1.25
+** Source Block Diagrams
+  - Non existent subdirs are auto-created
+  - Execute block works on any line inside the source block as well as on the fence.
+  - Evaluating a block on the last line of the file was not inserting the RESULTS tag.
+  - Repeated re-evaluation kept adding newlines at the end.
+  - When evaluating source with a diagram the cursor could move, this is now fixes.
+
+    #+BEGIN_SRC graphviz :file thisdirdoesnotexist/graphviz.png
+     digraph G {
+       a -> b;
+       a -> c;
+       c -> d;
+     } 
+    #+END_SRC
+
+   #+RESULTS:
+   [[file:thisdirdoesnotexist\graphviz.png]]
+
+** Customization
+  - Support single directory wildcards:
+
+  #+BEGIN_EXAMPLE
+    "orgDirs": "C:\Mypath\*\SubFolder"
+  #+END_EXAMPLE
+
+  Will match a single folder wildcard like so:
+
+  - C:\Mypath\foo\SubFolder\x.org
+  - C:\Mypath\bar\SubFolder\y.org
+  - C:\Mypath\baz\SubFolder\z.org
+
+  Again, this can increase your startup time dramatically. Please use with caution!
+
+** Spreadsheet Preview V10
+  - boxes mode seems to work.
+
+    #+PLOT: title:"Box" ind:2 deps:(3 4)  with:boxes file:plot.png
+    |    Sede   |  Max   | H-index |  top  |
+    |-----------+--------+---------+-------|
+    | Sao Paolo |  71.00 |   11.50 |  13.5 |
+    | Stockholm | 134.19 |   14.33 | 16.33 |
+    | Leeds     | 165.77 |   19.68 | 21.68 |
+    | Morelia   | 257.56 |   17.67 | 19.67 |
+    | Chile     | 257.72 |   21.39 | 23.39 |
+    #+TBLFM:$4=$3+2.0
+
+*** Start of Advanced Table Features
+    - Auto computed cells now mostly work.
+      Careful with these in big tables.
+      They only auto compute when you use tab or shift tab
+      to move between cells, arrow keys do not recompute
+    - Row names seem to work work.
+    - Above and Below names seem to work
+    - Symbol rows seem to work
+
+    |   |   a   |   b   |    c     |
+    |---+-------+-------+----------|
+    | # | 0.38  | 0.1   | 0.46     |
+    | # | 0.38  | 0.1   | 0.86     |
+    | # | 0.03  | 0.6   | 0.01     |
+    | * | 0.02  | 0.0   | 0.06     |
+    | ^ | hello | world | namedRow |
+    | * |       | 0.3   |          |
+    |   |       |       |          |
+    | _ | below |       |          |
+    | # | 3.5   | 0.7   |          |
+    | # | 4.5   | 0.9   |          |
+    | # | 4.0   | 0.8   |          |
+    | # | 2.0   | 0.4   |          |
+    | $ | max=5 |       |          |
+    #+TBLFM:$hello=rand()*$world;%.2f::$namedRow=rand();%.2f::$3=rand();%.1f::$below=$3*$max
+
+** HTML Export
+  Fixed issue with 0 blank lines at the top of the file.
+  The comment gathering code was not being initialized properly.
+* 1.1.24
+** PlantUml
+	- Fixed bug with working directory that was causing problems when executing as a package.* 1.1.23
+** Configuration
+  - orgDirs - in 1.1.22 we added support for directory globbing. We have added a little more error handling in 1.1.23 to
+    detect single stars rather than double stars and to not throw in those cases.
+
+    #+BEGIN_EXAMPLE
+      D:\mypath\**\   - This is supported
+
+      D:\mypath\*\   - This is NOT supported
+    #+END_EXAMPLE
+
+** Source Blocks
+    - Improved handling of unsaved files when executing source blocks.
+      NOTE: Sublime WILL save the file for you if it has already been saved, or
+            error out.
+            [[https://github.com/ihdavids/orgextended_docs/issues/5][PlantUml Example Request]] 
+             
+*** GraphViz Blocks
+
+    - added engine (neato, dot, etc)
+    - added fmt (jpg, ps, png)	
+
+    #+BEGIN_SRC graphviz :fmt jpg :engine neato :file graphviz.jpg
+     digraph G {
+       a -> b;
+       a -> c;
+       c -> d
+     } 
+    #+END_SRC
+
+*** Ditaa Src Blocks
+    To use:
+    Add the path to ditaa.jar from sourceforge in your settings file:
+
+    #+BEGIN_EXAMPLE
+      "ditaa": "<pathto>/ditaa.jar",   
+    #+END_EXAMPLE
+
+    Create a source block with your diagram.
+    (Nope, we don't have an artist mode for sublime yet)
+
+    #+BEGIN_SRC ditaa :file ditaa.png
+    +--------+       +----------+
+    | Hello  | ----> | Hello2   |
+    +--------+       +----------+
+    #+END_SRC 
+
+    Execute the block and you should now have a diagram!
+
+ 
+ 
+  
+  
+* 1.1.22
+** Configuration
+    - Added directory globbing support to orgDirs
+    #+BEGIN_EXAMPLE
+       "c:\\Users\\ihdav\\notes\\**\\test\\"
+    #+END_EXAMPLE
+
+    This will find valid org extensions in all test sub folders of the path.
+    CAUTION: This will slow down sublime start times with overly large search space!
+
+** Spreadsheet Preview V9
+
+	- GPU Plot support extended: file option now allows for several output formats:
+		- file.txt  - dumb option in gnu plot.
+		- file.html - canvas option in gnu plot.
+		- file.jpg  - jpeg option in gnu plot.
+		- file.png  - png option in gnu plot.
+		- file.svg  - svg option in gnu plot.
+		- file.ps   - postscript option in gnu plot.
+		- file.gif  - gif option in gnu plot. 
+
+	- GPU Plot
+		- Added include:header to include header row in data (you have to account for it in your plot)
+		- Added using statement to allow you to write your own full using statement rather than just the style: 
+		- Improved quoting, spaces in fields are accounted for and quoted.
+		- Improved indent of RESULTS block.
+
+    #+PLOT: title:"Citas" include:header ind:1 deps:(2 3 4) set:"key autotitle columnheader" unset:xtics set:"auto x" set:"boxwidth 0.25" using:"using 2:xtic(1), for [i=3:4] '' using i" set:"style data histogram" set:"xtics nomirror rotate by -45 scale 0" set:"style histogram rowstacked" set:"style fill solid border -1" file:plot.png
+
+    |    Sede   |  Max   | H-index |  top  |
+    |-----------+--------+---------+-------|
+    | Sao Paolo |  71.00 |   11.50 |  13.5 |
+    | Stockholm | 134.19 |   14.33 | 16.33 |
+    | Leeds     | 165.77 |   19.68 | 21.68 |
+    | Morelia   | 257.56 |   17.67 | 19.67 |
+    | Chile     | 257.72 |   21.39 | 23.39 |
+    #+TBLFM:$4=$3+2.0
+
+   #+RESULTS:
+   [[file:C:/Users/ihdav/AppData/Roaming/Sublime Text/Packages/OrgExtended/messages/plot.png]]
+
+
+** Source Blocks
+    - PlantUml info in docs.
+    - Added auto image preview mode when creating images using diagram methods.
+
+*** New Source Block type
+    - GraphViz support.
+    - Only dot engine is currently supported.
+    - To use add graphviz path to settings file:
+
+    #+BEGIN_EXAMPLE
+      "graphviz": "C:\fullpath\dot.exe"
+    #+END_EXAMPLE
+
+    Create a source block like so and execute it
+    #+BEGIN_SRC graphviz :file graphviz.png
+     digraph G {
+       a -> b;
+       a -> c;
+       c -> d
+     } 
+    #+END_SRC
+
+  
+  
+  
+* 1.1.21
+** Db
+	- orgFiles was not working, this has been fixed.
+	  [[https://github.com/ihdavids/orgextended/issues/16][orgFiles does not work]] 
+	- Files with a BOM. I can't easily handle BOMs
+	  but I now do try to detect it and swap encodings if
+	  I fail to load the file as utf-8.
+	- Notifications fix. The notification system was asserting on SCHEDULED: <DATE>
+	  where date did not have a time.
+** Spreadsheets Preview V8
+	
+	- Fix for floating point values.
+	- VERY early support for gnuplot
+
+	To use: 
+	- install gnuplot
+	- Set your gnuplot path:
+		#+BEGIN_EXAMPLE
+		  "gnuplot": "<fullpathtognuplot.exe>",
+		#+END_EXAMPLE
+
+	- Run "Org Plot Table" with cursor on the table
+	- Right now I am just dumping an image and using the inline image show option
+	  in the future I may change that.
+
+    #+PLOT: title:"Citas" ind:1 deps:(3 4) with:lines set:grid
+    |    Sede   |  Max   | H-index |  top  |
+    |-----------+--------+---------+-------|
+    | Sao Paolo |  71.00 |   11.50 |  13.5 |
+    | Stockholm | 134.19 |   14.33 | 16.33 |
+    | Leeds     | 165.77 |   19.68 | 21.68 |
+    | Morelia   | 257.56 |   17.67 | 19.67 |
+    | Chile     | 257.72 |   21.39 | 23.39 |
+    #+TBLFM:$4=$3+2.0
+* 1.1.20
+** Editing
+	- Heading and Child heading insertion now ignores whitespace at the end of a node
+** Extensions
+	- Improved extension reloading on modification. Before it would force reload to often
+	  now we track and reload only when we have to. This should improve table performance
+	  a little. This is in prep for the advanced table features including automatic
+	  cell calculations on # fields.
+	- Extension folders renamed for consistency:
+		- src folder renamed to orgsrc
+		- resolver folder renamed to orgresolver
+		- dynamic folder renamed to orgdynamic
+		- table extensions were already in orgtable
+** Spreadsheets Preview V7
+	- Fixed small issue with syntax coloring
+
+** Syntax
+	- Added lisp coloring for source blocks marked with lisp or emacs-lisp as the language.
+	Also added the following language identifiers to src blocks:
+	- yaml
+	- rust
+	- sql
+	- r
+	- html
+	- go
+	- ledger
+	- make|makefile
+  	- typescript|ts
+
+* 1.1.19
+** Spreadsheets Preview V7
+	- Added the ability to add your own functions
+
+	Create a file with the name of your function in:
+
+	#+BEGIN_EXAMPLE
+	Packages/User/orgtable/<yourfunction>.py
+	#+END_EXAMPLE
+
+	Here I have created a file called nowstr.py:
+
+	#+BEGIN_SRC python
+    def Execute():
+	    import sublime
+	    import datetime
+	    return str(datetime.datetime.now())
+	#+END_SRC	
+
+	The module will be run dynamically so your imports are best to put in the function as seen above.
+	If your function takes cells they should be parameters to Execute.
+
+	In my example I am returning the current datetime as a string:
+
+	| 2021-03-03 12:42:03.720657 | b | c | d | e |
+	| 2021-03-03 12:42:03.738691 |   |   |   |   |
+    #+TBLFM:$1=nowstr()
+
+    I will have further examples in the documentation going forward.
+
+    - Fixed a couple of asserts found when navigating tables.
+
+   	This feature is considered an advanced feature and is disabled by default in your settings file.
+
+   	#+BEGIN_EXAMPLE
+    "enableTableExtensions": true,
+   	#+END_EXAMPLE	
+
+*** Data Time methods
+
+	Added a bunch of the datetime methods
+
+   |             A              |
+   |----------------------------|
+   | 2021-03-03 19:56:44.294403 |
+   | 2021                       |
+   | 3                          |
+   | 3                          |
+   | 2021-03-03                 |
+   | 19:56:44.375228            |
+   | 19                         |
+   | 56                         |
+   | 44                         |
+   | 2                          |
+   | 62                         |
+   #+TBLFM:@2$1=now()::@3$1=year(now())::@4$1=month(now())::@5$1=day(now())::@6$1=date(now())::@7$1=time(now())::@10$1=second(now())::@9$1=minute(now())::@8$1=hour(now())::@11$1=weekday(now())::@12$1=yearday(now())
+
+
+** Checkboxes
+  :PROPERTIES:
+    :COOKIE_DATA: recursive
+  :END:
+
+  Recursive todo summary data. NOTE: this counts ALL checkboxes as if they are part of the parent checkbox not just leaves.
+  This can be set using the COOKIE_DATA property above or using the global setting:
+
+  #+BEGIN_EXAMPLE
+      "checkboxSummaryRecursive": true,
+  #+END_EXAMPLE
+
+ - [-] Testing parent	[3/6]
+   - [x] A
+   - [-] B
+   	- [ ] C 
+   	- [x] D
+   	- [x] E
+   - [ ] F
+
+   Supporting this was a request from:
+   [[https://github.com/ihdavids/orgextended/issues/13][Checkbox summaries]] 
+
+
+* 1.1.18
+** Spreadsheets
+	- A crude stab at a table visualization
+	- "Org Show Table Rows" - will show a set of phantoms that ID the rows and columns to help when authoring formulas
+	- "Org Hide Table Rows" - will hide the phantoms.
+    - Fixed positive relative offsets, they were not working:
+
+    | a | b | c | d | e | f |
+    | 4 | 5 | 6 | 7 | 8 | 9 |
+    | 1 | 2 | 3 | 4 | 5 | 6 |
+    #+TBLFM:@2= @+1+3
+    
+    Things that work:
+    - Evaluation of rows and columns with basic arithmetic
+    - vmean, vmax, vmin and a handful of other functions
+    - the basic range syntax seen above.
+    - respecting the header in column expressions
+    - filling in a cell with an expression and having it automatically be moved to tablefmt
+    - cell highlighting when editing expressions.
+    - horizontal separators are now respected as non cells.
+    - Negative (relative) or arrow cell indexes
+    - Index symbol $# and @#
+    - Automatically updating your expressions when you resize the table
+    - box range targets
+    - basic printf style formatting after semi colon for floating point types: $2=$1/2.0;%.1f
+    - Properties and constants (defined in a CONSTANTS comment) can be used in formulas
+    - remote() references to other named tables.
+    - Visualizing columns and rows
+
+    Things that do NOT work:
+    - Extended calc style output formatting (semi colon)
+    - Advanced tabled features / Named fields
+    - gnu plot support
+    - more functions
+
+* 1.1.17
+*** Spreadsheets Preview V6
+    :PROPERTIES:
+      :testval: 5
+    :END:
+ 	- Invalid cell references now are not assserting in the obvious cases.
+ 	- Invalid cell references now generate a status message during the highligh
+ 	  phase to let you know you have invalid cell references:
+ 	- Fixed a bug with column lookup where it would return curcol sometimes rather than fixed reference.
+ 
+ 	| a | b | c | d | e |
+ 	| 1 | 1 | 1 | 1 | 1 |
+ 	| 2 | 2 | 2 | 2 | 2 |
+  	#+TBLFM:@INVALID=@2+1
+ 
+  	- Removed a bunch of silly debugging prints that were left around from 1.1.16 release!
+  	- SOME support for formatting suffix in formulas:
+  		- N    - Will treat empty cells as 0
+  		- %.#f - Will output # decimal places like a printf
+
+ 	| a     | b     | c   | d     | e     |
+ 	| 1     | 1     |     | 1     | 1     |
+ 	| 0.476 | 0.476 | 0.0 | 0.476 | 0.476 |
+  	#+TBLFM:@3=@2/2.1;N%.3f
+   
+  	- Additional functions:
+  		- floor
+  		- ceil
+  		- round
+  		- trunc
+
+  	- Properties can be referenced in an equation:
+  		$PROP_<name>
+
+  	(See property in node above)
+
+  	#+NAME: TestName
+ 	| a | b  | c  | d  | e  |
+ 	| 5 | 10 | 15 | 20 | 25 |
+  	#+TBLFM:@2=$PROP_testval*$#
+
+  	#+CONSTANTS: pi=3.1415926
+ 	| a   | b   | c   | d    | e    |
+ 	| 3.1 | 6.3 | 9.4 | 12.6 | 15.7 |
+  	#+TBLFM:@2=$pi*$#;%.1f
+
+  	- Remote table references
+  	  here we are grabbing a value from the tabled named TestName
+  	  above:
+ 	| a  | b  | c  | d  | e  |
+ 	| 10 | 10 | 10 | 10 | 10 |
+  	#+TBLFM:@2=remote('TestName',@2$2)
+
+
+  	CURRENT FUNCTIONS:
+        - vmean
+        - vmedian
+        - vmax
+        - vmin
+        - vsum
+        - tan
+        - cos
+        - sin
+        - exp
+        - floor
+        - ceil
+        - round
+        - trunc
+        - randomf
+        - random
+
+    Things that work:
+    - Evaluation of rows and columns with basic arithmetic
+    - vmean, vmax, vmin and a handful of other functions
+    - the basic range syntax seen above.
+    - respecting the header in column expressions
+    - filling in a cell with an expression and having it automatically be moved to tablefmt
+    - cell highlighting when editing expressions.
+    - horizontal separators are now respected as non cells.
+    - Negative (relative) or arrow cell indexes
+    - Index symbol $# and @#
+    - Automatically updating your expressions when you resize the table
+    - box range targets
+    - basic printf style formatting after semi colon for floating point types: $2=$1/2.0;%.1f
+    - Properties and constants (defined in a CONSTANTS comment) can be used in formulas
+    - remote() references to other named tables.
+
+    Things that do NOT work:
+    - Extended calc style output formatting (semi colon)
+    - Advanced tabled features / Named fields
+    - Visualizing columns
+    - gnu plot support
+    - hline symbols
+    - more functions
+* 1.1.16
+** Spreadsheet Preview V5
+	- Moving cells around, adding and deleting cells
+	  is now starting to try to keep formulas intact now!
+	- Deleting the target or source of a cell will result in the
+	  formula having and $INVALID or @INVALID tag which is not currently
+	  handled properly. This will be improved going forward!
+
+* 1.1.15
+** Spreadsheets Preview V4
+	- Fixed a bug with row ranges not expanding properly
+	- Fixed an issue with tables at the last row of the file.
+	- Added random(a,b) - integer random range
+	- Added randomf() - 0.0..1.0 random range
+	- Range targets are now supported:
+
+	|    a     |    b     |    c     |    d     |
+	|----------+----------+----------+----------|
+	| 0.506666 | 0.995246 |   0.5519 | 0.061723 |
+	| 0.065874 | 0.993011 | 0.241133 | 0.410426 |
+ 	#+TBLFM:@2$1..@3$4=randomf()
+
+
+ 	- Removed some extraneous trace information.
+
+ 	| a | b | c | d | e  |
+ 	|---+---+---+---+----|
+ 	| 3 | 4 | 5 | 6 |  7 |
+ 	| 2 | 4 | 6 | 8 | 10 |
+  	#+TBLFM:@2=$#+2::@3=$#*2* 1.1.14
+** Spreadsheet Preview V3
+	- Column cell formula insertion was broken, this is now fixed.
+	- TBLFM expressions on their own lines would cause exceptions
+	- Added non standard row insertion using >= syntax.
+	  While testing this found a bug in row expressions
+
+    | a | b | c | d  |         e          |
+    |---+---+---+----+--------------------|
+    | a | b | 5 | 10 | >=@3               |
+    | 1 | 1 | 1 |  6 | 3.0914709848078967 |
+    #+TBLFM: @3$5=vmean($1..$4)+sin(@3$1)::$4=$3+5::@2=@3
+
+    - Still using a hacked up version of simple_eval and python ast
+      for the expression parser. Decided using functions rather than names
+      for the expression differences made sense. Even though this is a bit of
+      a misuse of the parser I think I will stick with this approach, it's simple
+      it's functional and will allow me to support the other variable modifiers in the end.
+    - Right now the parser is pretty locked down.
+    - I will probably never support arbitrary lisp like spreadsheets like emacs can.
+      (As much as it would be fun to build a lisp parser here, it's kind of missing the rest of emacs and the massive function library)
+    - Cleaned up some asserts that happened when editing a table. The highligher didn't like targets changing on the fly.
+    - That said, I may support more and more of the calc library and even allow some user made extensions eventually.
+    - My eventual goal is to flesh out my babel hack to a more full featured version with all the power that comes along with that. 
+      Without TRAMP, remote sessions etc. some of the
+      power of bable is muted a little bit. (But who knows, maybe TRAMP is possible in sublime...) That said, we need powerfull spreadsheet
+      support as an input source before really going to town on bable is possible. 
+
+*** New Cell Identifiers
+
+	With the refactor on how I am handling cells I can now support the > and relative cell identifiers
+	-1 is one to the left or one up from the current target being calculated. It is a relative identifier.
+	> means last column while >> means last but one.
+
+    | a | b | c | d  |         e          |
+    |---+---+---+----+--------------------|
+    | a | b | 5 | 10 | >=@3               |
+    | 1 | 1 | 1 |  6 | 3.0914709848078967 |
+    #+TBLFM: @>$5=vmean($1..$4)+sin(@-1$-1)::$4=$#+5::@2=@3
+
+
+    - In addition we have index symbols $# is the current column and @# is the current row
+
+    | idx |   Index Gen   |
+    |-----+---------------|
+    |   1 | Testing Index |
+    |   2 | Generation    |
+    #+TBLFM: $1=@#-1
+
+    - Constants defined in your file can also be used in expressions
+
+    #+CONSTANTS: hello=world a=b
+    | x     | y |
+    | world | b |
+    #+TBLFM:@2$2=$a::@2$1=$hello
+
+
+    Things that work:
+    - Evaluation of rows and columns with basic arithmetic
+    - vmean, vmax, vmin and a handful of other functions
+    - the basic range syntax seen above.
+    - respecting the header in column expressions
+    - filling in a cell with an expression and having it automatically be moved to tablefmt
+    - cell highlighting when editing expressions.
+    - horizontal separators are now respected as non cells.
+    - Negative (relative) or arrow cell indexes
+    - Index symbol $# and @#
+
+    Things that do NOT work:
+    - Automatically updating your expressions when you resize the table
+    - calc style output formatting (semi colon)
+    - Advanced tabled features / Named fields
+    - box range targets
+    - Visualizing columns
+    - gnu plot support
+    - hline symbols
+    - more functions
+    - remote() references to other named tables.
+* 1.1.13
+** Spreadsheets Preview V2
+
+	WARNING: Super experimental, use at your own risk.
+
+
+ 	[[https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html][Spreadsheets In Org]]	
+
+	- Horizontal rules are now respected in row ids
+	- Cell highlight can help with understanding formulas
+	- Fixed a couple of bugs with cell indexing
+	- Calling execute on a cell with := will introduce a new formula 
+	  into the TBLFM and evaluate the table.
+	- = Should add a column expression
+
+    | a | b | c | d |  e   |
+    |---+---+---+---+------|
+    | a | b | 5 | 4 | :=$1 |
+    | 1 | 1 | 1 | 1 | 1    |
+    #+TBLFM: @3$5=vmean($1..$4)+sin(@3$1)::$4=$3+5::@2$5=$1
+
+    Still very poorly tested but improving.
+
+    Things that work:
+    - Evaluation of rows and columns with basic arithmetic
+    - vmean, vmax, vmin and a handful of other functions
+    - the basic range syntax seen above.
+    - respecting the header in column expressions
+    - filling in a cell with an expression and having it automatically be moved to tablefmt
+    - cell highlighting when editing expressions.
+    - horizontal separators are now respected as non cells.
+
+    Things that do NOT work:
+    - Automatically updating your expressions when you resize the table
+    - calc style output formatting (semi colon)
+    - Negative or other fancier ranges
+    - Named fields
+    - Visualizing columns
+
+    Right now evaluating a table is bound to the execute DWIM binding.
+
+
+    NOTE: This feature will never be completely compatible with ORG. Org supports the ability to execute
+          arbitrary lisp expressions on table cells. We aren't going that far. That said, I really appreciate
+          the basics of the spreadsheet feature in org and we should be able to support most of the basics with our own flair.
+* 1.1.12
+
+** Tables
+
+ 	REALLY preliminary table formula preview.
+ 	It's buggy!
+
+ 	The example below runs, but not much else will.
+
+ 	[[https://orgmode.org/worg/org-tutorials/org-spreadsheet-intro.html][Spreadsheets In Org]]	
+
+ 	I am undecided if I will continue with attempting to use
+ 	the python ast for my expression support or simply 
+ 	roll my own parser as my limited knowledge of the ast module
+ 	has me at a loss of how to change the default grammar. 
+ 	(If anyone has input and knowledge here that would be beneficial)
+
+    | a | b | c | d | e |
+    |---+---+---+---+---|
+    | a | b | 5 | 1 | 2 |
+    | 1 | 1 | 1 | 1 | 1 |
+    #+TBLFM: @3$5=vmean($1..$5)+sin(@3$1)::$4=$3+5
+
+    Things that work:
+    - Evaluation of rows and columns with basic arithmetic
+    - vmean, vmax, vmin and a handful of other functions
+    - the basic range syntax seen above.
+    - respecting the header in column expressions
+
+    Things that do NOT work:
+    - Automatically updating your expressions when you resize the table
+    - Filling in a cell with an expression and having it automatically be moved to tablefmt
+    - Cell highlighting when editing expressions.
+    - calc style output formatting (semi colon)
+    - Negative or other fancier ranges
+    - Named fields
+    - Visualizing columns
+    - Horizontal separators are currently considered in cell indexes (this will be fixed)
+
+    Right now evaluating a table is bound to the execute DWIM binding.
+
+
+
+* 1.1.11
+** Table Editing
+	- Incorporated Table Edit keybindings allowing for column and row movement, navigation,
+	  inserting and deleting rows and columns and hline insertion with some key bindings.
+	- Improved separator auto detection during import and region conversion.	
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 1.1.10
+	None of the new commands are bound to a keybinding.
+
+** Blank Table Insert
+	- "Org Insert Blank Table"
+	- This will insert a blank WxH blank table at point.
+
+** Csv Import
+	- "Org Import Csv"
+	- Still in its infancy
+    - Added Org Import Cvs command. Will import a csv file into a table.
+
+** Convert Region To Table
+	- "Org Convert Region To Table"
+	- Only works with commas at the moment.
+	- Tries to convert a region to a table, will improve with time.
+* 1.1.9
+** Editing
+*** Improved DWIM Additions to Numbered lists   
+    A numbered list preceded by a normal list was confusing
+    DWIM extension. The system was putting the new entry
+    above the unordered list.
+
+    #+BEGIN_EXAMPLE
+    - This would disrupt DWIM editing of the list below
+    - DWIM was finding this list and thinking it was part
+    - of the numbered list.
+    1. I am extending this list
+    2. This is the list I am extending
+    #+END_EXAMPLE   
+
+    The same thing could happen for example blocks or src blocks.
+        
+*** Improved Alternate Additions to Lists
+    - Ctrl+Shift+Enter is an extended insert
+      For numbered lists it will extend the list vs insert where you are.
+    - This should now work for all the list types.
+
+*** Org Sort List
+    - Works when cursor is on list types.
+    - Will sort the list aphabetically
+
+** Agenda
+    - Loose Tasks View was sometimes not detecting top level loose tasks
+
+* 1.1.8
+** Editing
+	- DWIM editing of numbered lists has improved slightly
+	  Fixed some bugs with lists at the end of a buffer
+	  or with a blank line above the list.
+    - DWIM editing of standard unordered lists (not checkbox)
+      is now supported properly.
+    - Indent and DeIndent somewhat work on lists (tabs vs spaces are
+      still a little problematic) * 1.1.7
+** Editing
+	- Request: [[https://github.com/ihdavids/orgextended/issues/13][Checkboxes in Headings]]
+
+	- Checkbox summaries at the END of a heading but before tags are now supported and will be updated when
+	  a checkbox is toggled:
+
+*** TODO [#A] Heading with summary [33%]   :TAG:
+	- [ ] A
+	- [ ] B
+	- [x] C
+	    - [x] D
+
+** Agenda
+    - Request: [[https://github.com/ihdavids/orgextended/issues/10][Agenda Items Not Showing]]
+	- Org Agenda will reload all open buffers to pick up agenda items in unsaved buffers* 1.1.6
+	- Added keybindings utility function to help author docs.
+	- Bug found with active timestamps not recurring properly datetime conversion was not working properly
+* 1.1.5
+** Stability and Performance
+	- Fixed some issues in the agenda with old SCHEDULED: values
+		We would search forward in time forever trying to find
+		a match in the agenda. This could make org files with REALLY old
+		SCHEDULED tasks that were not closed take a long time to render in the agenda.
+
+		I have now capped it. 4 Months is the default:
+		This goes for deadlines, active timestamps and scheduled values.
+
+		In addition I have enabled some caching for following repeat rules
+		which should improve overall performance here.
+
+		#+BEGIN_EXAMPLE
+		agendaMaxScheduledIterations: 120
+		#+END_EXAMPLE
+
+	- Working to improve handling of dates without times in the agenda.
+	  This could cause some assertions in some of the new scheduled and deadline handling systems
+	  I believe I have all the asserts now but I am working on ensuring intuitive behaviour.
+
+    - Fixed display of plain (no time) DEADLINES, they now show the due date properly
+    - Fixed closing of plain (no time) DEADLINES, they would assert before when trying to update the time.
+	
+
+* 1.1.4
+** Editing
+	- Changed default keybinding. Capture is now Alt+o z to mirror neovintageous mode with Z
+		(it also did not work before due to other Alt+o c ... commands)
+** Stability
+	- Removed legacy automatic copy of settings files to User folder now that we are using
+	  the new dual pane settings mechanic. This was causing an assert on startup for 
+	  users on ST3.
+	- Active timestamps with ranges were not showing up in the agenda properly.
+	  This was due to how the timestamps were querried. Should now be fixed.
+	- Closed Scheduled timestamps would show up in the week view even after the scheduled date.
+	  this was a byproduct of the new scheduled behaviour and has been fixed. When closed
+	  the items will show up ONLY for the date they were scheduled. (They do not reflect)
+	  the date at which they were closed. In the future I hope to make that happen. NOTE:
+	  they do not show up in the day view at the moment. I will work to improve that in a future
+	  release.
+	- Toggling a task to done with a recurring timestamp will set the LAST_REPEAT and LOGBOOK
+	  entries properly now and will update the base timestamp.* 1.1.3
+	- Fixing regression in 1.1.2
+	  New shared keybinding command was being instantiated improperly* 1.1.2
+	- Added OrgDeadlineCommand OrgScheduleCommand OrgActiveTimestampCommand
+	  to add SCHEDULE, DEADLINE and active timestamps using the quick picker.* 1.1.1
+** Scheduling
+	- DEADLINE works in the agenda. Very minimal visualization at this time.
+	  Will show Warning, Due and Overdue messages on the right hand side of the day view.
+	- DEADLINE: <........ -3d> basic warning cookies work 
+	- Fixed a bug with new SCHEDULED: behaviour in week view.
+	- Removed visualization in the CalendarView for SCHEDULED and DEADLINE while I figure
+	  out the best way to visualize that, that is not super ugly. 
+
+
+** Editing
+	- New Link Editing Commands
+	  Org Copy Href will copy the href out of a link onto the clipboard
+	  currently not bound to a keybinding.	
+
+	  Org Select Href will select the href in a link, even
+	  if it is folded.
+
+	  currently not bound to a keybinding* 1.1.0
+** Scheduling
+	- Support active timestamps vs SCHEDULED
+	  SCHEDULED is when you want to start on a task
+	  while tasks with a timestamp are scheduled at a point in time.
+
+	  #+BEGIN_EXAMPLE
+	    ** TODO Heading
+	       SCHEDULED: <startdate>  <-- This will appear in the agenda until you close the task
+	    ** TODO HEADING
+	       <date>  <-- This will appear in the agenda but only at the date specified
+	  #+END_EXAMPLE
+
+	- BREAKING CHANGE
+	  Before I would only show tasks, these are items with an open TODO state.
+	  Now, by default anything that has an active timestamp or is scheduled will
+	  show up in the agenda UNLESS you set that view to :onlytasks as a parameter.
+	  #+BEGIN_EXAMPLE
+	    ** HEADING
+	       <date>  <-- This will now appear in the agenda where before it would not
+	  #+END_EXAMPLE
+
+	  #+BEGIN_SRC js
+      "AgendaCustomViews": 
+      {
+        "Default": ["Calendar", "Week", "Day : onlytasks", "Blocked Projects", "Next Tasks", "Loose Tasks"],
+        "Todos":   ["Todos"],
+      }
+	  #+END_SRC
+
+	  Note the onlytasks parameter, that will filter out non tasks from the Day view in my
+	  default agenda view.
+
+	- DEADLINE is still not supported but support should be comming in a future release.* 1.0.10
+** Snippets
+	- Added link insertion snippet
+	  #+BEGIN_QUOTE
+	    <l
+	  #+END_QUOTE
+
+	  Will insert a new quote jumping between the fields and jumping after the link when done
+	  #+BEGIN_QUOTE
+	  [[$1][$2]] $0  
+	  #+END_QUOTE
+
+** Agenda View
+	- Truncated filename in day view for filenames longer than 12 characters.
+
+** ST4
+	- Fixed quick panel views to continue to work on ST4 builds. * 1.0.9
+** Editing
+	- Org Select Subtree 
+	  This will select the full subtree of the active heading.
+		- alt+o m s 
+		- <space> m s (neovintageous normal mode)
+    - Org Select Entity
+      This will select just the current node
+        - alt+o m e    (mark entity)
+        - <space> m e  (neovintageous normal mode)
+    - Org Copy Subtree
+      This will copy the entire subtree to the clipboard.
+        - alt+o y s    (yank entity)
+        - <space> y s  (neovintageous normal mode)
+    - Org Copy Entity
+      This will copy the current node to the clipboard.
+        - alt+o y e    (yank entity)
+        - <space> y e  (neovintageous normal mode)
+
+** Folding
+  - Fixed link tab cycling.  
+  
+** Color Scheme Generator
+  - The generator is now able to handle simple tmTheme files.
+
+    NOTE: it converts them to sublime-color-scheme files in the output
+          folder.
+
+  - Added Org Select Color Scheme menu item to switch Org between color schemes
+    you have already generated. NOTE: same caveats hold about having org files
+    open when switching. Sublime does not automatically switch existing views.
+
+** NeoVintageous
+	- For ST4 users - neovintageous has upgraded to python 3.8
+	  this means that my hacks to push register 0 with the values
+	  of the system clipboard aren't working until I upgrade OrgExtended.
+
+	  I will attempt to make that a priority for those that care.* 1.0.8
+** Folding
+	- Fixed a bug where buffers that are lacking a filename
+	  can still be folded.
+** Clocking
+	new setting: 
+		- clockingSubMinuteClocks: true will now keep clocking entries that are smaller than a minute
+** Movement
+	- Fixed move heading up / move heading down. This now does the same
+	  as org-move-subtree-up and org-move-subtree-down.
+	  - Moves headings within siblings at the same level of the tree.* 1.0.7
+** Color Scheme Generator
+	- Date picker syntax extended to work with generic color schemes
+	- Agenda picker syntax extended to work with generic color schemes
+	- Color scheme generator has time delay to try to avoid popup errors
+	  when generating and switching color schemes.
+	- Color scheme generator will generate some of the key agenda colors.
+	- Color scheme generator will output a comment block for the date picker
+	  describing additional scopes.
+	* 1.0.6
+** Color Scheme Generator
+	This is a bit of an experimental feature to help people
+	use org mode with their own color scheme. It is NOT complete
+	and not where I want it to be yet. This does not yet touch the agenda
+	or the data picker, but I do eventually intend to work on those as well.
+
+	I feel like orgmode should respect your chosen color scheme!
+
+	- Org Create Color Scheme From Active
+
+	When run from a normal NON org mode buffer will sample the currently
+	active color scheme, create a new color scheme file in:
+
+	#+BEGIN_QUOTE
+	  Packages/User/OrgColorSchems/<originalName>_Org.sublime-color-scheme
+	#+END_QUOTE
+
+	It will then add a couple of key scopes such as:
+
+	- orgmode.preamble :: which is used to make the leading stars invisible on a subheading
+	- orgmode.state.*  :: These are used to give the core built in states some color
+
+	This also adds a comment block in the color scheme file that tries to help new users understand
+	what their options are. Note this is based off your active color scheme.
+
+	This will ALSO change the active OrgExtended color scheme to be this new color scheme to let you
+	see how it is going to pan out. This may, or may NOT work out well for you!
+
+	NOTE: This is a preview feature. It is still under active development and will change / improve
+	      as I mature it. I felt it might be beneficial to some to release it at this point.
+	      PLEASE only use this feature if you feel confident with your ability to manipulate sublime
+	      color schemes. I have yet to document the feature or test it on a wide variety of color
+	      schemes. Ultimately I would like to include the orgagenda and orgdatepicker schemes into
+	      this one scheme. To do that I need some more creative programmatic means of generating a
+	      starting color palette from a pre-existing one. That will take a bit.
+
+	      However, in the interim I am happily using a generated Guna color scheme on my personal machine.
+
+* 1.0.5
+** Syntax Highlighting
+	- Bash blocks uses embed to allow them to escape properly
+	- Core syntax (not agenda and picker) now support standard syntax markers
+	  - NOTE: Not all features are supported or colored. Existing OrgExtended
+	          color schemes are still the preferred means of viewing an org file.
+	  - Eventual goal is to take an existing active color scheme and provide a tool to
+	    extend it to support all the org coloring. This is a first step in that direction.
+	- Created languagelist.yaml to make it easier to add new languages to the syntax.* 1.0.4 HTML Exporter Improvements
+	- #+CAPTION comments export a custom figure for tables and images.
+		- At the moment captions are always t-above style.
+		- Figures are done with a div and span pair. 
+		- Styles include: .figure .figure-number and caption.t-above and caption.table-number
+	- #+AUTHOR, #+TITLE, #+EMAIL, #+LANGUAGE tags have rudimentary support although very
+	  rough.
+	- #+NAME is stripped out of output properly.
+
+* 1.0.3
+	- HTML Exporter has better support for HTML_ATTR comments.
+	- Capture now works on ST4 4096+ with the new modifiers
+	- Direct capture mode has had some fixes that handle spaces on a line and end of file better	
+	- WeekView in calendar now respects agendaDayStartTime and agendaDayEndTime
+		- View will be truncated to the hours specified* 1.2.0
+	- Documentation moved out of the repository to its own repository
+	  this was done to shrink the size of the package.
+	- Turned off logger that was accidentally left on.
+	- Added "openas": "direct" to capture definitions. This will
+	  open the capture directly in the file at the target location.
+	- Added  "agendaFirstDay" and "agendaWeekViewNumDays" to settings to allow
+	  users to start the week view from monday rather than sunday and limit the
+	  week view to just a 5 day view rather than 7 days if desired.
+	  - Actually agendaFirstDay got renamed to firstDayOfWeek as 
+	    the date picker now respects the firstDayOfWeek as well
+	    rather than just the agenda
+	- Cleaned up a bunch of old debugging output.
+	- Working on named targets for blocks in the parser, this is to facilitate
+	  eventual chainging of inputs in the bable execution. 
+  - Fixed archive notation to work without the colon separator.
+  - added <q and <v quote and verse snippets
+  - Added these release notes
+  - Improved settings to use the new settings ui.
+  - Changed docs link in settings to open the docs repo rather than
+    opening the docs in sublime.
+  - Fixed global tab cycling on first line of file.
+  - agendaFirstDay can now be the english name of a day of the week OR an integer.
+  - Month view in the agenda now respects agendaFirstDay
+  - PRIORITIES comment is now respected in change priority command
+  - STARTUP comment now recurses
+  - WARNING: orgextended.sublime-syntax renamed to OrgExtended. This is so the
+  	title appears as OrgExtended in the syntax list on the bottom right of sublime.
+  	This can caust errors when loading sublime with an old settings file.
+  	Please carefully rename your settings file and close all org tabs.
+  - Fixed a number of issues when loading as a zipped package. Export should
+    work from a package again. 
+  - agendaDayStart and End renamed to agendaDayStartTime and agendaDayEndTime
+  	for more clarity* 1.0.1 
+  - Improving link handling for local files.
+  - Fixes some bugs around generating local file links.* Initial release of Org Extended
+
+  Setup instructions can be found here:
+  https://github.com/ihdavids/orgextended_docs/blob/master/start.org
+
+  Org Mode in Emacs is an extensive lifestyle plugin.
+  This plugin couldn't hope to duplicate the full expanse of
+  Emacs org mode. That said, this plugin attempts to provide
+  some of the amazing functionality found in Emacs org mode
+  right here in sublime text!
+
+  Org Mode IS: https://orgmode.org 
+
+  - A document interchange format
+  - A personal wiki
+  - A task and project management toolset
+  - An agenda
+  - A means of building living documents known as literate programming
+  - The backend for blogs, webpages, and an outliner for authors.
+  - A tool for authoring presentations.
+  - A time tracking tool
+  - A spreadsheet and data management tool
+  - And much much more. 
+
+  This plugin is written selfishly as a means of helping
+  me stay organized. It comes with no warranty whatsoever.
+  It is my hope that you still find it useful.
