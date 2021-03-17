@@ -68,8 +68,8 @@
    - [x] Any prep/improvements I feel is necessary to support setting up for table source data and babel work
 
 *** Documentation Goals
-	- [ ] Write a tool to dump out the list of supported script blocks to our docs.
-	- [ ] Add that to our script block page.
+	- [x] Write a tool to dump out the list of supported script blocks to our docs.
+	- [x] Add that to our script block page.
 
 ** 1.1.30
 	Core Idea: Table Babel
