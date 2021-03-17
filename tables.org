@@ -203,17 +203,50 @@
 
 ** Functions
 
-  - vmean :: Computes the average value of a column or row. Takes a range of cells
-  - log :: Return the natural logarithm of x (to base e).
-  - acosh :: Return the inverse hyperbolic cosine of x.
-  - vsum :: Computes the sum of a range of cells
-  - hour :: Get the hours value from a datetime - datetime.time().hour
-  - sin :: Return the sine of x radians.
-  - ceil :: Force a value to the next integer
-  - sqrt :: Return the square root of x.
-  - asin :: Return the arc sine of x radians.
   - abs :: Convert value to a positive value
+  - acos :: Return the arc cosine of x radians.
+  - acosh :: Return the inverse hyperbolic cosine of x.
+  - asin :: Return the arc sine of x radians.
+  - asinh :: Return the inverse hyperbolic sine of x.
+  - atan :: Return the arc tangent of x radians.
+  - atanh :: Return the inverse hyperbolic tangent of x.
+  - bool :: Explicitly convert value to a boolean value if possible
+  - ceil :: Force a value to the next integer
+  - cos :: Return the cosine of x radians.
+  - cosh :: Return the hyperbolic cosine of x.
+  - date :: Convert string to a date value
+  - day :: Get the day value from a datetime  - datetime.time().day
+  - degrees :: Convert from radians to degress
+  - duration :: Convert to a timespan value
+  - exp :: Return e raised to the power x, where e = 2.718281
+  - float :: Force a value to a float
+  - floor :: Force a value to the previous integer
+  - highlight :: highlight(cell,color,text) highlights a cell to one of: green,red,orange,white,black,purple,yellow,cyan and returns the text specified
+  - hour :: Get the hours value from a datetime - datetime.time().hour
+  - int :: Force a value to an integer
+  - log :: Return the natural logarithm of x (to base e).
+  - log10 :: Return the base-10 logarithm of x.
   - log2 :: Return the base-2 logarithm of x.
+  - minute :: Get the minutes value from a datetime - datetime.time().minute
+  - month :: Get the month value from a datetime - datetime.time().month
+  - now :: Returns the current date time
+  - nowstr :: Not Yet Documented 
+  - passed :: Not Yet Documented 
+  - pow :: Return x raised to the power y
+  - radians :: Convert from degrees to radians
+  - rand :: random() -> x in the interval [0, 1).
+  - randint ::  return a random int below <top> 
+  - random :: Returns a random value in a range specified start..end
+  - randomf :: Returns a random value from 0..1
+  - remote :: remote('table-name OR custom-id-value',cellRef) returns a cell from a remote table.
+             table-name only works local to a file while custom-id or id will look up the first table
+             in a heading marked with that id.
+          
+  - round :: Round to the nearest integer
+  - second :: Get the seconds value from a datetime - datetime.time().second
+  - sin :: Return the sine of x radians.
+  - sinh :: Return the hyperbolic sine of x.
+  - sqrt :: Return the square root of x.
   - str :: str(object='') -> str
       str(bytes_or_buffer[, encoding[, errors]]) -> str
       
@@ -224,51 +257,18 @@
       or repr(object).
       encoding defaults to sys.getdefaultencoding().
       errors defaults to 'strict'.
-  - passed :: Not Yet Documented 
+  - tan :: Return the tangent of x radians.
+  - tanh :: Return the hyperbolic tangent of x.
+  - time :: Return the current time from a datetime object time(datetime)
   - trunc :: Round down to the nearest int
-  - second :: Get the seconds value from a datetime - datetime.time().second
-  - exp :: Return e raised to the power x, where e = 2.718281
-  - float :: Force a value to a float
-  - acos :: Return the arc cosine of x radians.
-  - asinh :: Return the inverse hyperbolic sine of x.
-  - remote :: remote('table-name OR custom-id-value',cellRef) returns a cell from a remote table.
-             table-name only works local to a file while custom-id or id will look up the first table
-             in a heading marked with that id.
-          
-  - randint ::  return a random int below <top> 
-  - sinh :: Return the hyperbolic sine of x.
   - vmax :: Computes the max value of a range of cells
-  - day :: Get the day value from a datetime  - datetime.time().day
-  - month :: Get the month value from a datetime - datetime.time().month
-  - degrees :: Convert from radians to degress
-  - rand :: random() -> x in the interval [0, 1).
-  - floor :: Force a value to the previous integer
+  - vmean :: Computes the average value of a column or row. Takes a range of cells
+  - vmedian :: Computes the median (middle) value of a sorted range of cells
   - vmin :: Computes the minimum value of a range of cells
-  - pow :: Return x raised to the power y
-  - now :: Returns the current date time
-  - yearday :: Get the numerical day of the year where jan 1 is 1
-  - cos :: Return the cosine of x radians.
+  - vsum :: Computes the sum of a range of cells
   - weekday :: Get an index for the day of the week where monday is 0
   - year :: Get the year value from a datetime  - datetime.time().year
-  - int :: Force a value to an integer
-  - highlight :: highlight(cell,color,text) highlights a cell to one of: green,red,orange,white,black,purple,yellow,cyan and returns the text specified
-  - date :: Convert string to a date value
-  - atanh :: Return the inverse hyperbolic tangent of x.
-  - nowstr :: Not Yet Documented 
-  - time :: Return the current time from a datetime object time(datetime)
-  - radians :: Convert from degrees to radians
-  - vmedian :: Computes the median (middle) value of a sorted range of cells
-  - atan :: Return the arc tangent of x radians.
-  - round :: Round to the nearest integer
-  - log10 :: Return the base-10 logarithm of x.
-  - cosh :: Return the hyperbolic cosine of x.
-  - minute :: Get the minutes value from a datetime - datetime.time().minute
-  - tanh :: Return the hyperbolic tangent of x.
-  - randomf :: Returns a random value from 0..1
-  - duration :: Convert to a timespan value
-  - random :: Returns a random value in a range specified start..end
-  - tan :: Return the tangent of x radians.
-  - bool :: Explicitly convert value to a boolean value if possible
+  - yearday :: Get the numerical day of the year where jan 1 is 1
 
 ** Built in Symbols
 
