@@ -1,0 +1,7 @@
+* 1.2.1
+   - [ ] Python supports table sources
+   - [ ] Powershell supports table sources
+   - [ ] Bash module and supports table sources?
+   
+* 1.3.0
+ - Full Babel Support

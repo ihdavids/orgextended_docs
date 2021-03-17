@@ -75,20 +75,19 @@
 	Core Idea: Table Babel
 
 *** Ian Goals
-	- [ ] Support tables as data sources for babel
-   - [ ] Provide tool for detecting datetimes in cells
-   - [ ] GNU Plot converts dates automatically
+	- [x] Support tables as data sources for babel
+   - [x] Provide tool for detecting datetimes in cells
+   - [x] GNU Plot converts dates automatically
 
 	--> More research required here as to the full list of tasks.
 
 *** Documentation Goals
-	- [ ] Table Babel Demo
+	- [x] Table Babel Demo
 
 ** 1.2.0
 *** Ian Goals
-   - [ ] Python supports table sources
-   - [ ] Powershell supports table sources
-   - [ ] Bash module and supports table sources?
+   - [x] Full unit test suite
+   - [x] More functions for table editing.
 	
 *** Documentation Goals
-	- [ ] Gantt chart demo page.
+	- [x] Gantt chart demo page.
