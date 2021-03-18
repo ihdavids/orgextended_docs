@@ -2,10 +2,61 @@ TARGET: Babel
 
 We may not fully get there... But I want to be as close to full babel support as we can be.
 
-* 1.2.1
-   - [ ] Python supports table sources
-   - [ ] Powershell supports table sources
+* 1.2.1 - Basic Input
+   - [x] Python supports table sources
+   - [x] Powershell supports table sources
+   - [x] Unordered lists can act as data sources
+   - [x] Ordered lists can act as data sources
+   - [x] Plain variables work embedded in block header.
+
+* 1.2.2 - Better Input, Some Output 
+   - [ ] Quoted strings work for properties.
+   - [ ] Property and variable blocks can act as variable sources.
+   - [ ] List and Table output works.
+
+* 1.2.3 - Execution Modes
+   - [ ] results value
+   - [ ] results output
+   - [ ] results replace
+   - [ ] results silent
+   - [ ] #+header blocks 
+
+* 1.2.4 - Calling
+   - [ ] #+call
+   - [ ] Table sbe functions
+
+* 1.2.5 - Inline Blocks
+   - [ ] Inline blocks and execution
+
+* 1.2.6 - Quality of Life
+   - [ ] Cleanup
+   - [ ] Parameters
+   - [ ] Output to Drawer
+
+* 1.2.7 - Unit Test Time
+   - [ ] Build some unit tests in a table
+
+* 1.2.8 - Tangle
+   - [ ] Support tangling
+
+* 1.2.9 - NoWeb
+   - [ ] NoWeb for pasting
+   - [ ] NoWeb for parameters
+   - [ ] NoWeb function calls
+
+* 1.2.10 - Bash
+   - [ ] Bash block
    - [ ] Bash module and supports table sources?
 
+* 1.2.11 - Cmd
+   - [ ] Dos CMD support
+   - [ ] Params / Vars
+
+* 1.2.12 - C#
+   - [ ] .NET Core Support
+   - [ ] .NET Core Params / Vars
+
 * 1.3.0
- - Full Babel Support
+ Full Babel Support
+ - What big target are we trying to hit?
+
