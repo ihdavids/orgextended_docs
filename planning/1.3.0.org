@@ -10,7 +10,7 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Plain variables work embedded in block header.
 
 * 1.2.2 - Better Input, Some Output 
-   - [ ] Quoted strings work for properties.
+   - [x] Quoted strings work for properties.
    - [ ] Property and variable blocks can act as variable sources.
    - [ ] List and Table output works.
 
