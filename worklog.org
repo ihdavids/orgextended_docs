@@ -1,3 +1,128 @@
+
+
+* 1.2.1
+
+	Just like 1.2.0 was focused on supporting tables 1.3.0 has a focus on better
+	babel support.
+
+	Core Idea for 1.2.1: Input - More language handlers supporting table and list data sources.
+
+	This is a fairly simple first step into the world of babel. The GNU Plot handler
+	paved the way for this we are just adding the same support to the other handlers.
+
+	Right now we only really have python and powershell handlers anyways.
+	As this matures we will document how to add your own language handlers as well
+	as extend the list of supported languages.
+
+	There is still more to do with input. This gets us 30% of the way to handling input sources.
+	We still have to improve our plist handle spaces a little better and then handle the various
+	ways that variables can be set for handlers vs the local mechanism. We also need to handle
+	source blocks being the source of data for other source blocks. We are going to hold off on that
+	until we have a slightly better handle on the various execution types for source blocks.
+
+** PlantUML
+	- Thanks to Antidistinctlyminty for improving file handling in the plantuml source block handler.
+	  The module not respects the :file tag properly. This was actually fixed in the 1.2.0 release but
+	  went unmentioned.
+
+** Lists
+	- fixed a bug with unordered list sorting including source blocks.	
+
+** Source Block Output Formatting
+	- In preparation for working on output formatting in a future release (for babel)
+	  we have tweaked the output formatting to respect indents a little better when executing source blocks.
+
+** Python	
+	Python now supports tables as data sources. True babel execution
+	would auto format the output or provide controls over how we handle the output
+	but... these are our first steps here.
+	
+	#+NAME: p-data
+	| a | b | c | d | e |
+	|---+---+---+---+---|
+	| 1 | 2 | 3 | 4 | 5 |
+	| 6 | 7 | 8 | 9 | 0 |
+
+	#+BEGIN_SRC python :var DATA=p-data
+	  print(str(DATA))
+	#+END_SRC
+
+    #+RESULTS:
+    [['a', 'b', 'c', 'd', 'e'], [1, 2, 3, 4, 5], [6, 7, 8, 9, 0]]
+
+
+    Basic variables are also somewhat operational.
+
+	#+BEGIN_SRC python :var DATA=5
+	  print(str(DATA))
+	#+END_SRC
+
+   #+RESULTS:
+   5
+   
+ 
+** Powershell
+    #+BEGIN_SRC powershell :var DATA=p-data
+      $DATA | % {"$_"} 
+    #+END_SRC
+
+    #+RESULTS:
+   a b c d e
+   1 2 3 4 5
+   6 7 8 9 0
+
+** List Data Sources Within a File.
+	Source blocks are also getting list as as data sources:
+	Notice that the indented item is excluded this is normal org behaviour with lists.
+
+  #+NAME: l-data
+  - b
+  - a
+  	- a
+  - c
+
+  #+BEGIN_SRC python :var DATA=l-data
+    print(str(DATA))
+  #+END_SRC
+
+   #+RESULTS:
+   ['b', 'a', 'c']
+    
+   #+BEGIN_SRC powershell :var DATA=l-data
+      ,$DATA 
+   #+END_SRC
+
+   #+RESULTS:
+   b
+   a
+   c
+
+** Numbered List Data Sources Within a File.
+	Numbered lists are also now potential data sources:
+
+	#+NAME: n-data
+	1. b
+	2. a 
+	3. c
+	  4. 4 
+  
+  #+BEGIN_SRC python :var DATA=n-data
+    print(str(DATA))
+  #+END_SRC
+
+   #+RESULTS:
+   ['b', 'a', 'c']
+    
+   #+BEGIN_SRC powershell :var DATA=n-data
+     ,$DATA
+   #+END_SRC
+
+   #+RESULTS:
+   b
+   a
+   c
+
+
 * 1.2.0
 	Core Idea: I am considering the spreadsheet feature out of preview now.
                most of the core org features with spreadsheets are now supported.
@@ -37,6 +162,8 @@
 
 ** Notifications
   - Notifications system now respects the ARCHIVE tag.
+
+
 * 1.1.30
 	Core Idea: Testing pass on tables to ensure what is there is relatively usable.
 
@@ -68,7 +195,9 @@
 	[[https://github.com/ihdavids/orgextended_docs/blob/master/mathconstants.org][Math Constants]] 
 
 ** GNU Plot
-	- Calling "Org Plot Table" on the #+PLOT: header rather than the table would cause problems.* 1.1.29
+	- Calling "Org Plot Table" on the #+PLOT: header rather than the table would cause problems.
+
+* 1.1.29
    Core Idea: Add GNU Plot Script Blocks
 
    - [x] Add a syntax for gnu plot script blocks if one does not already exist
@@ -141,6 +270,8 @@
 ** Powershell Block Execute Bug
 	- this was using the OrgExtended package dir as it's cwd
 	  which was causing problems when running as a package. FIXED.
+
+
 
 * 1.1.28
 ** Dynamicblocks
@@ -218,6 +349,8 @@
 ** Folding
 	- "Org Fold Others" - New command that folds all other headings but the immediate part of the tree you are on.
 
+
+
 * 1.1.27
 ** Archiving
 	- Fixed a bug where ARCHIVE_TIME was missing a colon at the front when inserted.
@@ -266,7 +399,9 @@
    | Columnview              |        |         |
 	#+END:	
    #+TBLFM:@2$9=5
-	#+COLUMNS: %ITEM(Task) %Effort(Effort) %TODO(Todo) %DEADLINE(Deadline) %ALLTAGS(Tags) %TIMESTAMP(Time) %TIMESTAMP_IA(Inactive) %PRIORITY(Priority)
+	
+
+#+COLUMNS: %ITEM(Task) %Effort(Effort) %TODO(Todo) %DEADLINE(Deadline) %ALLTAGS(Tags) %TIMESTAMP(Time) %TIMESTAMP_IA(Inactive) %PRIORITY(Priority)
 
 * 1.1.26                                                                  :a:
 ** Configuration
@@ -386,7 +521,9 @@
 
 *** ColumnView Beyond Max Depth
 ** Excluded Because Of Tag                                                :ExcludeMe:
-* Empty* 1.1.25
+* Empty
+
+* 1.1.25
 ** Source Block Diagrams
   - Non existent subdirs are auto-created
   - Execute block works on any line inside the source block as well as on the fence.
@@ -462,9 +599,13 @@
 ** HTML Export
   Fixed issue with 0 blank lines at the top of the file.
   The comment gathering code was not being initialized properly.
+
+
 * 1.1.24
 ** PlantUml
-	- Fixed bug with working directory that was causing problems when executing as a package.* 1.1.23
+	- Fixed bug with working directory that was causing problems when executing as a package.
+
+* 1.1.23
 ** Configuration
   - orgDirs - in 1.1.22 we added support for directory globbing. We have added a little more error handling in 1.1.23 to
     detect single stars rather than double stars and to not throw in those cases.
@@ -517,6 +658,8 @@
  
   
   
+
+
 * 1.1.22
 ** Configuration
     - Added directory globbing support to orgDirs
@@ -584,6 +727,8 @@
   
   
   
+
+
 * 1.1.21
 ** Db
 	- orgFiles was not working, this has been fixed.
@@ -618,6 +763,8 @@
     | Morelia   | 257.56 |   17.67 | 19.67 |
     | Chile     | 257.72 |   21.39 | 23.39 |
     #+TBLFM:$4=$3+2.0
+
+
 * 1.1.20
 ** Editing
 	- Heading and Child heading insertion now ignores whitespace at the end of a node
@@ -646,6 +793,8 @@
 	- ledger
 	- make|makefile
   	- typescript|ts
+
+
 
 * 1.1.19
 ** Spreadsheets Preview V7
@@ -729,6 +878,8 @@
    [[https://github.com/ihdavids/orgextended/issues/13][Checkbox summaries]] 
 
 
+
+
 * 1.1.18
 ** Spreadsheets
 	- A crude stab at a table visualization
@@ -763,6 +914,8 @@
     - Advanced tabled features / Named fields
     - gnu plot support
     - more functions
+
+
 
 * 1.1.17
 *** Spreadsheets Preview V6
@@ -858,6 +1011,8 @@
     - gnu plot support
     - hline symbols
     - more functions
+
+
 * 1.1.16
 ** Spreadsheet Preview V5
 	- Moving cells around, adding and deleting cells
@@ -865,6 +1020,8 @@
 	- Deleting the target or source of a cell will result in the
 	  formula having and $INVALID or @INVALID tag which is not currently
 	  handled properly. This will be improved going forward!
+
+
 
 * 1.1.15
 ** Spreadsheets Preview V4
@@ -887,7 +1044,9 @@
  	|---+---+---+---+----|
  	| 3 | 4 | 5 | 6 |  7 |
  	| 2 | 4 | 6 | 8 | 10 |
-  	#+TBLFM:@2=$#+2::@3=$#*2* 1.1.14
+  	#+TBLFM:@2=$#+2::@3=$#*2
+
+* 1.1.14
 ** Spreadsheet Preview V3
 	- Column cell formula insertion was broken, this is now fixed.
 	- TBLFM expressions on their own lines would cause exceptions
@@ -965,6 +1124,8 @@
     - hline symbols
     - more functions
     - remote() references to other named tables.
+
+
 * 1.1.13
 ** Spreadsheets Preview V2
 
@@ -1010,6 +1171,8 @@
     NOTE: This feature will never be completely compatible with ORG. Org supports the ability to execute
           arbitrary lisp expressions on table cells. We aren't going that far. That said, I really appreciate
           the basics of the spreadsheet feature in org and we should be able to support most of the basics with our own flair.
+
+
 * 1.1.12
 
 ** Tables
@@ -1053,6 +1216,8 @@
 
 
 
+
+
 * 1.1.11
 ** Table Editing
 	- Incorporated Table Edit keybindings allowing for column and row movement, navigation,
@@ -1061,6 +1226,8 @@
 
 
 	
+
+
 
 
 
@@ -1091,6 +1258,8 @@
 	- "Org Convert Region To Table"
 	- Only works with commas at the moment.
 	- Tries to convert a region to a table, will improve with time.
+
+
 * 1.1.9
 ** Editing
 *** Improved DWIM Additions to Numbered lists   
@@ -1120,6 +1289,8 @@
 ** Agenda
     - Loose Tasks View was sometimes not detecting top level loose tasks
 
+
+
 * 1.1.8
 ** Editing
 	- DWIM editing of numbered lists has improved slightly
@@ -1128,7 +1299,9 @@
     - DWIM editing of standard unordered lists (not checkbox)
       is now supported properly.
     - Indent and DeIndent somewhat work on lists (tabs vs spaces are
-      still a little problematic) * 1.1.7
+      still a little problematic) 
+
+* 1.1.7
 ** Editing
 	- Request: [[https://github.com/ihdavids/orgextended/issues/13][Checkboxes in Headings]]
 
@@ -1143,9 +1316,13 @@
 
 ** Agenda
     - Request: [[https://github.com/ihdavids/orgextended/issues/10][Agenda Items Not Showing]]
-	- Org Agenda will reload all open buffers to pick up agenda items in unsaved buffers* 1.1.6
+	- Org Agenda will reload all open buffers to pick up agenda items in unsaved buffers
+
+* 1.1.6
 	- Added keybindings utility function to help author docs.
 	- Bug found with active timestamps not recurring properly datetime conversion was not working properly
+
+
 * 1.1.5
 ** Stability and Performance
 	- Fixed some issues in the agenda with old SCHEDULED: values
@@ -1171,6 +1348,8 @@
     - Fixed closing of plain (no time) DEADLINES, they would assert before when trying to update the time.
 	
 
+
+
 * 1.1.4
 ** Editing
 	- Changed default keybinding. Capture is now Alt+o z to mirror neovintageous mode with Z
@@ -1188,11 +1367,17 @@
 	  they do not show up in the day view at the moment. I will work to improve that in a future
 	  release.
 	- Toggling a task to done with a recurring timestamp will set the LAST_REPEAT and LOGBOOK
-	  entries properly now and will update the base timestamp.* 1.1.3
+	  entries properly now and will update the base timestamp.
+
+* 1.1.3
 	- Fixing regression in 1.1.2
-	  New shared keybinding command was being instantiated improperly* 1.1.2
+	  New shared keybinding command was being instantiated improperly
+
+* 1.1.2
 	- Added OrgDeadlineCommand OrgScheduleCommand OrgActiveTimestampCommand
-	  to add SCHEDULE, DEADLINE and active timestamps using the quick picker.* 1.1.1
+	  to add SCHEDULE, DEADLINE and active timestamps using the quick picker.
+
+* 1.1.1
 ** Scheduling
 	- DEADLINE works in the agenda. Very minimal visualization at this time.
 	  Will show Warning, Due and Overdue messages on the right hand side of the day view.
@@ -1210,7 +1395,9 @@
 	  Org Select Href will select the href in a link, even
 	  if it is folded.
 
-	  currently not bound to a keybinding* 1.1.0
+	  currently not bound to a keybinding
+
+* 1.1.0
 ** Scheduling
 	- Support active timestamps vs SCHEDULED
 	  SCHEDULED is when you want to start on a task
@@ -1243,7 +1430,9 @@
 	  Note the onlytasks parameter, that will filter out non tasks from the Day view in my
 	  default agenda view.
 
-	- DEADLINE is still not supported but support should be comming in a future release.* 1.0.10
+	- DEADLINE is still not supported but support should be comming in a future release.
+
+* 1.0.10
 ** Snippets
 	- Added link insertion snippet
 	  #+BEGIN_QUOTE
@@ -1259,7 +1448,9 @@
 	- Truncated filename in day view for filenames longer than 12 characters.
 
 ** ST4
-	- Fixed quick panel views to continue to work on ST4 builds. * 1.0.9
+	- Fixed quick panel views to continue to work on ST4 builds. 
+
+* 1.0.9
 ** Editing
 	- Org Select Subtree 
 	  This will select the full subtree of the active heading.
@@ -1296,7 +1487,9 @@
 	  this means that my hacks to push register 0 with the values
 	  of the system clipboard aren't working until I upgrade OrgExtended.
 
-	  I will attempt to make that a priority for those that care.* 1.0.8
+	  I will attempt to make that a priority for those that care.
+
+* 1.0.8
 ** Folding
 	- Fixed a bug where buffers that are lacking a filename
 	  can still be folded.
@@ -1306,7 +1499,9 @@
 ** Movement
 	- Fixed move heading up / move heading down. This now does the same
 	  as org-move-subtree-up and org-move-subtree-down.
-	  - Moves headings within siblings at the same level of the tree.* 1.0.7
+	  - Moves headings within siblings at the same level of the tree.
+
+* 1.0.7
 ** Color Scheme Generator
 	- Date picker syntax extended to work with generic color schemes
 	- Agenda picker syntax extended to work with generic color schemes
@@ -1315,7 +1510,9 @@
 	- Color scheme generator will generate some of the key agenda colors.
 	- Color scheme generator will output a comment block for the date picker
 	  describing additional scopes.
-	* 1.0.6
+	
+
+* 1.0.6
 ** Color Scheme Generator
 	This is a bit of an experimental feature to help people
 	use org mode with their own color scheme. It is NOT complete
@@ -1354,6 +1551,8 @@
 
 	      However, in the interim I am happily using a generated Guna color scheme on my personal machine.
 
+
+
 * 1.0.5
 ** Syntax Highlighting
 	- Bash blocks uses embed to allow them to escape properly
@@ -1362,7 +1561,9 @@
 	          color schemes are still the preferred means of viewing an org file.
 	  - Eventual goal is to take an existing active color scheme and provide a tool to
 	    extend it to support all the org coloring. This is a first step in that direction.
-	- Created languagelist.yaml to make it easier to add new languages to the syntax.* 1.0.4 HTML Exporter Improvements
+	- Created languagelist.yaml to make it easier to add new languages to the syntax.
+
+* 1.0.4 HTML Exporter Improvements
 	- #+CAPTION comments export a custom figure for tables and images.
 		- At the moment captions are always t-above style.
 		- Figures are done with a div and span pair. 
@@ -1371,12 +1572,16 @@
 	  rough.
 	- #+NAME is stripped out of output properly.
 
+
+
 * 1.0.3
 	- HTML Exporter has better support for HTML_ATTR comments.
 	- Capture now works on ST4 4096+ with the new modifiers
 	- Direct capture mode has had some fixes that handle spaces on a line and end of file better	
 	- WeekView in calendar now respects agendaDayStartTime and agendaDayEndTime
-		- View will be truncated to the hours specified* 1.2.0
+		- View will be truncated to the hours specified
+
+* 1.2.0
 	- Documentation moved out of the repository to its own repository
 	  this was done to shrink the size of the package.
 	- Turned off logger that was accidentally left on.
@@ -1409,9 +1614,13 @@
   - Fixed a number of issues when loading as a zipped package. Export should
     work from a package again. 
   - agendaDayStart and End renamed to agendaDayStartTime and agendaDayEndTime
-  	for more clarity* 1.0.1 
+  	for more clarity
+
+* 1.0.1 
   - Improving link handling for local files.
-  - Fixes some bugs around generating local file links.* Initial release of Org Extended
+  - Fixes some bugs around generating local file links.
+
+* Initial release of Org Extended
 
   Setup instructions can be found here:
   https://github.com/ihdavids/orgextended_docs/blob/master/start.org
@@ -1438,3 +1647,8 @@
   This plugin is written selfishly as a means of helping
   me stay organized. It comes with no warranty whatsoever.
   It is my hope that you still find it useful.
+
+
+
+
+
