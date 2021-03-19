@@ -1,5 +1,28 @@
-* TODO Dates and Times
-  Write up some bits about dates and recurring dates in orgmode.
+* Dates and Times
+  As with everything in OrgExtended we aspire to support the full gamut of date time functionality found in orgmode:
+
+  [[https://orgmode.org/manual/Dates-and-Times.html][Dates and Times]]
+
+  One of the most important pieces to understand about dates and times in org mode is the meaning of SCHEDULED, DEADLINE and
+  simple active timestamps. These are like a sledgehammer to your scheduling needs and really revolve around the concept of a task.
+  Is this an ongoing project, like a coding project that you will start on a date and work on till it's done? Then scheduled or deadline are right for you.
+  Is this an appointment, like a Dr appointment or a lunch meeting? Then a simple active timestamp is the right choice.
+
+  - SCHEDULED :: The task starts at this date and is ongoing until I close the task
+  - DEADLINE :: The task is supposed to be done at this date and if it is not, it is overdue. Like scheduled the task remains in your agenda till you close it.
+  - < DATE TIME > :: Active time stamps are one off appointments. They will appear in your agenda once unless they reoccur.
+
+  So what about recurring appointments? IE: I don't want the task to be every day, just every Tuesday?
+
+  For that, org mode supports the concept of a recurrence.
+
+  #+BEGIN_EXAMPLE
+    <DATETIME +1w> - NOTE the +1w, that means weekly until you close the task. 
+  #+END_EXAMPLE
+
+  Our support for recurrence exists but is not yet full featured. I have periodically worked to improve it. The best source of truth here is the actual org docs:
+
+  [[https://orgmode.org/manual/Repeated-tasks.html#Repeated-tasks][Repeated Tasks]] 
 
 * TODO Habits
   Comment on habits and tracking them in the agenda.
