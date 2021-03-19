@@ -25,4 +25,9 @@
   [[https://orgmode.org/manual/Repeated-tasks.html#Repeated-tasks][Repeated Tasks]] 
 
 * TODO Habits
-  Comment on habits and tracking them in the agenda.
+
+  Habits are recurring tasks that you want to build a habit around. Org mode tries to help you build that habit by helping you visualize your progress
+  in the agenda.
+
+
+  TODO Comment on habits and tracking them in the agenda.
