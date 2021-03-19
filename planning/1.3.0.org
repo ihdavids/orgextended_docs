@@ -11,10 +11,12 @@ We may not fully get there... But I want to be as close to full babel support as
 
 * 1.2.2 - Better Input, Some Output 
    - [x] Quoted strings work for properties.
-   - [ ] Property and variable blocks can act as variable sources.
-   - [ ] List and Table output works.
+   - [x] Property and variable blocks can act as variable sources.
+   - [x] Table output works.
+
 
 * 1.2.3 - Execution Modes
+   - [ ] List output works
    - [ ] results value
    - [ ] results output
    - [ ] results replace
