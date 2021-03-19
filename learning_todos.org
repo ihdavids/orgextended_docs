@@ -206,9 +206,14 @@
   [[file:images/learning_todo_agenda.gif]]
 
   In the example I use the SCHEDULED marker. These are a powerful yet
-  complicated part of org mode. We don't currently support the full gamut of
-  org functionality, but I hope to in the future. In particular some of the recurrence
-  options with timestamps is poorly supported, but will hopefully improve in the future.
+  complicated part of org mode. 
+
+  We don't currently support the full gamut of
+  org functionality, we support a lot, but not quite all. 
+
+  In particular some of the recurrence
+  options with timestamps is still poorly supported, but will hopefully improve in the future.
+  [[file:dates.org][Dates and Times]]
 
   - SCHEDULED :: This marks where you want to START working on something it will appear in the agenda until you close the task. So generally this is used on tasks that may take some time.
   - DEADLINE :: Like scheduled this marks where you want to be DONE working on something. You can specify a warning marker in the time. By default you will get a warning 1 day before your deadline. If the task is still open after the deadline it will be marked as overdue.
