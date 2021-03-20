@@ -16,45 +16,53 @@ We may not fully get there... But I want to be as close to full babel support as
 
 
 * 1.2.3 - Execution Modes
-   - [ ] List output works
+   - [x] List output works
+   - [x] drawer format
+   - [x] code format
+   - [x] org format
+   - [x] raw format
+   - [x] file format
+   - [x] text format
+   - [x] Parameters
+   - [x] Output to Drawer
+
+* 1.2.
    - [ ] results value
    - [ ] results output
    - [ ] results replace
    - [ ] results silent
    - [ ] #+header blocks 
 
-* 1.2.4 - Calling
+* 1.2. - Calling
    - [ ] #+call
    - [ ] Table sbe functions
 
-* 1.2.5 - Inline Blocks
+* 1.2. - Inline Blocks
    - [ ] Inline blocks and execution
 
-* 1.2.6 - Quality of Life
+* 1.2. - Quality of Life
    - [ ] Cleanup
-   - [ ] Parameters
-   - [ ] Output to Drawer
 
-* 1.2.7 - Unit Test Time
+* 1.2. - Unit Test Time
    - [ ] Build some unit tests in a table
 
-* 1.2.8 - Tangle
+* 1.2. - Tangle
    - [ ] Support tangling
 
-* 1.2.9 - NoWeb
+* 1.2. - NoWeb
    - [ ] NoWeb for pasting
    - [ ] NoWeb for parameters
    - [ ] NoWeb function calls
 
-* 1.2.10 - Bash
+* 1.2. - Bash
    - [ ] Bash block
    - [ ] Bash module and supports table sources?
 
-* 1.2.11 - Cmd
+* 1.2. - Cmd
    - [ ] Dos CMD support
    - [ ] Params / Vars
 
-* 1.2.12 - C#
+* 1.2. - C#
    - [ ] .NET Core Support
    - [ ] .NET Core Params / Vars
 
