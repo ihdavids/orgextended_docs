@@ -26,12 +26,14 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Parameters
    - [x] Output to Drawer
 
-* 1.2.
-   - [ ] results value
-   - [ ] results output
-   - [ ] results replace
-   - [ ] results silent
-   - [ ] #+header blocks 
+* 1.2.4
+   - [x] results value
+   - [x] results output
+   - [x] results replace
+   - [x] results prepend
+   - [x] results append
+   - [x] results silent
+   - [ ] chaining execution
 
 * 1.2. - Calling
    - [ ] #+call
@@ -39,6 +41,7 @@ We may not fully get there... But I want to be as close to full babel support as
 
 * 1.2. - Inline Blocks
    - [ ] Inline blocks and execution
+   - [ ] #+header blocks 
 
 * 1.2. - Quality of Life
    - [ ] Cleanup
