@@ -218,7 +218,13 @@
   - SCHEDULED :: This marks where you want to START working on something it will appear in the agenda until you close the task. So generally this is used on tasks that may take some time.
   - DEADLINE :: Like scheduled this marks where you want to be DONE working on something. You can specify a warning marker in the time. By default you will get a warning 1 day before your deadline. If the task is still open after the deadline it will be marked as overdue.
   - < Active Timestamp > :: without a deadline or scheduled prefix this event will happen once at the selected time.
+** CLOSED
+  There is one other timestamp that can be handy. If you enable logdone, when you flip a TODO to it's done state you will get a CLOSED marker indicating when you closed the task.
+  You have to enable this with the STARTUP comment set to logdone.
 
+  [[file:images/logdone.gif]]
+
+  
 * Contents
   At this point it is tempting to dive into a deep dive all the ways org can help you author content for your notes.
   There really is a lot that org can help you out with. Things like:
