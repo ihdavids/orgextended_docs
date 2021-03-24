@@ -21,9 +21,9 @@
 	Here we have a basic python source block:
 
 	#+BEGIN_EXAMPLE
-	  #+BEGIN_SRC python :var x=5
+	  \#+BEGIN_SRC python :var x=5
 	    print(str(x))
-	  #+END_SRC
+	  \#+END_SRC
 	#+END_EXAMPLE
 
 	There are a couple of things of note here:
@@ -39,4 +39,3 @@
      : 5
 	#+END_EXAMPLE
 
-	
