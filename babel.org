@@ -67,14 +67,71 @@
       | Hello | 25    |
       | World | 42    |
 
-      #+BEGIN_SRC python :var DATA=my-source-block
+      ##+BEGIN_SRC python :var DATA=my-source-block
         print(DATA)
-      #+END_SRC
+      ##+END_SRC
+
+      #+RESULTS:
+      : [['name', 'value'], ['Hello', 25], ['World', 42]]
     #+END_EXAMPLE
 
 ** Execution Types
-    Value vs Output
+    Up till now we have been ignoring one of the important parts of babel which is the execution type.
+    Babel supports 2 execution modes:
 
+    - Output - This is the default and what we have seen so far. The stdout of a source block is captured and used as the return value.
+    - Value - This is more the traditional function call style. 
+
+    #+BEGIN_EXAMPLE
+      ##+BEGIN_SRC python :results value
+        return 5     
+      ##+END_SRC   
+
+      #+RESULTS:
+      : 5
+    #+END_EXAMPLE
+
+** Results
+
+    The results keyword really has 4 dimensions
+    - Execution Type :: output vs value - what do we capture?
+    - Output Handling :: table vs list vs raw - does the output get interpreted as something else?
+    - Formatting :: verbatim vs html vs org vs drawer vs code - do we wrap the output in something?
+    - Output Mode :: append vs prepend vs silent vs replace - how do we insert the output into the buffer?
+
+    Each results keyword can have a combination of those 4.
+    #+BEGIN_EXAMPLE
+    ##+BEGIN_SRC python :results output table drawer
+      print("Hello World")
+    ##+END_SRC
+
+    #+RESULTS:
+    :results:
+    | Hello | World |
+    :end:
+    #+END_EXAMPLE
+
+    Here we have formatted the output as a table and put it in a drawer.
+    You can also output the results to a file with the :file <filename> parameter.
+
+    Here is some powershell doing the same thing as our python
+ 
+    #+BEGIN_EXAMPLE
+    #+NAME: in-table
+    | a | b | c | d | e |
+    | 1 | 2 | 3 | 4 | 5 |
+    | 6 | 7 | 8 | 9 | 0 |
+   
+    ##+BEGIN_SRC powershell :var DATA=in-table :results table
+     $DATA | %{"$_"}
+    ##+END_SRC
+
+    #+RESULTS:
+    | a | b | c | d | e |
+    | 1 | 2 | 3 | 4 | 5 |
+    | 6 | 7 | 8 | 9 | 0 |
+      
+    #+END_EXAMPLE
 ** Call 
     Calling a source block with different parameters
 
