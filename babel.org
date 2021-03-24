@@ -19,12 +19,13 @@
 	Babel treats a source block in an org document as an active function call that can be called in various ways.
 
 	Here we have a basic python source block:
+	(Ignore the double # sign, I couldn't find a great way to get the source block markers to appear on github without it!)
 
-	#+BEGIN_EXAMPLE
-	  ##+BEGIN_SRC python :var x=5
+	#+BEGIN_SRC org :export code
+	  #+BEGIN_SRC python :var x=5
 	    print(str(x))
-	  ##+END_SRC
-	#+END_EXAMPLE
+	  #+END_SRC
+	#+END_SRC
 
 	There are a couple of things of note here:
 
