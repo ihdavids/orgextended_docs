@@ -33,11 +33,13 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] results prepend
    - [x] results append
    - [x] results silent
-   - [ ] chaining execution
+   - [x] chaining execution
 
-* 1.2. - Calling
-   - [ ] #+call
-   - [ ] Table sbe functions
+* 1.2.5 - Calling
+   - [x] better chaining of functions
+   - [x] handle silent functions.
+   - [x] #+call
+   - [x] Table sbe functions
 
 * 1.2. - Inline Blocks
    - [ ] Inline blocks and execution
