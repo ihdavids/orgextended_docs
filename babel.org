@@ -1,49 +1,49 @@
 * Source Block Execution
-	There are several names associated with the ability to execute a source block from within an org document.
-	The tech that backs most of this ability is called babel. It has as its primary goal the ideas of literate programming
-	and reproducible research. What has made it a popular feature is the combination of babel with many of the other emacs features.
+    There are several names associated with the ability to execute a source block from within an org document.
+    The tech that backs most of this ability is called babel. It has as its primary goal the ideas of literate programming
+    and reproducible research. What has made it a popular feature is the combination of babel with many of the other emacs features.
 
-	[[https://orgmode.org/worg/org-contrib/babel/][Babel Active Code In OrgMode]]
+    [[https://orgmode.org/worg/org-contrib/babel/][Babel Active Code In OrgMode]]
 
-	As some examples:
+    As some examples:
 
-	- Using babel with tools like gnuplot, plantuml, ditaa and graphviz allows presenters to build diagrams dynamically from their notes.
-	- The integration with tools like TRAMP in emacs allows developers to dynamically build reports from running processes on remote boxes.
-	- Emacs ledger mode and the org mode spreadsheets have empowered some org mode users to build complex budget reports from their financial data.
-	- Clocking and some of the project management tools in org mode have allowed contractors to dynamically build timesheets from work notes.
+    - Using babel with tools like gnuplot, plantuml, ditaa and graphviz allows presenters to build diagrams dynamically from their notes.
+    - The integration with tools like TRAMP in emacs allows developers to dynamically build reports from running processes on remote boxes.
+    - Emacs ledger mode and the org mode spreadsheets have empowered some org mode users to build complex budget reports from their financial data.
+    - Clocking and some of the project management tools in org mode have allowed contractors to dynamically build timesheets from work notes.
 
-	Babel really made orgmode the original jupyt*r notebook.
+    Babel really made orgmode the original jupyt*r notebook.
 
 ** Basic Usage
 
-	Babel treats a source block in an org document as an active function call that can be called in various ways.
+    Babel treats a source block in an org document as an active function call that can be called in various ways.
 
-	Here we have a basic python source block:
+    Here we have a basic python source block:
 
-	#+BEGIN_EXAMPLE
-	  ##+BEGIN_SRC python :var x=5
-	    print(str(x))
-	  ##+END_SRC
-	#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      ##+BEGIN_SRC python :var x=5
+        print(str(x))
+      ##+END_SRC
+    #+END_EXAMPLE
 
-	There are a couple of things of note here:
+    There are a couple of things of note here:
 
-	1. The source block states what language it belongs to, in this case python.
-	2. We have specified a variable x that is set to the value of 5.
-	3. We are able to access that variable from within the source block.
+    1. The source block states what language it belongs to, in this case python.
+    2. We have specified a variable x that is set to the value of 5.
+    3. We are able to access that variable from within the source block.
 
-	Executing this source block will produce a #+RESULTS comment:
+    Executing this source block will produce a #+RESULTS comment:
 
-	#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
      #+RESULTS:
      : 5
-	#+END_EXAMPLE
+    #+END_EXAMPLE
 
 ** Variables
-	Variables can come from a few different sources other than the source block fence itself.
-	Variales can be in property blocks or property comments as seen below:
+    Variables can come from a few different sources other than the source block fence itself.
+    Variales can be in property blocks or property comments as seen below:
 
-	#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
       :PROPERTIES:
       :header-args:           :var g=global
       :header-args:python:    :var x=5
@@ -52,37 +52,37 @@
 
       #+PROPERTY: header-args: :var y=11
       #+PROPERTY: header-args:python: :var z=12
-		  
-	#+END_EXAMPLE	
+          
+    #+END_EXAMPLE   
 
-	Language specific variables can be defined as well using the language suffix
+    Language specific variables can be defined as well using the language suffix
 
 ** Inputs
-	While variables are nice, babel becomes even more useful when connected to data tables and lists in your documents.
-	Tables and lists can both have a name. This name allows them to be referenced as the source of a variable.
+    While variables are nice, babel becomes even more useful when connected to data tables and lists in your documents.
+    Tables and lists can both have a name. This name allows them to be referenced as the source of a variable.
 
-	#+BEGIN_EXAMPLE
-	  #+NAME: my-source-block
-	  | name  | value |
-	  | Hello | 25    |
-	  | World | 42    |
+    #+BEGIN_EXAMPLE
+      #+NAME: my-source-block
+      | name  | value |
+      | Hello | 25    |
+      | World | 42    |
 
-	  #+BEGIN_SRC python :var DATA=my-source-block
-	    print(DATA)
-	  #+END_SRC
-	#+END_EXAMPLE
+      #+BEGIN_SRC python :var DATA=my-source-block
+        print(DATA)
+      #+END_SRC
+    #+END_EXAMPLE
 
 ** Execution Types
-	Value vs Output
+    Value vs Output
 
 ** Call 
-	Calling a source block with different parameters
+    Calling a source block with different parameters
 
 ** Chaining Source Blocks
-	From powershell to python to gnuplot
+    From powershell to python to gnuplot
 
 ** Formatting Output
-	drawers, blocks and others
+    drawers, blocks and others
 
 ** Full Circle SBE
-	Table Formulas can use source blocks.
+    Table Formulas can use source blocks.
