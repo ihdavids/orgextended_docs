@@ -19,13 +19,12 @@
 	Babel treats a source block in an org document as an active function call that can be called in various ways.
 
 	Here we have a basic python source block:
-	(Ignore the double # sign, I couldn't find a great way to get the source block markers to appear on github without it!)
 
-	#+BEGIN_SRC org :export code
-	  #+BEGIN_SRC python :var x=5
+	#+BEGIN_EXAMPLE
+	  ##+BEGIN_SRC python :var x=5
 	    print(str(x))
-	  #+END_SRC
-	#+END_SRC
+	  ##+END_SRC
+	#+END_EXAMPLE
 
 	There are a couple of things of note here:
 
@@ -40,3 +39,50 @@
      : 5
 	#+END_EXAMPLE
 
+** Variables
+	Variables can come from a few different sources other than the source block fence itself.
+	Variales can be in property blocks or property comments as seen below:
+
+	#+BEGIN_EXAMPLE
+      :PROPERTIES:
+      :header-args:           :var g=global
+      :header-args:python:    :var x=5
+      :var: v=10
+      :END: 
+
+      #+PROPERTY: header-args: :var y=11
+      #+PROPERTY: header-args:python: :var z=12
+		  
+	#+END_EXAMPLE	
+
+	Language specific variables can be defined as well using the language suffix
+
+** Inputs
+	While variables are nice, babel becomes even more useful when connected to data tables and lists in your documents.
+	Tables and lists can both have a name. This name allows them to be referenced as the source of a variable.
+
+	#+BEGIN_EXAMPLE
+	  #+NAME: my-source-block
+	  | name  | value |
+	  | Hello | 25    |
+	  | World | 42    |
+
+	  #+BEGIN_SRC python :var DATA=my-source-block
+	    print(DATA)
+	  #+END_SRC
+	#+END_EXAMPLE
+
+** Execution Types
+	Value vs Output
+
+** Call 
+	Calling a source block with different parameters
+
+** Chaining Source Blocks
+	From powershell to python to gnuplot
+
+** Formatting Output
+	drawers, blocks and others
+
+** Full Circle SBE
+	Table Formulas can use source blocks.
