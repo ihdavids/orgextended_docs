@@ -199,3 +199,5 @@
 ** NoWeb
     One final tool makes the literate programming toolset complete. This is some support for the NoWeb macro language. Much like macros in
     C or C++ NoWeb lets you paste either your source code between source blocks OR the results of the execution of the source block.
+
+    [[https://orgmode.org/manual/Noweb-Reference-Syntax.html][NoWeb]]
