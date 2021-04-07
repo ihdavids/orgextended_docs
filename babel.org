@@ -11,6 +11,7 @@
     - The integration with tools like TRAMP in emacs allows developers to dynamically build reports from running processes on remote boxes.
     - Emacs ledger mode and the org mode spreadsheets have empowered some org mode users to build complex budget reports from their financial data.
     - Clocking and some of the project management tools in org mode have allowed contractors to dynamically build timesheets from work notes.
+    - Or... I suppose you could use it for what it was intended for, as a means of facilitating a research paper.
 
     Babel really made orgmode the original jupyt*r notebook.
 
