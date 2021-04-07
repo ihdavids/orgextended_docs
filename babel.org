@@ -133,7 +133,13 @@
       
     #+END_EXAMPLE
 ** Call 
-    Calling a source block with different parameters
+
+    Org Mode treats source blocks like functions in some strange programming language tapestry.
+    The call statements lets you call a source block with a different set of parameters.
+
+    #+BEGIN_SRC org
+      #+CALL: name-to-call(x=5)
+    #+END_SRC
 
 ** Chaining Source Blocks
     From powershell to python to gnuplot
@@ -143,3 +149,9 @@
 
 ** Full Circle SBE
     Table Formulas can use source blocks.
+
+** Tangle and Export
+    Ripping source out of a document
+
+** NoWeb
+    Yet another way managing source.

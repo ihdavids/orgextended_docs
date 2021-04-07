@@ -14,7 +14,6 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Property and variable blocks can act as variable sources.
    - [x] Table output works.
 
-
 * 1.2.3 - Execution Modes
    - [x] List output works
    - [x] drawer format
@@ -41,18 +40,23 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] #+call
    - [x] Table sbe functions
 
-* 1.2. - Inline Blocks
-   - [ ] Inline blocks and execution
-   - [ ] #+header blocks 
+* 1.2.6 - Inline Blocks
+   - [x] Inline blocks and execution
+   - [x] #+header blocks 
 
-* 1.2. - Quality of Life
+* 1.2.7/1.2.8 - Quality of Life
+   - [x] Build some unit tests in a table
+
+* 1.2.9 - Tangle
+   - [x] Support tangling
+   - [x] Cache - support hash value in results
+   - [x] Eval - never and query
+
+* 1.2. - Caching Security and Exports
+   - [ ] Exports - Various export controls / mechanisms
+   
+* 1.2. - Cleanup
    - [ ] Cleanup
-
-* 1.2. - Unit Test Time
-   - [ ] Build some unit tests in a table
-
-* 1.2. - Tangle
-   - [ ] Support tangling
 
 * 1.2. - NoWeb
    - [ ] NoWeb for pasting
