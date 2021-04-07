@@ -33,7 +33,7 @@
     setting to provide. Go to:
 
     #+BEGIN_EXAMPLE
-      Preferences > Package Settings > OrgExtended > User Settings 
+      Preferences > Package Settings > OrgExtended > Settings 
     #+END_EXAMPLE
 
     OrgExtended should have copied over an example settings file into your Packages/User folder for you to edit.
