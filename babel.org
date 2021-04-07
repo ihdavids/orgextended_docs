@@ -135,23 +135,67 @@
 ** Call 
 
     Org Mode treats source blocks like functions in some strange programming language tapestry.
-    The call statements lets you call a source block with a different set of parameters.
+    The call statements lets you call a source block with a different set of parameters. Executing one of these
+    blocks will produce a new set of results below the call, but with the alternate set of parameters.
 
     #+BEGIN_SRC org
       #+CALL: name-to-call(x=5)
     #+END_SRC
 
 ** Chaining Source Blocks
-    From powershell to python to gnuplot
 
-** Formatting Output
-    drawers, blocks and others
+    Variable inputs can not only be tables, lists or plain old data types but they can be other named source blocks.
+    Here is a silly example. In this little example the second source block will have "hi" as its output. It has chained
+    the results into x and used that variable in the print statement.
+
+    #+BEGIN_EXAMPLE
+      ##+NAME: my-function
+      ##+BEGIN_SRC python
+          print("hi")
+      ##+END_SRC
+
+      ##+BEGIN_SRC python :var x=my-function
+          print(x)
+      ##+END_SRC
+    #+END_EXAMPLE
+
+    This can be really powerful for situations where you have one language well suited for a certain kind of data manipulation.
+    For example, you use powershell to pull some data from azure. You then pipe that data into a little python script that manipulates
+    it. Finally you push the output of the python script into a gnuplot source block and graph it to visualize what is going on.
 
 ** Full Circle SBE
-    Table Formulas can use source blocks.
+
+    Things get even more interesting once we start to look at the sbe (Source Block Execute) table function. With this we come full circle. 
+    Not only can tables act as inputs to source blocks but source blocks can act as inputs to tables.
+
+    Remember that example in the chaining section above? We chained hi from the output of one source block into a variable
+    and used it as input. Here we are calling that same block but providing a different input. Here the input is just a string.
+    The result then gets inserted into my table. I can even pass cell references from the table as parameters to those functions.
+
+    #+BEGIN_EXAMPLE
+    | pulled from python |
+    | hello world        |
+    #+TBLFM:@2$1=sbe('my-function',x="hello world")
+    #+END_EXAMPLE
 
 ** Tangle and Export
-    Ripping source out of a document
+
+    Literate programming and reproducible research require several things:
+
+    1. You can easily publish your document.
+    2. You can easily have someone else run your source code with your data.
+    3. All of your code and data can live in one seamless package.
+
+    These things are supported by the 3 core pillars of babel:
+
+    - Execute :: Run a source block inline in my code.
+    - Tangle :: Extract my source code with embeded data into pure source.
+    - Export :: Export my document to another format.
+
+    - Execute we have already been covering at length in this document.
+    - Export is supported by our html exporter, the reveal js exporter for presentations and pandoc for conversion to a ton of other formats.
+    - Finally tangling is supported by our detangler. *Org Tangle File* will attempt to create pure source files that can be executed in their various forms.
 
 ** NoWeb
-    Yet another way managing source.
+    One final tool makes the literate programming toolset complete. This is some support for the NoWeb macro language. Much like macros in
+    C or C++ NoWeb lets you paste either your source code between source blocks OR the results of the execution of the source block.
