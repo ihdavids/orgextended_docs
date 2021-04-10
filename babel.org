@@ -161,8 +161,7 @@
     #+END_EXAMPLE
 
     This can be really powerful for situations where you have one language well suited for a certain kind of data manipulation.
-    For example, you use powershell to pull some data from azure. You then pipe that data into a little python script that manipulates
-    it. Finally you push the output of the python script into a gnuplot source block and graph it to visualize what is going on.
+    For example, you use powershell to pull some data from azure. You then pipe that data into a different language to help manipulate the data in some fashion. For example, python. Finally you push the output of the python script into a gnuplot source block and graph it to visualize what is going on.
 
 ** Full Circle SBE
 
@@ -195,10 +194,20 @@
 
     - Execute we have already been covering at length in this document.
     - Export is supported by our html exporter, the reveal js exporter for presentations and pandoc for conversion to a ton of other formats.
-    - Finally tangling is supported by our detangler. *Org Tangle File* will attempt to create pure source files that can be executed in their various forms.
+    - Finally tangling is supported by our detangler. *Org Tangle File* will attempt to create pure source files from the source found in your org document.
 
 ** NoWeb
-    One final tool makes the literate programming toolset complete. This is some support for the NoWeb macro language. Much like macros in
+    One final tool makes the literate programming toolset complete. This is support for the NoWeb macro language. Org has limited support for noweb macros. Much like macros in
     C or C++ NoWeb lets you paste either your source code between source blocks OR the results of the execution of the source block.
 
     [[https://orgmode.org/manual/Noweb-Reference-Syntax.html][NoWeb]]
+
+    Here is a simple example where we paste the source in the block above
+    into our source block.
+    #+begin_src python :noweb-href print-it
+      print("Hello World")
+    #+end_src
+
+    #+begin_src python :noweb yes
+      <<print-it>>
+    #+end_src
