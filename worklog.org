@@ -1,5 +1,508 @@
 
 
+* 1.2.16
+** Source Blocks
+  - Improved noweb error reporting and handling
+  - Added "builtinSourceBlockHandlers" setting allowing users 
+    to override one of the built in source handlers with their own.
+
+** Cmd Source Block Support
+
+  Batch files do not support arrays so we play some games.
+  VAR_width and VAR_height are defined to help with iteration and
+  array like variables are defined a value at a time VARNAME[r#,c#]
+
+  #+NAME: table-source
+  | a | b | c | d | e |
+  | 1 | 2 | 3 | 4 | 6 |
+
+  #+BEGIN_SRC cmd :var x=5 :var DATA=table-source
+        setLocal enableDelayedExpansion 
+    echo Hello World %x%
+    FOR /L %%r IN (1,1,%DATA_height%) DO (
+        FOR /L %%c IN (1,1,%DATA_width%) DO (
+      echo|set /p dummy=!DATA[%%r,%%c]!
+    )
+    echo .
+    )
+  #+END_SRC
+
+   #+RESULTS:
+   : Hello World 5
+   : 'a''b''c''d''e'.
+   : 12346.
+
+*** Cmd Return Values
+
+  Value execution is kind of funny. Batch files can reach out and touch a parent parameter var.
+  The return value is the first. Set it like so:
+
+  #+BEGIN_SRC cmd :results value
+    echo "hi"
+    set "%~1=5"
+  #+END_SRC
+  
+    #+RESULTS:
+    : 5
+
+
+* 1.2.15
+  :PROPERTIES:
+    :header-args: :noweb-ref includeme 
+  :END:
+
+
+  1.2.15 introduces the start of noweb like macro support to our babel offering.
+
+  The contents of source blocks can be dynamically included 
+  from remote blocks. (Much like a macro the code is pasted into the block)
+
+  References can be done by parameters or by name.
+  The noweb-ref parameter allows you to define the target of a reference much like a name would.
+
+  Since the source of a noweb reference can be named in a parameter this means that property parameters 
+  can apply to a set of source blocks that each has a part of the full snippet.
+  In this case snippets will be pasted in the order they appear in your file.
+
+
+  #+BEGIN_SRC python 
+      print("Hello World")
+  #+END_SRC
+  
+  #+BEGIN_SRC python
+      print("And again!")
+  #+END_SRC
+  
+  #+BEGIN_SRC python
+      print("Even More!")
+  #+END_SRC
+
+  #+BEGIN_SRC python :noweb yes
+      <<includeme>>
+      <<by-name>>
+      <<by-results(x=5)>>
+  #+END_SRC
+  #+RESULTS:
+  : Hello World
+  : And again!
+  : Even More!
+  : By-Name
+  : By-Results: 5
+
+* By-Name Source Block
+
+  In the example above we are referencing the blocks by a name in the parameter field.
+  Here we are referencing the source block by the name of the block.
+
+
+    #+NAME: by-name
+    #+BEGIN_SRC python
+      print("By-Name")
+    #+END_SRC
+
+
+    If you use () in your reference you are requesting the results of the block be pasted rather than the block itself.
+    This can be useful but can easily get complicated if abused. So use with restraint.
+     
+
+    #+NAME: by-results
+    #+BEGIN_SRC python :var x=5 :results raw
+      print("print('By-Results: " + str(x) + "')")
+    #+END_SRC
+
+
+* 1.2.14
+
+** Color Scheme Generator
+  - FIXED: Improved color scheme generator. It did not handle comments so Solarized Dark as throwing.
+    [[https://github.com/ihdavids/orgextended/issues/29][Issue]] 
+
+** Max Header Depth In Syntax Coloring
+  - This has been extended to 10 as per request from antidistinctiminty (Was 7 previously)
+
+  
+
+
+* 1.2.13
+  - Fixed a fairly major regression with capture templates.
+
+  1. Capture snippets now live in Packages\User\orgsnippets folder (for consistency with other extension types)
+  2. A bug was fixed which would fail to find a snippet in some cases.
+  
+
+* 1.2.12
+  - Thankfully the problem with dateutil has been discovered by wbond.
+    we should now be able to install again once dateutil clears.
+    I have removed the dependency on an internal dateutil.
+
+* 1.2.11
+  - Trying to get dateutil to operate well as a package inside OrgExtended. Had some problems with six.py's location.
+  - I believe this will fix it.
+
+* 1.2.10
+  Dateutil seems to have vanished on package control. This was causing some people to have problems installing.
+  I have been forced (for now) to embed dateutil into orgextended so we can continue chugging along.
+
+  My hope is that in doing this it will fix the ST3 issues we have been seeing.
+
+* 1.2.9
+
+** Babel Cache
+   Caching will try to avoid executing a block if the source and or parameters have not changed.
+   Caching uses a Sha1 hash of the source and parameter mix to determine if it should re-run the
+   block.
+
+   This mode is dangerous if the operation has any side effects.
+
+   It does  however skip execution when the operation is already present.
+   It will keep a hash of the source and params and will only execute
+   if the source does not change.
+
+  #+BEGIN_SRC python :cache yes :var x=5 :tangle yes
+    print("Hello world") 
+  #+END_SRC
+
+  This feature is not yet well tested with source block chaining.
+
+   #+RESULTS[5ce4498b4cf15deb48101207ad5673485754fd11]:
+   : Hello world
+
+** Never Eval
+  A security feature of org is that you can specify that a block should never execute.
+  This is now mostly working.
+
+  #+BEGIN_SRC python :eval never
+    print("hi")   
+  #+END_SRC
+
+** Query Eval
+
+  Query evaluation is mostly working now although the title of the query prompt is not great.
+
+  #+BEGIN_SRC python :eval query :tangle yes
+    print("Hello World")
+  #+END_SRC
+
+   #+RESULTS:
+   : Hello World
+
+** Tangle
+   This release marks the begining of tangle work. Marking a source block as tangleable
+   allows someone to export just the source code to a "detangled" file containing the source code and data
+   from the page without the rest of the document. 
+   The resulting file will have the name of the the org file with the appropriate file extension
+   for the source code.
+
+   We get a new command with this release:
+
+   - Org Tangle File
+
+   #+BEGIN_SRC powershell :var y=5 :tangle yes
+    Write-Host("Hello World")
+   #+END_SRC
+
+* 1.2.8
+  - 1.2.7 was missing a source file. This fixes that.
+
+* 1.2.7
+  Core Idea: Quality of Life
+
+  This release is about stability, testing and validating the core babel feature set before I move on to noweb and tangle.
+
+** Babel Unit Tests
+  - Having most of the core babel features in place we have started to work towards
+    validating the core babel feature set and putting a rough stamp of non preview on
+    the babel feature set.
+
+  - Added "Org Show Table Tests" and "Org Show Source Block Tests" which will create a file with the unit tests
+    for these features as a means of documentation and exploration for new users.
+
+  - FIXED: Issues with multiple :var statements on the fence line of a babel block.
+  - FIXED: Exception with initial inserts with drawer formatter. 
+
+** SBE
+
+  - FIXED: The Source Block Execute method had a bug that was preventing propper execution due to some
+    of the features introduced in 1.2.6
+  - FIXED: cell being passed to an sbe function would sometimes not evaluate properly.
+
+** Table Execution
+  - New command: "Org Execute Formula" This will only execute the formula targetting the current cell vs the entire table.
+    This can help when building a table.
+
+** Table Highlights
+  - Some expressions using SBE can get fairly expensive to compute. When highlighting cells the system executes
+    formulas in the background to determine which cells the formula touches. To avoid paying that cost when moving
+    around you can turn this off for a node in the heirarchy as follows:
+
+    #+BEGIN_EXAMPLE
+      :PROPERTIES:
+        :NoTableHighlight: True
+      :END:
+    #+END_EXAMPLE
+
+    I had to do this for the unit tests since our unit tests were generating diagrams as a result of the sbe calls
+    Although an unrealistic real world case, this was slowing down the highlight to be somewhat unusable so merited
+    the feature.
+
+** Day Page
+  - olegBc asked for a day page system. The project still has a little definition before we know where we need to take it.
+    That said, I added a text command to create a day page as a first little step in that direction.
+
+
+* 1.2.6
+  Core Idea: Inline Babel Blocks
+             #+header: comments
+
+  With this release we are focusing on some fringe pieces
+  of the core babel feature set that we need to be complete.
+
+  Inline babel blocks allow you to call a babel function within
+  some other text providing even more dynamic living breathing documents.
+
+  Header blocks extend the core babel features providing more real estate to add
+  parameters to a source block.
+
+** Links
+  - Bugfix thanks to Anti-Distinctlyminty - on windows uses os.startfile() to launch a file link
+    providing better support for out of sublime file links. Also some improved error notation
+    in the contols when a link cannot resolve.
+** Agenda Hover
+  - Sometimes this would assert when the agenda was not active.
+
+** Settings orgDirs
+  - If someone sets their orgDirs to a string vs a list we would treat each character as an orgDir
+    which was just plain wrong. I have augmented the db to detect that and just "do the right thing"
+
+** Input
+  - Additional guards against asserts in popups for the input box:
+    [[https://github.com/ihdavids/orgextended/issues/28][Errors in Sublime Console]]
+
+    Thanks to OlegBc for finding this one.
+
+** Inline Blocks
+
+  Basic inline source block syntax highlighting now works. 
+  Org has a somewhat odd inline syntax:
+
+  src_python[:var x=5]{print("hello" + str(x))} {{{results(=hello5=)}}}       
+
+  Simple execution seems to be working:
+
+  src_powershell{Write-Host "Hello World"} {{{results(=Hello World=)}}} 
+
+** PList Enhancements
+  - Plists now have propper exclusion properties so :results output value will only have the last value
+    since the options are considered mutually exclusive.
+  - The unit tests have been enhanced to cover exclusivity.
+  - Source blocks now have a global setting allowing you to control their default behaviour globally.
+    this is inline with what you can do in emacs with: org-babel-default-header-args
+
+  
+    #+BEGIN_EXAMPLE
+        "orgBabelDefaultHeaderArgs": ":var x=5"
+    #+END_EXAMPLE 
+
+** HEADER comments
+
+  Added support for the more generic HEADER comment blocks as seen below.
+
+  #+HEADER: :var y=10
+  #+BEGIN_SRC python :var x=5
+    print(str(y) + " x " + str(x))
+  #+END_SRC
+
+   #+RESULTS:
+   : 10 x 5
+
+** Buffer Swap Respects Startup Comment
+
+  I find that as I move around the buffer I tend to unfold a lot of "things"
+  When I have a buffer set to "content" mode I like it to clean up the open folds when it can.
+  
+  This new setting will allow sublime to aggressively cleanup the folds to just your active subtree
+  of the file if you turn this on.
+
+  What I really want is org-narrow-to-subtree which is the ability to restrict a view to a narrowing of the buffer
+  but in the absence of that capability this helps keep me focused on the
+  things that matter in my file.
+
+  - This is controlled by a setting:
+
+  #+BEGIN_EXAMPLE
+    "onFocusRespectStartupFolds": true,
+  #+END_EXAMPLE
+
+
+
+
+* 1.2.5
+  Core Idea: Better Chaining Support
+
+** Agenda - WeekView
+  - Bugfix: The weekview could show things last month but in the current week erroneously.
+
+
+** PlantUML
+  - Fixed a regression in the parameter handling for plantuml.
+
+  #+BEGIN_SRC plantuml :file out.png
+    a -> b
+    b -> c
+  #+END_SRC
+
+   #+RESULTS:
+   [[file:out.png]]
+
+** Handling Drawers in Chained Sources
+
+  #+NAME: tbl-source
+  | a | b | c | d | e |
+  | 1 | 2 | 3 | 4 | 5 |
+
+  This source block uses the output from the table above
+
+  #+NAME: python-src
+  #+BEGIN_SRC python :results drawer table :var DATA=tbl-source
+   print(DATA)
+  #+END_SRC
+
+  #+RESULTS:
+   :results:
+   | a | b | c | d | e |
+   | 1 | 2 | 3 | 4 | 5 |
+   :end:
+
+   This source block uses the output from python-src as an input
+
+   #+BEGIN_SRC python :results table :var DATA=python-src
+    print(DATA) 
+   #+END_SRC
+
+   #+RESULTS:
+   | a | b | c | d | e |
+   | 1 | 2 | 3 | 4 | 5 |
+
+** Handling Lists in Chained Sources
+
+  Here we have a list that acts as a source for some python that acts as a source for more python.
+
+  #+NAME: lst-source
+  1. a
+  2. b
+  3. c
+
+  #+NAME: python-lstsrc
+  #+BEGIN_SRC python :results drawer list :var DATA=lst-source
+    print(DATA)
+  #+END_SRC
+
+   #+RESULTS:
+   :results:
+   - a
+   - b
+   - c
+   :end:
+
+   #+BEGIN_SRC python :results list :var DATA=python-lstsrc
+    print(DATA) 
+   #+END_SRC
+
+   #+RESULTS:
+   - a
+   - b
+   - c
+
+** Numeric and Text Values
+
+  Here the powershell scripts results are piped into the python script.
+
+   #+NAME: ps-src
+   #+BEGIN_SRC powershell :results value
+  return 5     
+   #+END_SRC
+   #+RESULTS:
+   : 5
+
+   #+BEGIN_SRC python :results drawer :var DATA=ps-src
+     print(DATA)
+   #+END_SRC
+
+   #+RESULTS:
+   :results:
+   5
+   :end:
+
+** Silent Exec 
+
+   #+NAME: ps-src2
+   #+BEGIN_SRC powershell :results output list silent :var DATA=lst-source
+    $DATA
+   #+END_SRC
+
+
+   #+BEGIN_SRC python :results drawer list :var DATA=ps-src2
+     print(DATA)
+   #+END_SRC
+
+   #+RESULTS:
+   :results:
+   - a
+   - b
+   - c
+   :end:
+
+
+  #+NAME: python-src2
+  #+BEGIN_SRC python :results table silent :var DATA=tbl-source
+   print(DATA)
+  #+END_SRC
+
+
+   #+BEGIN_SRC python :results table :var DATA=python-src2
+    print(DATA) 
+   #+END_SRC
+
+   #+RESULTS:
+   | a | b | c | d | e |
+   | 1 | 2 | 3 | 4 | 5 |
+   
+** Call
+  Begining support for the babel call syntax.
+  Here we define a function that can be called elsewhere in the document
+  with different parameters.
+
+ 
+   #+NAME: varfunction
+   #+BEGIN_SRC python :var DATA=6
+     print(DATA)
+   #+END_SRC 
+
+   #+RESULTS:
+   : 6
+
+   #+call: varfunction(DATA=7)
+
+   #+RESULTS:
+   : 7
+
+
+** First Draft Source Block Execute in Tables
+
+  This is a slight breakaway from orgmode as we do not support lisp and in orgmode this would be done with (org-sbe 'name' (key x) (key y))
+  This is not a syntax I can easily support properly without implementing a full lisp parser inside sublime and... I don't like that idea.
+  So, I am using the more python friendly function call as seen below. Note this is running the varfunction above, taking the results and placing
+  them in the table below in cell 2,1.
+
+  | a     | b |
+  | 12345 | 6 |
+  #+TBLFM:@2$1=sbe('varfunction',DATA=12345)::@2$2=sbe('varfunction')
+   
+
+
+
+
+
 * 1.2.4
 
   Core Idea: Value vs Output execution
