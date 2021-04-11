@@ -217,15 +217,15 @@
     Just like you can paste a blocks contents into another block you can paste the results:
 
     #+BEGIN_SRC org
-    #+BEGIN_SRC python :var x=10 :noweb-ref evalsource :results raw
+    ##+BEGIN_SRC python :var x=10 :noweb-ref evalsource :results raw
       print("print('hi "+str(x)+"')")
-    #+END_SRC
+    ##+END_SRC
     #+END_SRC
 
     #+BEGIN_SRC org
-    #+BEGIN_SRC python :noweb yes
+    ##+BEGIN_SRC python :noweb yes
       <<evalsource(x=20)>>
-    #+END_SRC
-    #+RESULTS:
+    ##+END_SRC
+    ##+RESULTS:
     : hi 20
     #+END_SRC
