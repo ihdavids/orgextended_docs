@@ -51,6 +51,16 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Support tangling
    - [x] Cache - support hash value in results
    - [x] Eval - never and query
+--- Fixed Color Scheme Export, and ST3 dependencies problem in here.
+* 1.2.15 - NoWeb
+   - [x] NoWeb for pasting
+   - [x] NoWeb for parameters
+   - [x] NoWeb function calls
+
+* 1.2.16 - Batch File
+   - [x] More testing of noweb
+   - [x] Dos CMD support
+   - [x] Params / Vars
 
 * 1.2. - Caching Security and Exports
    - [ ] Exports - Various export controls / mechanisms
@@ -58,18 +68,9 @@ We may not fully get there... But I want to be as close to full babel support as
 * 1.2. - Cleanup
    - [ ] Cleanup
 
-* 1.2. - NoWeb
-   - [ ] NoWeb for pasting
-   - [ ] NoWeb for parameters
-   - [ ] NoWeb function calls
-
 * 1.2. - Bash
    - [ ] Bash block
    - [ ] Bash module and supports table sources?
-
-* 1.2. - Cmd
-   - [ ] Dos CMD support
-   - [ ] Params / Vars
 
 * 1.2. - C#
    - [ ] .NET Core Support
