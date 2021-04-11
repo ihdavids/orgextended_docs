@@ -71,6 +71,7 @@
   - [Scheduling](https://github.com/ihdavids/orgextended_docs/blob/master/dates.org) - Dates and times
   - [Time Tracking](https://github.com/ihdavids/orgextended_docs/blob/master/clocking.org) - Clocking and clock reports
   - [Dynamic Blocks](https://github.com/ihdavids/orgextended_docs/blob/master/dynamicblocks.org) - Run arbitrary code
+  - [Living Documents](https://github.com/ihdavids/orgextended_docs/blob/master/babel.org) - Babel - Literate Programming, Reproducible Research and Living Documents
   - [Tables](https://github.com/ihdavids/orgextended_docs/blob/master/tables.org) - Spreadsheets in your documents.
   - [Diagrams](https://github.com/ihdavids/orgextended_docs/blob/master/diagrams.org) - Adding diagrams to your documents.
   - [Agenda](https://github.com/ihdavids/orgextended_docs/blob/master/agenda.org) - Keeping track of your day.
