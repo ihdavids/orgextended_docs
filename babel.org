@@ -204,13 +204,19 @@
 
     Here is a simple example where we paste the source in the block above
     into our source block.
-    #+begin_src python :noweb-href print-it
+    
+    #+BEGIN_SRC org
+    ##+begin_src python :noweb-href print-it
       print("Hello World")
-    #+end_src
+    ##+end_src
+    #+END_SRC
 
-    #+begin_src python :noweb yes
+
+    #+BEGIN_SRC org
+    ##+begin_src python :noweb yes
       <<print-it>>
-    #+end_src
+    ##+end_src
+    #+END_SRC
 
 *** Pasting Results
 
