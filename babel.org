@@ -58,6 +58,16 @@
 
     Language specific variables can be defined as well using the language suffix
 
+    Variables are only one type of parameter than can be specified as an argument.
+    Options such as results, noweb-href, eval, cache etc can all be specified in the manner shown above.
+    In addition there is a global option that allows you to specify options for all blocks in any org file unless overriden.
+
+    The defaults can be found in the core settings file:
+
+    #+BEGIN_EXAMPLE
+      "orgBabelDefaultHeaderArgs": ":results replace :exports code :cache no :noweb no",
+    #+END_EXAMPLE 
+
 ** Inputs
     While variables are nice, babel becomes even more useful when connected to data tables and lists in your documents.
     Tables and lists can both have a name. This name allows them to be referenced as the source of a variable.
@@ -142,6 +152,15 @@
     #+BEGIN_SRC org
       #+CALL: name-to-call(x=5)
     #+END_SRC
+** Inline Source Blocks
+
+   Sometimes you would like to specify a quick little source snippet inline in your text. This can be done with the inline source block.
+   Inline blocks should get parsed out by an exporter, support parameters and can be used for dynamic elements such as page numbers and other
+   dynamics inline content.
+
+   #+BEGIN_EXAMPLE
+      src_python[:var x=5]{print("hello" + str(x))} {{{results(=hello5=)}}}       
+   #+END_EXAMPLE
 
 ** Chaining Source Blocks
 
@@ -195,6 +214,27 @@
     - Execute we have already been covering at length in this document.
     - Export is supported by our html exporter, the reveal js exporter for presentations and pandoc for conversion to a ton of other formats.
     - Finally tangling is supported by our detangler. *Org Tangle File* will attempt to create pure source files from the source found in your org document.
+
+** Security
+
+  Babel has support for some security features.
+  The eval parameter can be used to stop a block from being executed:
+
+  Either of the following will stop a block from ever being executed
+
+  #+BEGIN_EXAMPLE
+    :eval never
+    :eval no
+  #+END_EXAMPLE
+
+
+  In addition you can use the query option to cause the system to prompt with a popup on whether or not you would like to execute the source block:
+
+  #+BEGIN_EXAMPLE
+    :eval query
+  #+END_EXAMPLE
+
+  NOTE: query or never can be used as a global option in your settings file to avoid accidental execution.
 
 ** NoWeb
     One final tool makes the literate programming toolset complete. This is support for the NoWeb macro language. Org has limited support for noweb macros. Much like macros in
