@@ -41,6 +41,24 @@
      #+RESULTS:
      : 5
     #+END_EXAMPLE
+** Supported Modules
+
+   The following are the currently supported executable source blocks:
+
+*** Diagrams
+    - plantuml
+    - graphviz
+    - ditaa
+    - gnuplot
+
+*** Source Code
+    - python
+    - javascript
+
+*** Shell Scripts
+    - powershell
+    - cmd
+    - sh
 
 ** Variables
     Variables can come from a few different sources other than the source block fence itself.
