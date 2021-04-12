@@ -53,12 +53,12 @@
 
 *** Source Code
     - python
-    - javascript
+    - javascript / js
 
 *** Shell Scripts
     - powershell
-    - cmd
-    - sh
+    - cmd / bat
+    - sh / bash
 
 ** Variables
     Variables can come from a few different sources other than the source block fence itself.
