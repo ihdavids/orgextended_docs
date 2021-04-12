@@ -27,6 +27,8 @@
       ##+END_SRC
     #+END_EXAMPLE
 
+    [[file:images/babel_hello_world.gif]] 
+    
     There are a couple of things of note here:
 
     1. The source block states what language it belongs to, in this case python.
@@ -143,6 +145,9 @@
     | 6 | 7 | 8 | 9 | 0 |
       
     #+END_EXAMPLE
+
+    [[file:images/babel_simple_eval.gif]] 
+
 ** Call 
 
     Org Mode treats source blocks like functions in some strange programming language tapestry.
