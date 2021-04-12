@@ -182,6 +182,18 @@
     This can be really powerful for situations where you have one language well suited for a certain kind of data manipulation.
     For example, you use powershell to pull some data from azure. You then pipe that data into a different language to help manipulate the data in some fashion. For example, python. Finally you push the output of the python script into a gnuplot source block and graph it to visualize what is going on.
 
+*** Cache
+
+    Sometimes it is handy to avoid recalculating something if the inputs have not changed. Org has a mechanism called cache. Be careful as this
+    can have odd side effects if your code has side effects. 
+
+    #+BEGIN_EXAMPLE
+      :cache yes
+    #+END_EXAMPLE
+
+    When you turn on caching the results block will get a SHA1 hash. This is a hash of the source code and parameters being passed to generate that output.
+    If the hash matches the block will NOT get re-evaluated when you try to execute it later.
+
 ** Full Circle SBE
 
     Things get even more interesting once we start to look at the sbe (Source Block Execute) table function. With this we come full circle. 
