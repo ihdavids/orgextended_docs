@@ -62,15 +62,18 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Dos CMD support
    - [x] Params / Vars
 
+* 1.2. - Bash
+   - [ ] Bash block
+   - [ ] Bash module and supports table sources?
+
 * 1.2. - Caching Security and Exports
    - [ ] Exports - Various export controls / mechanisms
    
 * 1.2. - Cleanup
    - [ ] Cleanup
 
-* 1.2. - Bash
-   - [ ] Bash block
-   - [ ] Bash module and supports table sources?
+* 1.2. - Javascript Support
+   - [ ] The community seems to use node.js a lot perhaps this one is a good one to support.
 
 * 1.2. - C#
    - [ ] .NET Core Support
