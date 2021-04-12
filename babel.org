@@ -303,3 +303,30 @@
     ##+RESULTS:
     : hi 20
     #+END_SRC
+
+    This is kind of a crazy example. Here we have a noweb macro calling another source block that when run generates some code that
+    is pasted into the first block and executed to generate "hi 20" as a result.
+
+    Remember the power of this system is that you can mix and match. Choose the right tool for the job. 
+
+** Extending Source Block Handling
+
+   You can add your own source block handlers. In fact, you can replace the built in ones. If you do not like that the built in python handler
+   uses the version of python built in to sublime you can change the:
+
+   #+BEGIN_EXAMPLE
+     "builtinSourceBlockHandlers": [LIST]
+   #+END_EXAMPLE
+
+   Remove python from that list and then add your own python.py file in:
+
+   #+BEGIN_EXAMPLE
+     Packages/User/orgsrc/python.py
+   #+END_EXAMPLE
+
+   That will let you write your own handler. Any language that orgmode knows how to syntax highlight can have a source handler written for it.
+   I am working to eventually support as many languages as I can. That said, there will always be cases where you need a language I cannot yet support.
+
+   Right now the easiest way to do this is to take a look at the powershell.py or cmd.py handlers in the orgsrc folder inside this package. You will see
+   examples of how a handler can be written. You will need to write a couple of methods and I encourage you to share your handlers with me so I can include
+   them in the main package or reference them from this documentation.
