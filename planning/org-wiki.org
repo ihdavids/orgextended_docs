@@ -2,3 +2,11 @@
 	- Support Org Wiki like features in our system
 
      [[https://github.com/caiorss/org-wiki][Org-Wiki Repo]]
+
+* TODO Org Roam Like Capabilities
+** TODO Insert link by auto-complete
+** TODO Insert link by quick find
+** TODO Backlinks parsing
+** TODO Backlinks visualization
+
+* TODO Roam Server. 
