@@ -62,18 +62,41 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Dos CMD support
    - [x] Params / Vars
 
-* 1.2. - Bash
-   - [ ] Bash block
-   - [ ] Bash module and supports table sources?
+* 1.2.18 - Bash and JavaScript
+   - [x] Bash block
+   - [x] Bash module and supports table sources?
+   - [x] The community seems to use node.js a lot perhaps this one is a good one to support.
 
-* 1.2. - Caching Security and Exports
-   - [ ] Exports - Various export controls / mechanisms
-   
-* 1.2. - Cleanup
-   - [ ] Cleanup
+* 1.2.19 - Caching Security and Exports
+   - [x] Exports - Various export controls / mechanisms
 
-* 1.2. - Javascript Support
-   - [ ] The community seems to use node.js a lot perhaps this one is a good one to support.
+* 1.2.20 - Cleanup
+   - [x] Cleanup
+
+* 1.2.21 - Latex
+   - [x] Kind of got off track and am adding latex exporter support
+
+* 1.2.22 - More Latex
+   - [x] Latex Basics are done
+
+* 1.2.23 - Full Latex?
+   - [ ] Images are supported
+   - [ ] Better link support (use \url in the right places)
+   - [ ] Table of contents can be included
+   - [ ] Export DND sample (and it works)
+   - [ ] Results are handled properly during export
+   - [ ] Strip todo, tags, property and other blocks
+   - [ ] Options audit
+
+* 1.2. - Html Exporter Upgrade
+   - Convert the exporter to use the new framework
+   - Improve the documentation
+
+* 1.2. - Perl
+   - [ ] Support perl in honour of graham
+
+* 1.2. - Typescript
+   - [ ] Support typescript in honour website work
 
 * 1.2. - C#
    - [ ] .NET Core Support
