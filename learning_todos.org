@@ -366,7 +366,7 @@
    [[file:images/learning_todo_archiving.gif]] 
 
    Org will place the heading in an archive file that you have specified. This is controlled
-   globally with the arhive entry.
+   globally with the archive entry.
 
    #+BEGIN_EXAMPLE
     "archive": "%s_archive::* Archive",
