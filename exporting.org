@@ -18,17 +18,22 @@
 
 ** HTML Export
 
-   OrgExtended an HTML exporter built in. I was struggling to get pandoc to behave the way I wanted it to, so I wrote my own.
+   OrgExtended has an HTML and LaTeX exporter built in. I was struggling to get pandoc to behave the way I wanted it to, so I wrote my own.
+
+   For the html exporter, the following key or an #+HTML_STYLE: comment will have the system looking for a funky.css funky_heading.html, funk_header.html
+   and funky_footer.html in the Packages\User\htmlstyles folder. These will be embeded in the export and control the look and feel of your document.
 
    #+BEGIN_SRC js
    "HtmlStyle": "funky"
    #+END_SRC
 
-   That said, there IS some support for pandoc although the existing sublime plugin for pandoc may have more functionality.
+   For the LaTeX exporter you will use a #+SETUPFILE much like is normally expected with emacs latex export.
+
 
 ** Current Exporters
 
-  1. [[file:pandoc.org][Pandoc]]   - This is a well known tool. You will need to install it.
+  1. [[file:pandoc.org][Pandoc]]   - This is a well known tool. You will need to install it. Actually you should probably just use the REAL pandoc plugin
   2. [[file:htmlexporter.org][Html]]     - Simple built in HTML exporter. 
+  3. [[file:latexexporter.org][LaTeX]] - Simple built in LaTeX exporter.
   3. [[file:revealjs.org][RevealJs]] - Presentations - An imitation of the emacs revealjs exporter.
    
