@@ -8,5 +8,6 @@
 ** TODO Insert link by quick find
 ** TODO Backlinks parsing
 ** TODO Backlinks visualization
+** TODO Roam key - investigate and support!
 
 * TODO Roam Server. 

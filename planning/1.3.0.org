@@ -80,13 +80,14 @@ We may not fully get there... But I want to be as close to full babel support as
    - [x] Latex Basics are done
 
 * 1.2.23 - Full Latex?
-   - [ ] Images are supported
-   - [ ] Better link support (use \url in the right places)
-   - [ ] Table of contents can be included
+   - [x] Images are supported
+   - [x] Better link support (use \url in the right places)
+   - [x] Results are handled properly during export
+   - [x] Local refs work for links
+   - [x] Table of contents can be included
    - [ ] Export DND sample (and it works)
-   - [ ] Results are handled properly during export
-   - [ ] Strip todo, tags, property and other blocks
-   - [ ] Options audit
+   - [x] Strip todo, tags, property and other blocks
+   - [x] Options audit
 
 * 1.2. - Html Exporter Upgrade
    - Convert the exporter to use the new framework
