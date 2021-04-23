@@ -25,6 +25,10 @@
 	#+END_EXAMPLE
 
 	With this you should now be able to generate pdf files from your org files.
+	
+	#+BEGIN_EXAMPLE
+	 Org Export File As Pdf
+	#+END_EXAMPLE	
 
 ** Basic Export Options
 	TODO
