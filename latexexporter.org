@@ -1,2 +1,31 @@
 * LaTeX
-TODO WRITE THIS
+
+	Far be it for me to try to define [[https://www.latex-project.org/][LaTeX]], "a document preparation system". There are 2 very common primary targets that LaTeX facilitates:
+
+	- Postscript
+	- PDF
+
+** Installation
+	Be warned, installing LaTeX takes some time and it is a fairly big install.
+
+	- On Windows I would recommend [[http://www.tug.org/texlive/acquire-netinstall.html][Tex Live]]. I have found it to work reasonably well for my purposes.
+	- In Linux and Mac I recommend you check out the LaTeX groups recommendations: [[https://www.latex-project.org/get/][Getting LaTeX]] 
+
+** Setup
+	The latex exporter itself does not need latex installed. You can run:
+	#+BEGIN_EXAMPLE
+	 Org Export File As Latex	  
+	#+END_EXAMPLE	
+
+	And the exporter will produce a .tex file next to your org file.
+	That said, if you would like to produce a pdf directly from sublime you will need to setup a latex path:
+
+	#+BEGIN_EXAMPLE
+	  "latex2Pdf": "C:\\texlive\\2021\\bin\\win32\\pdflatex.exe",
+	#+END_EXAMPLE
+
+	With this you should now be able to generate pdf files from your org files.
+
+** Basic Export Options
+	TODO
+
