@@ -1,0 +1,3 @@
+* Misc
+** TODO Archive Handles SubDirectories
+   Right now the archive tag does not handle subdirectries properly. This is annoying! Fix it
