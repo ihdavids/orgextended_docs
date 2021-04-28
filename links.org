@@ -144,7 +144,21 @@
     <l
   #+END_EXAMPLE
 
-* Backlinks
+* Finding Things
+
+** Searching Links
+
+  So you know you have a link to someplace somewhere and you don't quite remember where the link was.
+  OrgExtended can help with quick search through all your links across all files.
+
+  #+BEGIN_EXAMPLE
+  "Org Search Links" 
+  #+END_EXAMPLE
+
+  [[file:images/search_links.gif]]
+
+
+** Backlinks
 
   Org Roam is an amazing package that works in conjunction with org mode.
   We do not have nearly the same functionality of that package, but we are slowly working in that
@@ -152,6 +166,7 @@
   reference the current view rather than the links the current view references. 
 
   [[file:images/backlinks.gif]]
+
 
 * Extending Link Processing
   TODO: Describe how to do this.
