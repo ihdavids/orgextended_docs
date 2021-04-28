@@ -113,7 +113,7 @@
   between your org files. This is a powerful and quick way 
   to create links between files.
 
-  [[file:images/link_to_file.org]] 
+  [[file:images/link_to_file.gif]] 
 
   The system will, by default, place the #+TITLE: comment as the desciption field of the
   link if present.
