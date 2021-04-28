@@ -103,5 +103,55 @@
 
   [[file:./links.org::#a-custom-id][Custom Id Example]]
 
+
+* How OrgExtended Helps With Links
+  OrgExtended has a couple of ways that it tries to help 
+  with authoring links. 
+
+** The Org Link To File Command
+  The "Org Link To File" command lets you quickly create links
+  between your org files. This is a powerful and quick way 
+  to create links between files.
+
+  [[file:images/link_to_file.org]] 
+
+  The system will, by default, place the #+TITLE: comment as the desciption field of the
+  link if present.
+
+** Autocomplete
+
+  The autocompletion system knows about your orgDirs and org files.
+  When you start typing a link the autocompletion system will kick in and
+  will try to suggest files as you type the name of the file.
+
+  [[file:images/autocomplete.gif]] 
+
+
+** Create Link Here On Clipboard
+
+   Selecting a header and using the "Org Create Link" command
+   will create a link on your clipboard that you can paste somewhere else.
+
+   It will take into account custom IDs if present.
+
+  [[file:images/clipboard_link.gif]] 
+
+** Snippet
+
+  OrgExtended has a snippet for creating links:
+
+  #+BEGIN_EXAMPLE
+    <l
+  #+END_EXAMPLE
+
+* Backlinks
+
+  Org Roam is an amazing package that works in conjunction with org mode.
+  We do not have nearly the same functionality of that package, but we are slowly working in that
+  direction. Org Roam supports the concept of back links. This is a display of the links that
+  reference the current view rather than the links the current view references. 
+
+  [[file:images/backlinks.gif]]
+
 * Extending Link Processing
   TODO: Describe how to do this.

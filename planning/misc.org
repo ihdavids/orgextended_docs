@@ -1,3 +1,5 @@
 * Misc
 ** TODO Archive Handles SubDirectories
    Right now the archive tag does not handle subdirectries properly. This is annoying! Fix it
+** TODO Checkbox style TODO updates (recursive)
+   - I mark this todo as done it checks all siblings of parent and marks parent as done and recurses up.
