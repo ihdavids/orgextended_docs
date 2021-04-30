@@ -1,10 +1,54 @@
-* TODO Properties
-  Discuss properties in org mode
+* Properties
 
-** Property Drawers
-   Our orgmode has a powerful insertion tool.
+  One of the many things that sets org mode files apart from markdown are properties, comments and drawers. 
+  These are meta data that will not get exported with an orgmode file, but control the appearance and behaviour of
+  many subsystems. 
+
+** Settings
+
+   Org Mode has a ton of in buffer settings, these work hand in hand with properties to control the behaviour of the document. 
+
+   In addition settings can provide special parameters for export:
+   Some examples of these include:
+
+   #+BEGIN_EXAMPLE
+     EXPORT_LATEX
+     ATTR_HTML
+     ATTR_LATEX
+   #+END_EXAMPLE
+
+   Part of the challenge of learning to use orgmode effectively is learning the common settings and export settings that are available to you.
+   Where possible we support the common Org Mode settings, although our coverage is limited to what we are able to support and the capabilities of sublime.
+
+   - [[https://orgmode.org/manual/In_002dbuffer-Settings.html][In Buffer Settings]] 
+
+** Drawers
+  
+   Drawers are a first class generic feature of orgmode. They are a collapsible mechanism that are not exported with an orgmode file.
+   Drawers have a ton of uses. They can be used for presenters notes, I have seen writers use them for their chapter notes when writing a book, they are useful for meta data.
+   Tracking and estimating details, logs and many other purposes.
+
+   #+BEGIN_EXAMPLE
+     :DRAWER:   //< Drawers start with something that looks like a tag
+      // ANYTHING CAN GO IN HERE
+     :END:
+   #+END_EXAMPLE
+
+   Drawers will collapse by default and should always appear right after a heading.
+
+   - [[https://orgmode.org/manual/Drawers.html][Drawers]]
+
+*** Properties
+    Org Mode has 2 special drawers. The first of which is the property drawer. Property drawers are just a drawer with a special name.
+    Properties live in a property drawer and are key value pairs. These values can be use in table formulas to hold IDs that can reference a heading uniquely,
+    column view, estimates, clocking, and in many other applications.
+
+   Org Extended has a powerful insertion tool:
    
    [[file:images/insert_property.gif]]
 
-** Properties
+
+   - [[https://orgmode.org/manual/Property-Syntax.html][Properties]] 
+
 ** Clock info
+  TODO - Fill this in.
