@@ -4,6 +4,23 @@
   This is a simple study in managing your daily ins and outs using OrgExtended.
   Org is a swiss army knife. It is, what you make of it.
 
+  While this tutorial IS looking at some of the organization tooling in org mode AND
+  many people have used org mode to implement a full GTD or other organization system.
+  This quick introduction is not going to go anywhere near that deep. Instead we will try to introduce you to some of the
+  basics of orgmode and encourage you to dig into some of the references on the primary
+  page for more ways to use orgmode to help organize your life.
+
+  As a side note, it is because orgmode has been used to implement systems like GTD
+  that has been part of the popularity of using in emacs email clients like mu4e for email, google calendar and jira sync systems etc.
+  Many of these types of tools can help to create the kind of complete, fully integrated
+  and very powerful systems for organizing your life.
+
+  That said, org mode is much more than just a means or organizing your life in plain text.
+  It has its roots in reproducible research, has been used as the basis for authoring presentations, wikis, websites. It is a spreadsheet, a means of creating living documents,
+  a writers tool and much much more.
+
+  Okay, lets get started.
+
   [[file:images/learning_todo_headings.gif]]
 
   Keybindings for these operations can be found in the keybindings file.
@@ -415,6 +432,3 @@
 
 * Done
   Now you know the basics! I hope you found this useful.
-
-
-  

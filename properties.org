@@ -43,12 +43,28 @@
     Properties live in a property drawer and are key value pairs. These values can be use in table formulas to hold IDs that can reference a heading uniquely,
     column view, estimates, clocking, and in many other applications.
 
+    A classic org mode example of using properties is in an address book or cd collection.
+    Properties can act like queryable fields for each record. The org manual link below
+    shows a quick example from a cd collection.
+
    Org Extended has a powerful insertion tool:
    
    [[file:images/insert_property.gif]]
 
+    Org Mode itself has other tools. If you find you have a need for these please
+    request them or setup a PR.
 
-   - [[https://orgmode.org/manual/Property-Syntax.html][Properties]] 
+   - [[https://orgmode.org/manual/Property-Syntax.html][Properties]]
+*** LogBook
+The second property drawer that is well know to org mode enthusiasts is that of the
+LOGBOOK. The logbook is used to contain clocking information and TODO state changes,
+especially for recurring tasks. When a recurring task is set to done through the state
+change commands, the timestamp is reset to the next occurence and the task stays open
+in the TODO state. The completion of the task is logged to the logbook.
+
+The same sort of behaviour is true for clocking. Clock data is written to the logbook.
+
+- [[https://orgmode.org/manual/Repeated-tasks.html#Repeated-tasks][Repeated Tasks]]
 
 ** Clock info
   TODO - Fill this in.
