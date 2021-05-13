@@ -1,24 +1,50 @@
 * Agenda
-  The Agenda in org allows you to use scheduling markers on a task to help visualize
-  your goals for the day. The agenda is really a collection of aggregate filtered views
+  One of the more popular self organization systems is the GTD system. It and many other systems like it
+  have found a home in org mode. In GTD there are some essential tools:
+
+  - Various lists
+  - Your Agenda.
+
+  The Agenda in org allows you to use meta data on a task to help visualize
+  your goals for the day, the week or various projects you may have on the go. 
+
+  The agenda is really a collection of aggregate filtered views
   on a subset of your todo's.
 
   [[file:images/agenda.gif]] 
 
-  Like most things in orgextended the agenda is a work in progress, and currently quite a mess
-  That said, there are some very useful pieces already present in the system.  
+  Like most things in orgextended the agenda is continually a work in progress.
+  The system is already quite powerful and I hope it will continue to be expanded and extended to support
+  the full gamut of org agenda functionality with a unique sublime text flair.
+
+  There are a number of essential keybindings you will want to learn out of the box:
 
   - Space on any item in the agenda will open that item in a seperate group.
   - Enter on any item in the agenda will open that item in the current group.
   - Ctrl+w will close the agenda view.
+  
+
+  A couple of quick notes about the agenda before we continue:
+
   - The habit visualizer leaves something to be desired, it does not yet support the restart options that most habits
-    do in org, BUT, it is still present and gives you a semblance of how well you are tracking with your habits.
-  - The main agenda view is a custom list of visualizers you would like to see.
+    do in org, BUT, it is still present and gives you the basics on how well you are tracking with your habits.
+  - The main agenda view is a custom list of visualizers you would like to see and can be configured through your settings file.
+
 
   Custom Agenda views can be defined in the AgendaCustomViews dictionary in your orgextended.sublime-settings file.
-  The Default view is the view that will show when you call *OrgAgendaCustomView*.
-  To choose one of the other views use *OrgAgendaChooseView* this will pop up a quick select panel
-  allowing you to select a view.
+  The Default view is the view that will show when you call *Org Agenda Custom View*.
+  To choose one of the other views use *Org Agenda Choose View* this will pop up a quick select panel
+  allowing you to select a view. Here is an example of a settings file.
+
+
+  Here is an example settings file. The Default view is just list of vanilla views.
+  We are also defining a custom todos and notes view without any filters. Careful with these, they can be
+  overwhelming if your task lists are large. (See filtering sections below)
+
+  The flags view has 2 Todos views. The first has a tagfilter that requires tasks to have one of TAG1 or OTHERTAGS tags on the todos.
+  The second view requires TAG2. You can also require a tag to be absent with -TAG3. The negative prefix tells the system to exclude tasks with that tag.
+
+  There are other filter types that can be applied. (See filtering sections below)
 
  #+BEGIN_SRC js
     "AgendaCustomViews": 
@@ -26,7 +52,7 @@
         "Default": ["Calendar", "Week", "Day", "Blocked Projects", "Next Tasks", "Loose Tasks"],
         "Todos":   ["Todos"],
         "Notes":   ["Notes"],
-        "Flags":   ["Todos : tagfilter |TAG1 |OTHERTAGS", "Todos : tagfilter OTHERTAGS"],
+        "Flags":   ["Todos : tagfilter |TAG1 |OTHERTAGS", "Todos : tagfilter +TAG2"],
     },
   #+END_SRC 
 
@@ -41,6 +67,7 @@
   - Meetings :: This is a list of meetings
   - Phone :: This is a list of meetings marked as PHONE calls.
   - Week :: This is a week view helping with a quick open slot / week at a glance view.
+  - Done :: This is a list of completed tasks. You will almost certainly need to use a filter with this view to avoid it being massive.
 
   [[file:images/agenda_day.gif]] 
 
@@ -60,7 +87,7 @@
 
 ** Priorities
 
-  You can use the same kind of filter with priorities:
+  You can use the same kind of filter with priorities from your task property drawers:
 
   #+BEGIN_SRC js
     "NAMEOFVIEW : priorityfilter [MODIFIER]Priority [MODIFIER]Priority"
