@@ -362,7 +362,7 @@
       print(",".join([str(x) for x in r]))
   #+END_EXAMPLE
 
-  [[file:table_output_csv.gif]]
+  [[file:images/table_output_csv.gif]]
 
 ** Advanced Table Features
     Orgmode supports an advanced table mechanism. When using these features
