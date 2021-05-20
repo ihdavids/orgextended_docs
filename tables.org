@@ -145,7 +145,15 @@
    OrgExtended offers a means of running a temporary expression over a column of cells below the cursor:
 
    [[file:images/edit_by_formula.gif]] 
-   
+
+  
+** Re-Editing a Formula 
+
+  When you have written a formula, sometimes you need to tweak it. The Org Edit Table Formula will recall the formula attached to the current cell.
+  Note: the target expression currently needs to be changed back to reflect a newly created formula.
+
+  [[file:images/edit_formula.gif]]
+
 ** Symbols and Constants
   Sometimes when doing a calculation it is a bit of a pain to work with a gamut of numbers and it helps to be able to assign a meaningful name.
   The CONSTANTS comment allows you to created named symbols that can be referenced from your tables:
