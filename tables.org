@@ -353,6 +353,17 @@
     #+END_SRC
 
 
+** Exporting a Table
+  Because of babel tables act like a data source. Because of this it is super easy to convert a table to almost any format you require.
+  Here is a simple example of outputting a table as a simple csv file.
+
+  #+BEGIN_EXAMPLE
+    for r in DATA:
+      print(",".join([str(x) for x in r]))
+  #+END_EXAMPLE
+
+  [[file:table_output_csv.gif]]
+
 ** Advanced Table Features
     Orgmode supports an advanced table mechanism. When using these features
     you need to put symbols in the first column of the table. These symbols are as follows.
