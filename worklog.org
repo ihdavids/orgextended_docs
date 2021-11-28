@@ -1,4 +1,715 @@
+* 1.2.41
+  Thank you for the contribution Sinamore:
 
+  - Some small agenda fixes from Sinamore for the agena
+    when day of week starts on Monday it was showing the wrong week.
+  - Datepicker had problems with date wrap around.
+  - A bug in mouse hovering with hasattr
+
+
+* 1.2.40
+** Refile Improvements
+  2 new commands for refiling:
+
+  - org_refile_to_file command vs heading, quick refile at end of file.
+  - org_refile_to_file_and_headline - 2 step prompt file + headline
+
+  Right now, for vimmers bound to:
+  - <space> r f for refile to file.
+  - <space> r r for refile to file and headline
+
+** Capture
+  - Added new capture type: 'plain'
+    we now support 'entry' and 'plain' Eventually I will add all the capture types
+    but we are a bit off from that.
+  - Added new capture type: 'item'
+    This will add at the end of the first list found in the node
+  - Added new capture item: 'checkitem'
+    This will add at the end of the first checklist found in the node
+  - Added really early attempt at 'table-line'. Not sure if this is sufficient
+  All of the types above only work with the snippet type
+
+  - Added first stab at 'file+olp+datetree' I only have the full day mode not month or week yet.
+    The olp part will take a heading and will add something like:
+    under that heading
+
+    * 2021
+    ** 2021-11 November
+    *** 2021-11-27 Saturday
+        <your snippet here>
+
+    The target should look something like:
+      ['file+olp+datetree',"{myfile}","Heading a","Heading b","Heading c"]
+
+      We have 3 non standard properties implemented for datetree:
+
+      #+BEGIN_QUOTE
+        These are python date strings and allow you to control the header
+        format of your datetree
+          "year-format":  "%Y",          - The root of your datetree * 2021
+          "month-format": "%Y-%m %B",    - The month section         ** 2021-11 November
+          "day-format":   "%Y-%m-%d %A", - The day section           *** 2021-11-27 Saturday
+      #+END_QUOTE
+
+* 1.2.39
+** Improving Org Capture
+   - file+regexp now works for inserting entry's
+     no item or anything else, just entry's but it works.
+     This searches an org file line by line for the first match.
+     ["file+regexp","filename","REGEX"]
+
+   - file+olp - full path in a file. When there are multiple paths
+     this is the safest.
+     ["file+olp","filename","Heading level 1","Heading level 2" ...]
+
+* 1.2.38
+** Day Page
+   - Bugfix, regression: snippets were not running when creating a new daypage.
+** Capture
+   - Fixed symbol expansion of filenames
+   - Indent fix when inserting at the end of the buffer
+   - file+headline improved insertion
+
+* 1.2.37
+  - Fixed a bug with agenda having extra spaces after calendar view.
+** dayPage - Capture symbols
+    - added {daypage} symbol as a capture target symbol
+    #+BEGIN_SRC js
+        "target": ["file","{daypage}"],
+    #+END_SRC
+
+    - you can now also set a symbol in your sublime settings file and use it as a target expansion:
+    #+BEGIN_SRC js
+        "mysym": "to use over and over"
+        ...
+        "target": ["file","{mysym}"],
+    #+END_SRC
+
+** Capture
+   Added file+headline to capture templates.
+   #+BEGIN_SRC js
+   "target": ["file+headline","{myfile}","MyHeadline"]
+   #+END_SRC
+
+* 1.2.36
+** Slightly Improved DatePicker
+  - Working to improve the datepicker a bit, there is sooo much functionality that org offers here
+    and I only support a tiny fraction of the abilities.
+  - Added clock to demonstrate current time to the datepicker.
+  - Added Ctrl+Shift+. and Ctrl+Shift+, to change the active hour
+  - Added Alt+Shift+. and Alt+Shift+, to change the active minute
+  - Clock disappears if we failed to parse a time out of your date string.
+  - I have added REALLY basic duration capabilities to the date picker.
+
+    #+BEGIN_SRC org
+      1d    -- Will select a date tomorrow at the current time.
+      3h    -- Will select a time 3h from now.    
+      4     -- Will select the next day 4 of the month in the future.
+      Fri   -- Jump to the next friday from curren day
+      sept 12 -- Jump to sept 12
+    #+END_SRC 
+
+  This is still nowhere NEAR: https://orgmode.org/manual/The-date_002ftime-prompt.html
+  But I am slowly working in that direction. Hopefully one day we will have a date picker that
+  that is as powerful and flexible as the full orgmode version. 
+
+
+* 1.2.35
+** Bold Italic etc only on word boundaries
+   - Emacs org mode only supports formatting on propper word boundaries:
+
+      _THIS_SHOULD_NOT_BE_HIGHLIGHTED_
+      _THISSHOULDBE_
+
+      /This/Is/Not/Italics/
+      /This is italics/
+
+      I have adjusted the grammar to avoid formatting improperly.
+
+** Experimental Trello Export
+   Org is an interchange format and can be used like markdown to export to other formats. It is also a great way to store notes and other todos.
+   that said, sometimes you have to work in other systems, like trello, but still want Org goodness. This is an experimental export feature from
+   Trello to a local org file. This is not only a handy backup but I am hoping I might evolve this into a 2 way sync.
+   This builds on and requires the existing Trello package, you will need it to be able to use the new Trello sync features herein.
+
+   - Ability to author an org file from a trello board. This requires that you have installed the Trello package and set it up.
+     Running "Org Trello Sync Board" Will let you select a board and generate an org file from it.
+   - The command will not be present if you have not setup the Trello package.
+   - Eventually I would like this to be a 2 way sync but that is going to take a bit more work. 
+
+** Day Page Extension
+   - The day page system got a bit of a facelift.
+   - dayPageMode: "week" Will now flip the system to have one page per week rather than a page per day. NOTE: The page will always be the monday of
+     every week.
+   - dayPageCopyOpenTasks:true will now copy any unfinished todo's from the previous page to today when you create a new day page.
+   - dayPageArchiveOld:true will add an archive tag to the previous day when you start a new day page. 
+   
+
+* 1.2.34
+** Active Table Cell Highlight
+   Show cursor for current cell.
+
+   Use the following option to turn this off if
+   it is causing you problems.
+
+   #+BEGIN_EXAMPLE
+     "tableShowCursor": false,
+   #+END_EXAMPLE
+
+** Babel Preview
+   - Perl is now supported. Like the other languages you have to
+     tell the language handler where your perl interpreter can be found
+     with:
+
+     #+BEGIN_QUOTE
+       "perlPath": "<path to perl interpreter",
+     #+END_QUOTE
+
+    #+NAME: input-table
+    | a | b | c |
+    | 1 | 2 | 3 |
+  
+    #+BEGIN_SRC perl :var DATA=input-table :results table
+      foreach(my $m = 0; $m <= $#DATA; $m++)
+      {   
+          for(my $n = 0; $n <= $#{$DATA[$m]} ; $n++)
+          {  
+            print "$DATA[$m][$n] ";  
+          }  
+          print "\n";  
+      } 
+    #+END_SRC
+    #+RESULTS:
+    | a | b | c |
+    | 1 | 2 | 3 |
+
+    I am certainly not a perl master, if someone wants to tweak my perl
+    integration please be my guest.
+
+    #+BEGIN_SRC perl :results value
+      return "Hello world"
+    #+END_SRC
+    #+RESULTS:
+    : Hello world
+
+*** R
+   The R language in source blocks was not marked up properly.
+
+** Agenda
+   Files outside of orgDir were being included in the agenda.
+   A request was made to fix this. The old behaviour can be toggled
+   using the following:
+
+   #+BEGIN_SRC js
+        "agendaIncludeFilesOutsideOrgDir": true     
+   #+END_SRC
+
+** Sinamore Slow Checkbox Improvement [0/5]
+   - Improvement to checkbox performance in files with lots of checkboxes and summaries.
+
+
+
+* 1.2.33
+** Editing
+   - Tag insertion could not insert tags on headings with colons
+     this has now been fixed.
+     [[https://github.com/ihdavids/orgextended/issues/38][Issue]] 
+
+*** Indenting
+    An attempt to improve heading indentation with exiting content. We will see how this
+    new attempt plays out.
+
+** Syntax Highlighting
+   - Internal syntaxes are now hidden.
+   - Syntaxes are now marked as version 2 which may improve perf.
+
+** Org Beancount Experiment
+   This is a bit of a departure from org's primary purpose.
+   I however use beancount and beancount is designed to work
+   inside other markup languages like markdown and... orgmode!
+
+   Due to how packages and syntaxes work I have not found a good
+   way to create an amalgamated syntax without doing inside the
+   orgmode package. So... here we are. By default we highlight
+   .orgbeancount files.
+
+   This also adds a snippet for inserting a transaction with
+   some additional metadata. My hope is to eventually facilitate
+   babel and beancount. 
+
+** Clocking
+   - I was logging clock entries into the PROPERTIES drawer.
+     this is a bit non standard.
+   - this is now configurable and by default we are now
+     logging into a LOGBOOK drawer which is more orgmode standard.
+
+     Use the following to preserve the old behaviour:
+     #+BEGIN_EXAMPLE
+        "clockInPropertyBlock": true,
+     #+END_EXAMPLE 
+   
+
+* 1.2.32
+** Insert Sibling Heading
+   - If the next line has spaces the inserted heading could have spaces which is not a good idea.
+     This is now stripped properly.
+
+** Agenda
+   - Done - a new view that lists done tasks
+    WATCH OUT this can be massive! Use this with other filters.
+   - durationfilter added -2w filters items 2 weeks ago from right now. 
+     a negative duration value will filter against CLOSED values while a positive will filter
+     against SCHEDULED and DEADLINE values.
+   - datefilter allows you to filter by absolute date range >=20210501 <=20210531
+   - hasclose and other attributes were not handled properly as filter keywords, this has been fixed.
+
+** Reveal Exporter
+   - Tables are now actually supported
+
+** Exporting
+   - Tables had a bug if tabs were present in front of the table.
+
+** Editing
+   - New override setting: logDone - forces CLOSED entries to be inserted even if logdone
+     is not in your #+STARTUP: tags or global "startup": "..." settings.
+   #+BEGIN_EXAMPLE
+     "logDone": true,
+   #+END_EXAMPLE
+
+** Tables
+   Found a bug with complete relative syntax.
+   They were always evaluating to 1,1 in the table.
+
+   This has been fixed.
+
+   #+BEGIN_EXAMPLE
+     @-1$+1 
+   #+END_EXAMPLE
+
+   Known issue:
+   ------------
+   Complex expansions are not working:
+
+   @int($-1)$1
+   This would look up the row from the neighboring cell
+
+   There is a workaround for now till I can improve the parser
+
+   getcell(int($-1), 1, 1, 0)
+            |        |  |  not relative
+            |        |  column 1
+            |        relative offset
+            grab value 1 cell to the left, ensure it is an int
+
+*** New Table Commands
+   
+    The following will pull the active formula for the current cell into the current cell.
+    Facilitating editing.
+
+    #+BEGIN_EXAMPLE
+      Org Edit Table Formula
+    #+END_EXAMPLE
+
+    The following will clear the current cell
+
+    #+BEGIN_EXAMPLE
+      Org Clear Table Cell
+    #+END_EXAMPLE
+
+    The following will run a temporary formula on the cells on and below the cursor
+    which can be handy when fixing up a table.
+
+    #+BEGIN_EXAMPLE
+      Org Table Exec Below
+    #+END_EXAMPLE
+
+*** Babel Preview
+    - Improved results block discovery previously results might confuse a source block
+      as being part of the results.
+
+
+
+* 1.2.31
+** Insert Heading
+  Slight improvement to DWIM behaviour
+  File with no headings will behave a little better on insertion.
+** RevealJs Exporter
+    - Converted RevealJs exporter to use version 4.1.0 
+    - Converted RevealJs exporter to use new export framework written for the latex exporter
+    - New global option for CDN:
+
+      #+BEGIN_EXAMPLE
+        "RevealLocation": "https://cdn.jsdelivr.net/npm/reveal.js@4.1.0/",
+      #+END_EXAMPLE
+
+    - Switched CDNs from cdnjs to jsdelivr to get presenters notes working again.
+
+** Show Inline Images
+    - Improvement when unadorned http links are next to images Show Images would not work
+      Thanks to waynezhang for this bugfix.
+
+** Indentation Rules Improvement
+    - Fixing small bug with indent rules regexs.
+
+* 1.2.30
+** Auto Indentation
+   - Not yet perfect but some simple auto indentation rules
+   - begin blocks are automatically indended.
+   - Headings get indentation inserted when you hit enter off them
+
+** BEGIN_NOTES
+   - notes block added to syntax highlighter
+   - <n snippet added as well.
+
+** New Agenda Filter Keyword
+
+   statefilter is a new filter that can help tweak a todo view to only a subset of 
+   open states.
+
+   #+BEGIN_EXAMPLE
+     Loose Tasks: statefilter +TODO +NEXT : tagfilter MyTag
+   #+END_EXAMPLE
+
+** Known Issues
+   - Since the default reveal.js exporter uses a CDN the presenter
+     notes are not being shown because the notes.html file is not hosted
+     anymore. I will work to fix this in the future.
+
+     (As well as upgrade to the latest reveal.js distribution)
+
+* 1.2.29
+** Links
+  - New command "Org Search Links" searches links across all org files.
+
+** Backlinks
+  - Fixed a bug where folds in the backlinks buffer would get confused.
+
+** Awk
+  - Syntax highlighting for awk source blocks:
+
+  #+BEGIN_SRC awk
+    BEGIN {OFS="|"}; { sum+= $2}; END { print "Sum", sum} 
+  #+END_SRC
+
+  
+
+* 1.2.28
+** Backlinks Experimentation
+  Org Roam is a very powerful package. I am nowhere near supporting the power pretty views and flexibility of that package.
+  That said, I am experimenting with the backlinks feature. This release has an experimental version of the org-roam backlinks
+  view. These are links that are referencing your current document in your orgDirs not links that this document references. 
+
+
+  - Org Jump To Backlinks - is a new quick menu command that shows the links referencing your current file and lets you jump to them.
+  - Org Show Backlinks - is a new command that pops up a panel with the backlinks to the file you are currently looking at.
+
+  This is an experimental feature. It automatically tries to keep the backlinks display visible but this is somewhat challenging with the existing
+  sublime API. You can turn this off if it is causing you problems:
+
+  Turn off the attempts to update the backlinks display using the following option in your settings file:
+  #+BEGIN_EXAMPLE
+   "backlinksUpdate": false, 
+  #+END_EXAMPLE
+
+** Mermaid Source Blocks
+
+  - Syntax is supported if you install the mermaid package
+  - Can be executed to generate diagrams if setup.
+
+  Setting it up is a bit of a pain:
+
+  1. npm install @mermaid-js/mermaid-cli
+  2. NOTE it gets installed into a node_modules folder. This is REQUIRED!
+  3. Set the mermaid variable in your settings to point to mmdc in the node_modules\.bin\mmdc path
+  4. Ensure node is in your path 
+
+  Then execute this block:
+
+  #+BEGIN_SRC mermaid :file ganttdemo.png
+gantt
+    title A Gantt Diagram
+    dateFormat  YYYY-MM-DD
+    section Section
+    A task           :a1, 2014-01-01, 30d
+    Another task     :after a1  , 20d
+    section Another
+    Task in sec      :2014-01-12  , 12d
+    another task      : 24d
+   
+  #+END_SRC
+
+   #+RESULTS:
+   [[file:ganttdemo.png]]
+
+
+* 1.2.27
+** LaTeX Exporter
+  - LATEX: and @@ @@ support in the latex exporter.
+  - Something went wrong with 1.2.26, People are downloading 1.1.13 instead... I don't know why. Pushing another version in the hopes this fixes it.
+
+* 1.2.26
+** Bugfix: Do What I Mean Insert
+  Ctrl + Enter is a DWIM insert
+  Sadly I broke it when I renamed the orgsnippets folder
+
+  
+
+* 1.2.25
+** Latex Preview
+  - more #+OPTIONS: controls
+    date:nil toc:nil toc:2 author:nil title:nil
+  - Table export supports some ATTR_LATEX options:
+    :environment bmatrix :mode math 
+** Hide Images
+  - This was removing indent for some reason
+    which was disconcerting.
+
+
+* 1.2.24
+** Day Page
+  - Fixed small exception with create
+  - Fixed inserting templates when moving back and forth to current
+    day page a disturbing leftover from a previous debugging session.
+** Latex
+  - Improved output parsing in list contents  
+  - Images have some ATTRS_LATEX support
+  - table of contenst is included
+  
+
+* 1.2.23
+** Day Page
+  - Bugfix - Create was subject to 
+    a timing problem that would stop it from expanding the snippet.
+    This has been fixed.
+
+** Latex Preview
+  - We continue to move the latex exporter forward with
+    some basic image support
+  - Results have the results header stripped properly now
+    A first stab at :exports keyword
+    (not really well tested yet)
+  - More keywords that should be removed are stripped out. 
+
+* 1.2.22
+** Table Bug
+  Fixing a remote indexing bug.
+  If the local table does not have enough columns to match your remote index
+  the remote target would get capped to the local width:
+
+  Note the a in the second table, it should have been a b, this is because we are
+  trying to access column 2 remotely but our local table only has 1 column.
+
+  The temporary fix was to add another column.
+
+    #+NAME: hiya
+    | a | b | c |
+    | 1 | 2 |   |
+
+    | a |
+    #+TBLFM:@1$1=remote('hiya',@1$2)
+
+    After the fix this now reads b
+
+** Link Insertion
+  - Thanks to waynezhang link insertion using "Link To File" or the autocomplete
+    method now inserts relative paths relative to the current file.
+  - The title of the link reflects the #+TITLE: field in the file is present.
+  - "linkFindUseRoamTags": False will turn off visualization of ROAM_TAGS in quick panel
+    if desired. (NOTE they do not appear in the search unless you have them in the file)
+
+** Capture
+  - Somehow the snippets folder was not renamed orgsnippets when I normalized
+    my extension folder names. This means that while my local snippets were working
+    none of the default ones that come with the package were working.
+    Hopefully this has been fixed.
+
+** Day Page
+  - I am moving the day page feature forward a little bit.
+  - Do not forget to set the "dayPagePath" setting if using this feature
+  - "Org Day Page Create" is really going to be more of a
+    goto today. It will create the day page or open it.
+  - Create also now uses a snippet that is keyed off of:
+    This should be the filename of a snippet file that lives in your
+    orgsnippets folder. (without the .sublime-snippet extension)
+
+    #+BEGIN_EXAMPLE
+      "dayPageSnippet": "dayPageSnippet",
+    #+END_EXAMPLE 
+
+    This snippet will get expanded into the file on creation as a means
+    of authoring a new day. Symbols exist to help in your snippet authoring 
+    the list of symbols is similar to the capture templates.
+
+    Two new symbols exist for use in your snippet:
+    ORG_FILENAME is the filename without the org extension and
+    ORG_AUTHOR is your username.
+
+    - Day Page Filenames are now configurable
+      They use the python strftime syntax for defining the filename:
+
+      Note changing this with pre-existing content will likely have consequences
+      when searching old files.
+
+      #+BEGIN_EXAMPLE
+        "dayPageNameFormat": "%a_%Y_%m_%d",
+      #+END_EXAMPLE
+
+    - New Commands:
+      Lets you cycle through your day pages in sequence.
+
+      #+BEGIN_EXAMPLE
+        Org Day Page Next
+        Org Day Page Previous
+      #+END_EXAMPLE
+
+** Latex Exporter
+  - NAME now exports a label like it should
+  - LATEX_HEADER tag should now add to the latex preamble
+  - LATEX_CLASS_OPTIONS now adds an option next to the documentclass
+  - surrounding an expression with dollar signs will export properly in latex
+  - Slightly improved spacing in latex documents
+  - Fixed a bug with the segment parser and secments right at the start of a line
+  - Better stripping of html attributes
+  - Added first try at SetupFile tag.
+
+* 1.2.21
+** Html Exporter
+  - Exporting source blocks that do not have handlers was generating an error.
+
+** Early Preview of Latex Exporter
+  - An early perview of a new latex exporter.
+  - Many of the basic org data types work already.
+  - Thanks to FleurDePassion for his time in helping work on this.
+
+** Links To Files in OrgDirs
+
+  New command: quick panel based insertion of links to files
+
+  #+BEGIN_EXAMPLE
+  "Org Link To File" 
+  #+END_EXAMPLE
+
+  This was requested by: [[https://github.com/ihdavids/orgextended/issues/30][Autocompletion of Links]] 
+
+  In addition to the quick insert autocompletion during link insertion also tries to help with mapping to local files if possible. You can turn off autocomplete
+  in the settings file if you are finding it annoying.
+
+** Home Directory orgDirs
+  Thanks to waynezhang for implementing this.
+  We now support ~ in orgDirs in your settings file.
+    
+
+
+* 1.2.20
+** Html Exporter
+  Continuing the Babel adventure we add support for :exports [code,results,both,none]
+
+  NOTE: this means that the default parameters for babel header args are now more important
+        Before we would default to exporting both code and results, now, due to the defaults set in our settings
+        we only export code. This is in complaince with org mode defaults. If you would like to change that
+        add the key to your settings file and set the defaults as you need:
+
+  #+BEGIN_SRC python :exports both
+   print("hi") 
+  #+END_SRC
+
+   #+RESULTS:
+   : hi
+
+
+  #+BEGIN_EXAMPLE
+      "orgBabelDefaultHeaderArgs": ":session none :results replace :exports code :cache no :noweb no",
+  #+END_EXAMPLE
+
+*** Skip Source 
+
+  Some source formats it is handy to always skip the source and only include results.
+  We have added a list of formats where this overrides the defaults (listed above) for convenience:
+
+  #+BEGIN_EXAMPLE
+    "htmlDefaultSkipSrc": ["plantuml","graphviz","ditaa","gnuplot"], 
+  #+END_EXAMPLE
+
+  Remove this list if you would like to always have explicit control with the exports keyword.
+
+*** Source Block Execution on Export
+
+  This is now turned on by default. If you would like to disable it:
+
+  #+BEGIN_EXAMPLE
+      "htmlExecuteSourceOnExport": false,
+  #+END_EXAMPLE
+
+* 1.2.19
+** Html Exporter
+  - Exporter now exports as utf-8 to avoid problems with unicode characters.
+  - Fixed a type in the postamble handling
+  - The exporter can handle "* NOTE :" malformed headings and not crash.
+  - The collapse system had problems computing the correct max-height on 
+    startup and nodes would not fold properly.
+  - Added plain style to htmlstyles
+
+* 1.2.18
+** Syntax Highlighting
+
+  Beancount is now supported for syntax highlighting in source blocks
+
+** Html Exporter
+  - Fixed issue with exporting unordered lists.
+  - Org Export Subtree as Html now handles HTML_STYLE properly
+  - Org Export Subtree as Html will export <filename>_subtree.html rather than as a temp file.
+  - "htmlExportPartialCheckboxChecked": False - Will export partial checkboxes as unchecked vs checked.
+
+* 1.2.17
+
+  More source block handlers!
+
+** Alias Support in Source Blocks
+    bat = cmd
+    js  = javascript
+
+** SH source blocks kind on windows with WSL (assuming you have WSL setup)
+
+  This is not yet tested on any other platform!
+
+  #+NAME: in-table
+  | a | b | c | d | e |
+  | 1 | 2 | 3 | 4 | 5 |
+
+  #+BEGIN_SRC bash :var DATA=in-table
+   echo "$DATA" 
+  #+END_SRC
+  #+RESULTS:
+   : a  b   c   d   e
+   : 1  2   3   4   5
+
+
+  Not yet sure if value types work like this in emacs.
+  I may need to adjust this.
+
+  #+BEGIN_SRC sh :results value
+  return 5
+  #+END_SRC
+  #+RESULTS:
+  : 5
+
+** Javascript source blocks require node.js
+    Set nodejsPath in your settings file.
+
+    #+BEGIN_SRC javascript :var x=5
+        console.log('Hello world ' + x);
+    #+END_SRC
+
+   #+RESULTS:
+   : Hello world 5
+
+
+   #+BEGIN_SRC js :var DATA=in-table :results table
+     console.log(DATA);
+   #+END_SRC
+   #+RESULTS:
+   | a | b | c | d | e |
+   | 1 | 2 | 3 | 4 | 5 |
 
 * 1.2.16
 ** Source Blocks
