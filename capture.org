@@ -97,11 +97,17 @@
 
   - file :: specifies the file you wish to capture to
   - file+headline :: unique headline in file
+      This will only insert under and exact match
+      #+BEGIN_SRC js
+        "target": ["file","{refile}","Headline text"],
+      #+END_SRC
   - file+olp      :: full path to headline
   - file+regexp   :: nodes text in the document is a match to the regexp
   - file+olp+datetree :: This target creates a heading in a date tree for today’s date. If the optional outline path is given, the tree will be built under the node it is pointing to
   - id :: A CUSTOM_ID property on a heading (I often use the TODAY property for this kind of targetting)
   - clock :: capture to the actively clocked target
+
+
 
   #+BEGIN_SRC js
       {
