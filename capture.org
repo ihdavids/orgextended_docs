@@ -116,8 +116,21 @@
       #+BEGIN_SRC js
         "target": ["file","path to file","REGEX"],
       #+END_SRC
-  - file+olp+datetree :: This target creates a heading in a date tree for today’s date. If the optional outline path is given, the tree will be built under the node it is pointing to
+  - file+olp+datetree :: This target creates a heading in a date tree for today’s date. The tree will be built under the outline path.
+
+      #+BEGIN_SRC org
+       * 2021
+       ** 2021-03 June
+       *** 2021-03-01 Wednesday 
+      #+END_SRC
+
   - id :: A CUSTOM_ID property on a heading (I often use the TODAY property for this kind of targetting)
+    #+BEGIN_SRC org
+      * Heading
+      :PROPERTIES:
+        :CUSTOM_ID: TODAY
+      :END:     
+    #+END_SRC
   - clock :: capture to the actively clocked target
 
 
@@ -182,6 +195,7 @@
    of the first list they find in the node. Table-line adds a row to a table.
 
 * TODO Refile
+
   I like to capture ideas, snippets and meeting notes to my refile file.
   That makes input quick and dirty when I am in the middle of something else.
 
