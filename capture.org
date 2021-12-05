@@ -92,21 +92,19 @@
   
 ** Targetting
   Ultimately I would like to support the full gamut of OrgMode capture settings.
-  At the moment I have a very limited set. The following is a rough idea of where I would like to take this:
+  At the moment I have a limited set, but I am working to expand it
+  as I can make time. The following are supported:
 
-  Right now the only capture targets I support are:
   - file :: specifies the file you wish to capture to
+  - file+headline :: unique headline in file
+  - file+olp      :: full path to headline
+  - file+regexp   :: nodes text in the document is a match to the regexp
+  - file+olp+datetree :: This target creates a heading in a date tree for today’s date. If the optional outline path is given, the tree will be built under the node it is pointing to
   - id :: A CUSTOM_ID property on a heading (I often use the TODAY property for this kind of targetting)
   - clock :: capture to the actively clocked target
+
   #+BEGIN_SRC js
       {
-            // This is what I am heading towards.
-            // TODO:
-            // - types
-            // - snippet insertion for the template
-            // - target selection methods
-            // - properties insertion.
-            // - better capture buffer (not a panel)
             "name": "Meeting",
             // types:
             // entry      - An Org mode node, with a headline. Will be filed as the child of the target entry or as a top-level entry
@@ -126,7 +124,7 @@
             // function <name>- generic function to find location for you
             "target": ["file","{refile}"],
             "snippet": "meeting_heading",
-            //"template": "* MEETING $0\n  :PROPERTIES:\n:CREATED: [{datetime}]\n:END:\n  "
+            // DEPRECATED: "template": "* MEETING $0\n  :PROPERTIES:\n:CREATED: [{datetime}]\n:END:\n  "
             // prepend - Normally new captured information will be appended at the target location (last child, last table line, last list item, …). Setting this property changes that.
             // immediate-finish - When set, do not offer to edit the information, just file it away immediately. This makes sense if the template only needs information that can be added automatically.
             // empty-lines - Set this to the number of lines to insert before and after the new item. Default 0, and the only other common value is 1.
@@ -148,6 +146,21 @@
 
   NOTE that properties are not currently supported at all and I only support the entry type. In the future I would like to extend this, but only as I have need or others in the community
   request it.
+** Capture Type
+   While the bulk of the capture contents is specified by the snippet used the target and type determine how the snippet gets inserted.
+   Target chooses what file and Org Mode heading to insert under. Type determines where to insert under that heading.
+   The following types are supported:
+
+
+   - entry      :: An Org mode node, with a headline. Will be filed as the child of the target entry or as a top-level entry
+   - item       :: A plain list item, placed in the first plain list at the target location
+   - checkitem  :: A checkbox item. This only differs from the plain list item by the default template
+   - table-line :: A new line in the first table at the target location. Where exactly the line will be inserted depends on the properties :prepend and :table-line-pos (see below)
+   - plain      :: Text to be inserted as it is.
+
+   The vanilla type is the entry, this means you want to insert a child node at the specified location, but what if you want to insert
+   content. Plain is the default here. The snippet will be expanded at the end of the node. Item and checkitem will expand at the end
+   of the first list they find in the node. Table-line adds a row to a table.
 
 * TODO Refile
   I like to capture ideas, snippets and meeting notes to my refile file.
