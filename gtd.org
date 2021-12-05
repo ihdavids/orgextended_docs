@@ -78,27 +78,52 @@
 * Work vs Home vs Projects
 
 * What is a Project?
-* Deciding What to Do
-* Automatic Sync
-	On my mac I use the following script in a cron job:
+	A project is a task that is actionable, no matter how small.
+	There are different ways you can express that. 
 
+* Deciding What to Do
+	This is where the concept of a context aware NEXT actions lists 
+	comes in. Presumably I do the following:
+
+	1. Check your agenda for the sacred things that HAVE to be done today.
+	2. If those are taken care of you pull up your next actions list.
+
+
+* Automatic Sync
+	On my mac I use the following script to automatically push
+	any changes I make automatically to git. This gets changes
+	I make to my phone or home machines quickly without effort.
+
+	#+BEGIN_SRC bash
+	  # Here is my crontab:
+	  crontab -l
+	  */10 * * * * /Users/me/gtdsync.sh	  
+	#+END_SRC
+
+	And gtdsync looks as follows:
 	#+BEGIN_SRC bash
       #!/bin/bash
       
+      # First jump into my notes
       pushd ~/git/gtd
-      
+
+      # Check if there are any modifications      
       git diff --exit-code
       mods=$?
       
+      # Check if there are any new files?
       localchanges=$(git ls-files --other --exclude-standard --directory | wc -l)
       
+      # If we have changes then add them and commit them!
       if [[ $localchanges -gt 0 || $mods -gt 0 ]]; then
       	git add --all
       	git commit -m "Update from mac"
       fi
       
+      # Pull anything new
       git pull --no-edit
       
+      # Push any changes we may have added?
       if [[ $localchanges -gt 0 || $mods -gt 0 ]]; then
       	git push
       fi
