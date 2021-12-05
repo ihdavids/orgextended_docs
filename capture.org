@@ -96,13 +96,26 @@
   as I can make time. The following are supported:
 
   - file :: specifies the file you wish to capture to
-  - file+headline :: unique headline in file
-      This will only insert under and exact match
+      This will always insert at the end of the file.
       #+BEGIN_SRC js
-        "target": ["file","{refile}","Headline text"],
+        "target": ["file","path to file"],
+      #+END_SRC
+  - file+headline :: unique headline in file
+      This will only insert under and exact match but anywhere in the hierarchy.
+      #+BEGIN_SRC js
+        "target": ["file","path to file","Headline text"],
       #+END_SRC
   - file+olp      :: full path to headline
+      This is like file+headline but specifies a full path to the node. Useful if there are multiple nodes
+      with the same heading.
+      #+BEGIN_SRC js
+        "target": ["file","path to file","Headline1","Headline2","Headline3",...],
+      #+END_SRC
   - file+regexp   :: nodes text in the document is a match to the regexp
+      this will insert at the node who is situated at the first line in the file that matches a regexp 
+      #+BEGIN_SRC js
+        "target": ["file","path to file","REGEX"],
+      #+END_SRC
   - file+olp+datetree :: This target creates a heading in a date tree for today’s date. If the optional outline path is given, the tree will be built under the node it is pointing to
   - id :: A CUSTOM_ID property on a heading (I often use the TODAY property for this kind of targetting)
   - clock :: capture to the actively clocked target
