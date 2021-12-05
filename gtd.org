@@ -1,0 +1,108 @@
+* GTD In Org Mode
+  While org truly is a swiss army knife meant to allow you to 
+  to organize your life in any way you see fit, one very popular
+  scheme is GTD. The GTD Methodology is quite multifaceted but requires
+  some key tools that org can facilitate. These are:
+
+  - The Agenda or Calendar
+  - The Inbox
+  - The Projects list
+  - The Next actions list
+  - The Waiting for list (tickler)
+  - The Someday Maybe list 
+
+  Org also has the concepts of:
+
+  - Quick capture - get it out of your head
+  - Morning and weekly review - refiling and organizing your information.
+  - Reference vs projects - save important things but keep reference off your lists.
+  - Holistic view yet context aware selection of next actions. (categorization)
+
+  I thought it might be useful to discuss some of the ways that I have tried
+  to use Org to implement my journey towards GTD. This journey is always
+  evolving and changing. Unlike the rest of this manual, this is about how
+  I use Org vs about the features of this attempted implementation of org.
+* Always Available
+  My knowledge base, notes and lists need to be available everywhere I go.
+  I have an Android phone and while there are a ton of cool task list programs, I really need something that integrates with my notes sytems.
+  In an ideal world I want to:
+
+  - Store everything in a git repo, history is a great thing.
+  - Automatically sync on all my boxes without having to remember to do it.
+
+  I have tried quite a few different approaches. 
+
+  1. I use a cron job in termux with git to pull to my orgzly app.
+  	 This works but requires I keep termux open on my phone, which I
+  	 forget periodically.
+  2. Use [[https://github.com/200ok-ch/organice][Organice]] and sync with gitlab directly. This is my current approach. I like orgzly's interface a little better but organice is growing on me.
+
+* Capturing Your World
+  One of the first principles of GTD is to get it out of your head into a trusted place. I am lazy, if I have to spend time fiddling to get it down I will delay and then I will lose the idea. Org mode supports the concept of capturing. GTD talks about getting the idea into your inbox quickly,
+  your inbox is a place you review regularly when you are ready to go
+  from idea to actions.
+
+  With capturing all I do is press a hotkey, write the idea down and close the window, done, it's in my inbox. With autosync (see later) It's on all my devices.
+
+  My inbox is a single file and a set of capture templates:
+
+ ** Context Todos
+
+   An important part of capturing is context. 
+   A work todo is a dated todo with a tag indicating the item is a work context. This lets me see work related next actions when I am at work
+   vs next actions when I am at home.
+
+   #+BEGIN_SRC org
+	* TODO $1                                          :Work:
+	  :PROPERTIES:
+	    :CREATED: {DATE}
+	  :END:
+      $0     
+   #+END_SRC
+
+   This is part of the power of the org mode meta data systems. They allow
+   for properties and tags, which can be used to give your tasks context.
+
+   Does this require a phone? Is this a short operation?
+   Is this something that requires I be at home?
+
+* Inbox and The Daily Review
+  Capturing was the first thing I implemented in org. But capturing becomes
+  useless pretty quick if you do not build a discipline of daily and weekly
+  review. GTD encourages you to set this up. Every morning I have a devotional time where I journal and prepare for my day. This is my daily
+  review. Part of that is sweeping the inbox clean. This starts with 
+  refiling and archiving.
+
+** Archiving
+** Day Page
+* Work vs Home vs Projects
+
+* What is a Project?
+* Deciding What to Do
+* Automatic Sync
+	On my mac I use the following script in a cron job:
+
+	#+BEGIN_SRC bash
+      #!/bin/bash
+      
+      pushd ~/git/gtd
+      
+      git diff --exit-code
+      mods=$?
+      
+      localchanges=$(git ls-files --other --exclude-standard --directory | wc -l)
+      
+      if [[ $localchanges -gt 0 || $mods -gt 0 ]]; then
+      	git add --all
+      	git commit -m "Update from mac"
+      fi
+      
+      git pull --no-edit
+      
+      if [[ $localchanges -gt 0 || $mods -gt 0 ]]; then
+      	git push
+      fi
+	#+END_SRC
+
+* Org For Planning
+* Org For Finances
