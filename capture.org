@@ -133,7 +133,8 @@
     #+END_SRC
   - clock :: capture to the actively clocked target
 
-
+    Your type and target determine WHERE the snippet is inserted. Your snippet determines WHAT is inserted. Your snippet should reflect
+    the type of insertion you are doing or you will get strange results.
 
   #+BEGIN_SRC js
       {
