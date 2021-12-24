@@ -21,6 +21,8 @@
 
   Okay, lets get started.
 
+  First, create a new file with a .org extension, such as todo.org
+
   [[file:images/learning_todo_headings.gif]]
 
   Keybindings for these operations can be found in the keybindings file.
@@ -28,6 +30,7 @@
 
   - For regular users most of the org bindings are under Alt+o
   - For NeoVintageous users most of the bindings are behind <space> in normal mode with the same followers as the Alt+o equivalents
+  - If the key binding does not immediately work, make sure your current file ends in ".org" (or any valid extension from validOrgExtensions in your OrgExtended user config).
 
   Our study begins with taking structured notes. We are at a meeting,
   during that meeting we flow in and out of topics. As I take notes
