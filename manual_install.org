@@ -15,14 +15,16 @@
     On Mac you will need to clone like so (NOTE THE CASE!):
 
     #+BEGIN_SRC powershell
-     git clone https://github.com/ihdavids/orgextended.git ~/Library/Application Support/Sublime Text 3/Packages/OrgExtended  
+     git clone https://github.com/ihdavids/orgextended.git ~/Library/Application Support/Sublime Text/Packages/OrgExtended
     #+END_SRC 
 
     On Linux:
 
     #+BEGIN_SRC powershell
-     git clone https://github.com/ihdavids/orgextended.git ~/. config/sublime-text-3/Packages/OrgExtended 
+     git clone https://github.com/ihdavids/orgextended.git ~/.config/sublime-text/Packages/OrgExtended
     #+END_SRC
+
+    Please note that these are all for ST4. If you are running ST3, see Sublime's docs on [[https://www.sublimetext.com/docs/side_by_side.html][different data directories]].
 
     Once cloned you will likely need to restart sublime a couple of times.
     OrgExtended installs some dependencies AND some additional packages.
