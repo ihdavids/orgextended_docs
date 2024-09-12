@@ -42,4 +42,17 @@
 
   In addition adding to a numbered list is supported by the OrgAppendNumberedList command.
 
-  [[file:images/numberedlists.gif]]
+  [[file:images/numberedlists.gif]] 
+
+
+** Sorting Lists
+   
+   Not nearly as powerful as emacs org mode sorting. 
+   The contents of lists can be sorted alphabetically by putting your cursor over an element in the list and then running
+
+   #+BEGIN_EXAMPLE
+     Org Sort List
+   #+END_EXAMPLE
+
+
+  [[file:images/sortlist.gif]] 
